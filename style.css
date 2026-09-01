@@ -1,0 +1,136 @@
+/* Send It To Society — one stylesheet for every page. */
+:root{
+  --bg:#0A0C10;
+  --panel:#11151C;
+  --panel-2:#161B24;
+  --line:#232A36;
+  --line-soft:#1B212B;
+  --ink:#E9ECF1;
+  --muted:#98A2B3;
+  --faint:#6B7686;
+  --gold:#E8A33D;
+  --gold-dim:rgba(232,163,61,.12);
+  --green:#4ADE80;
+  --red:#F27059;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"Share Tech Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,163,61,.3)}
+a:hover{border-bottom-color:var(--gold)}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line-soft);padding:18px 0}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink);border:none;display:inline-flex;align-items:center;gap:9px}
+.brand:hover{border:none;color:var(--gold)}
+.brand .dot{width:8px;height:8px;border-radius:2px;background:var(--gold);
+  box-shadow:0 0 10px rgba(232,163,61,.7);display:inline-block}
+.topnav{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--faint);
+  display:flex;gap:18px;text-transform:uppercase}
+.topnav a{color:var(--faint);border:none}
+.topnav a:hover{color:var(--gold)}
+
+/* hero */
+.hero{padding:76px 0 8px}
+h1{font-size:46px;line-height:1.08;letter-spacing:-.03em;font-weight:700;margin:0 0 20px}
+.hero .sub{font-size:20px;color:var(--muted);margin:0;max-width:34ch}
+.hero .sub b{color:var(--ink);font-weight:600}
+
+h2{font-size:27px;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:0 0 14px}
+h3{font-size:17px;font-weight:600;margin:0 0 6px}
+p{margin:0 0 16px;color:var(--muted)}
+p b,li b{color:var(--ink);font-weight:600}
+section{padding:52px 0;border-top:1px solid var(--line-soft)}
+section:first-of-type{border-top:none}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 14px}
+
+/* screenshot */
+figure{margin:0}
+.shot{width:100%;border-radius:10px;border:1px solid var(--line);display:block;background:var(--panel-2)}
+.shot-ph{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;color:var(--faint);font-family:var(--mono);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:20px}
+figcaption{font-size:15px;color:var(--faint);margin-top:12px}
+
+/* the stack table */
+.stack{width:100%;border-collapse:collapse;font-size:16px;margin:6px 0 4px}
+.stack td{padding:11px 0;border-bottom:1px solid var(--line-soft);color:var(--muted)}
+.stack td:last-child{text-align:right;font-family:var(--mono);color:var(--ink);white-space:nowrap}
+.stack td small{display:block;color:var(--faint);font-size:12.5px;margin-top:2px}
+.stack tr.total td{border-bottom:none;border-top:1px solid var(--line);padding-top:14px;
+  color:var(--ink);font-weight:600}
+.stack tr.total td:last-child{color:var(--gold);font-size:19px}
+.note{font-size:13.5px;color:var(--faint);margin-top:14px}
+
+/* price */
+.price{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:34px 30px;text-align:center}
+.price .amt{font-size:62px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:0;color:var(--ink)}
+.price .amt span{font-size:24px;color:var(--faint);font-weight:500;letter-spacing:0}
+.price .once{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin:10px 0 22px}
+.buy{display:inline-block;background:var(--gold);color:#12161C;border:none;border-radius:9px;
+  padding:15px 42px;font-weight:700;font-size:17px;letter-spacing:.01em;cursor:pointer;
+  font-family:var(--sans);transition:transform .12s ease,filter .12s ease}
+.buy:hover{filter:brightness(1.08);transform:translateY(-1px);border:none}
+.price .terms{font-size:14px;color:var(--faint);margin:20px auto 0;max-width:44ch}
+
+/* honest list */
+.honest{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--red);
+  border-radius:8px;padding:8px 26px 4px}
+.honest .item{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.honest .item:last-child{border-bottom:none}
+.honest .item p{margin:0;font-size:15.5px}
+
+/* free */
+.free{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--green);
+  border-radius:8px;padding:24px 26px}
+.free p:last-child{margin-bottom:0}
+
+/* refund */
+.refund{text-align:center;padding:44px 0 0}
+.refund p{font-size:20px;color:var(--ink);max-width:40ch;margin:0 auto 14px;line-height:1.5}
+.refund .small{font-size:15px;color:var(--faint)}
+
+footer{border-top:1px solid var(--line-soft);margin-top:70px;padding:34px 0 60px;
+  font-size:14px;color:var(--faint)}
+footer .links{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;font-family:var(--mono);
+  font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+footer a{color:var(--faint);border:none}
+footer a:hover{color:var(--gold)}
+
+/* legal pages */
+.legal{padding:52px 0 0}
+.legal h1{font-size:36px;margin-bottom:8px}
+.legal .updated{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 34px}
+.legal h2{font-size:21px;margin:38px 0 10px}
+.legal ul{color:var(--muted);padding-left:20px;margin:0 0 16px}
+.legal li{margin-bottom:7px}
+.legal li::marker{color:var(--faint)}
+.legal hr{border:none;border-top:1px solid var(--line-soft);margin:30px 0}
+.legal code{font-family:var(--mono);background:var(--panel-2);padding:2px 6px;border-radius:4px;
+  font-size:14px;color:var(--ink)}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  h1{font-size:33px}
+  .hero{padding:52px 0 8px}
+  .hero .sub{font-size:18px}
+  h2{font-size:23px}
+  .price{padding:28px 20px}
+  .price .amt{font-size:50px}
+  .topnav{gap:13px;font-size:11px}
+  section{padding:42px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
