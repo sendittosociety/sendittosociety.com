@@ -59,8 +59,9 @@ header.top{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-ite
   background:linear-gradient(180deg,rgba(3,6,4,.92),transparent)}
 .brand{font-family:var(--pix);font-size:12px;letter-spacing:.14em;color:var(--ink);
   display:inline-flex;align-items:center;gap:10px}
-.mark{width:24px;height:24px;display:grid;place-items:center;background:var(--gold);
-  color:#0A0A06;font-family:var(--pix);font-size:14px;font-weight:700;box-shadow:0 0 18px rgba(245,213,71,.4)}
+/* The mark is the app's own boot logo — a 5x7 block S in the icon's colours,
+   not a gold letter in a box. Same object in both places or it is two brands. */
+.mark{width:20px;height:28px;display:block;filter:drop-shadow(0 0 10px rgba(209,99,184,.35))}
 header nav{display:flex;gap:20px;align-items:center;font-size:11.5px;letter-spacing:.14em}
 header nav a{color:var(--muted)}
 header nav a:hover{color:var(--green)}
@@ -83,14 +84,14 @@ header nav a:hover{color:var(--green)}
 .tall-6{height:600vh}
 .tall-3{height:300vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden}
-.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:auto;
   filter:saturate(1.08) contrast(1.04);background:#040a06}
 .scrim{position:absolute;inset:0}
 /* Strong enough for white text on any frame, weak enough that the set
    dressing still reads — the marquee saying PRESENTED BY SENDITTOSOCIETY is
    doing sales work and should not be scrimmed into the dark. */
-.scrim.left{background:linear-gradient(90deg,rgba(3,7,5,.90) 0%,rgba(3,7,5,.55) 34%,rgba(3,7,5,.10) 62%,transparent 88%),
-  linear-gradient(0deg,rgba(3,7,5,.78) 0%,transparent 36%)}
+.scrim.left{background:linear-gradient(90deg,rgba(3,7,5,.93) 0%,rgba(3,7,5,.64) 38%,rgba(3,7,5,.15) 66%,transparent 92%),
+  linear-gradient(0deg,rgba(3,7,5,.80) 0%,transparent 36%)}
 .scrim.right{background:linear-gradient(270deg,rgba(3,7,5,.94) 0%,rgba(3,7,5,.66) 40%,rgba(3,7,5,.16) 70%,transparent 100%),
   linear-gradient(0deg,rgba(3,7,5,.8) 0%,transparent 38%)}
 
@@ -98,7 +99,7 @@ header nav a:hover{color:var(--green)}
    with .on already set in the HTML, so if the script fails, is blocked, or is
    throttled in a background tab, the claim is still on screen. */
 .layer{position:absolute;left:max(40px,6vw);top:50%;transform:translateY(-50%);
-  max-width:min(620px,62vw);opacity:0;transition:opacity .55s ease;pointer-events:none}
+  max-width:min(620px,62vw);opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .layer.on{opacity:1;pointer-events:auto}
 .layer.right{left:auto;right:max(40px,6vw);text-align:right}
 
@@ -120,11 +121,13 @@ header nav a:hover{color:var(--green)}
   box-shadow:0 0 30px rgba(74,232,138,.35);transition:transform .12s,box-shadow .12s}
 .cta:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(74,232,138,.6)}
 
-.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;
-  flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:.3em;color:var(--faint)}
-.scrollcue i{width:1px;height:34px;background:linear-gradient(var(--green),transparent);
-  animation:cue 1.8s ease-in-out infinite}
-@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+/* Top centre, under the masthead: the first place the eye lands after the
+   headline, rather than the bottom corner nobody looks at. */
+.scrollcue{position:absolute;left:50%;top:74px;transform:translateX(-50%);display:flex;
+  flex-direction:column;align-items:center;gap:7px;font-size:10px;letter-spacing:.32em;
+  color:var(--green);opacity:.72;text-shadow:0 0 12px var(--green-glow);pointer-events:none}
+.scrollcue svg{animation:cue 2.1s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(-3px);opacity:.45}50%{transform:translateY(3px);opacity:1}}
 
 /* ── SENDY ──────────────────────────────────────────────────────────────────
    One appearance, as a character. Chris's call: not a guide down the page. */

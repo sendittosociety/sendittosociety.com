@@ -114,6 +114,15 @@
     }
   }
 
+  /* SMOOTHING, WITHOUT BETTING THE PAGE ON IT.
+     A direct seek per scroll event tracks the mouse exactly but feels stepped,
+     because a wheel notch is a jump. Easing toward the target reads as motion
+     instead. But easing needs a frame loop, and rAF is dead in hidden tabs —
+     so: the easing loop is an ENHANCEMENT that proves itself. Until a rAF
+     callback has actually run, paint() seeks directly and the page is correct.
+     Once one runs, the loop takes over and the page is also smooth. */
+  var rafAlive = false
+
   var lastPaint = 0
   function paint() {
     for (var i = 0; i < scenes.length; i++) {
@@ -131,13 +140,41 @@
 
       var v = sc.video
       if (!v || !v.duration || isNaN(v.duration)) continue
-      /* Every frame is a keyframe, so a direct seek lands instantly and needs
-         no easing to hide latency. */
-      var t = p * (v.duration - 0.05)
-      if (Math.abs(v.currentTime - t) > 0.02) {
-        try { v.currentTime = t } catch (e) {}
+      sc.target = p * (v.duration - 0.05)
+
+      if (!rafAlive && Math.abs(v.currentTime - sc.target) > 0.02) {
+        try { v.currentTime = sc.target } catch (e) {}
       }
     }
+    if (!isPhone()) ease()
+  }
+
+  var easing = false
+  function ease() {
+    if (easing || reduce) return
+    easing = true
+    requestAnimationFrame(function step() {
+      rafAlive = true
+      var busy = false
+      for (var i = 0; i < scenes.length; i++) {
+        var sc = scenes[i]
+        var v = sc.video
+        if (!v || !v.duration || sc.target == null) continue
+        var d = sc.target - v.currentTime
+        if (Math.abs(d) < 0.015) continue
+        /* Only chase a scene that is actually near the viewport — easing five
+           videos at once is five decodes for four pictures nobody can see. */
+        var r = sc.el.getBoundingClientRect()
+        if (r.bottom < -200 || r.top > window.innerHeight + 200) {
+          try { v.currentTime = sc.target } catch (e) {}
+          continue
+        }
+        try { v.currentTime = v.currentTime + d * 0.22 } catch (e) {}
+        busy = true
+      }
+      if (busy) requestAnimationFrame(step)
+      else easing = false
+    })
   }
 
   function request() {
