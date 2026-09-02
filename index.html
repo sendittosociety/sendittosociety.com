@@ -3,130 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SITS — the studio I needed and couldn't find</title>
-<meta name="description" content="Idea to upload, one app, your own PC. A content studio for solo YouTubers that replaces about $52 a month of subscriptions. $39, once. Windows.">
-<meta property="og:title" content="SITS — Send It To Society">
-<meta property="og:description" content="Idea to upload, one app, your own PC. Replaces about $52/mo of subscriptions. $39, once.">
-<meta property="og:type" content="website">
+<title>SITS — the game for running a YouTube channel</title>
+<meta name="description" content="Every tool you need, inside a city you build. Idea to upload, one app, your own PC. Replaces about $52 a month of subscriptions. $39, once. Windows.">
+<meta name="theme-color" content="#060B08">
+<meta property="og:title" content="SITS — the game for running a YouTube channel">
+<meta property="og:description" content="Every tool you need, inside a city you build. $39, once.">
+<meta property="og:image" content="https://sendittosociety.com/media/hero-poster.jpg">
 <meta property="og:url" content="https://sendittosociety.com/">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap">
+<link rel="preload" as="image" href="media/hero-poster.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="/"><span class="dot"></span> Send It To Society</a>
-    <nav class="topnav">
-      <a href="#price">Price</a>
-      <a href="#honest">Honest</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+<!-- ═══ BOOT ═══ Plays once per session. Skippable at any time, because the
+     second visit is the one that buys and nobody buys through a cutscene. -->
+<div id="boot" aria-hidden="true">
+  <div class="boot-inner">
+    <pre id="bootlog"></pre>
+    <div class="boot-bar"><i></i></div>
   </div>
+  <button id="bootskip" type="button">SKIP ▸</button>
+</div>
+
+<!-- ═══ CRT ═══ Scanlines + vignette + grain, over everything, never clickable -->
+<div class="crt" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="brand" href="/"><span class="mark">S</span> SEND_IT_TO_SOCIETY</a>
+  <nav>
+    <a href="#what">WHAT</a>
+    <a href="#price">PRICE</a>
+    <a href="#honest">HONEST</a>
+    <a class="cta-sm" href="#get">GET IT</a>
+  </nav>
 </header>
 
-<main class="wrap">
+<!-- ═══ HERO ═══ The city, scrubbed by scroll. The claim and the proof of the
+     claim occupy the same rectangle, which is the entire idea of this page. -->
+<section class="hero-scroll" id="top">
+  <div class="hero-stage">
+    <video id="cityvid" class="hero-video" playsinline muted preload="auto"
+           poster="media/hero-poster.jpg" aria-hidden="true">
+      <source src="media/hero-night.mp4" type="video/mp4">
+    </video>
+    <div class="hero-scrim"></div>
 
-  <!-- 1 · THE SENTENCE -->
-  <div class="hero">
-    <h1>The game for running a YouTube channel.</h1>
-    <p class="sub">Every tool you need, inside a city you build. Replaces about $52 a month of subscriptions. <b>$39, once.</b></p>
+    <div class="hero-copy on" data-from="0" data-to="0.42">
+      <p class="kicker">▸ SEND IT TO SOCIETY</p>
+      <h1>The game for<br>running a<br>YouTube channel.</h1>
+      <p class="sub">Every tool you need, inside a city you build.<br>
+        Replaces about <b>$52 a month</b> of subscriptions. <b>$39, once.</b></p>
+      <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
+      <p class="fine">Windows · no card · no account</p>
+    </div>
+
+    <div class="hero-copy alt" data-from="0.48" data-to="0.80">
+      <p class="kicker">▸ THIS IS YOUR CHANNEL</p>
+      <h2>Every building<br>is something<br>you shipped.</h2>
+      <p class="sub">The towers carry your channel names. The signs carry your
+        real numbers. Upload, and the skyline changes.</p>
+    </div>
+
+    <div class="scrollcue" aria-hidden="true"><span>SCROLL</span><i></i></div>
   </div>
+</section>
 
-  <!-- 2 · WHO IT'S FOR -->
-  <section>
-    <p class="eyebrow">Who it's for</p>
-    <p>For people running a YouTube channel on their own — writing it, filming it, editing it, packaging it, posting it — who are tired of paying five subscriptions to do one job.</p>
-    <p><b>If you have an editor, a thumbnail guy and a manager, this isn't for you.</b></p>
+<main>
+
+  <!-- ═══ WHO ═══ -->
+  <section class="band" id="what">
+    <p class="eyebrow">// WHO IT'S FOR</p>
+    <p class="lede">For people running a YouTube channel on their own — writing it,
+      filming it, editing it, packaging it, posting it — who are tired of paying
+      five subscriptions to do one job.</p>
+    <p class="lede dim">If you have an editor, a thumbnail guy and a manager,
+      this isn't for you.</p>
   </section>
 
-  <!-- 3 · ONE SCREENSHOT -->
-  <section>
-    <figure>
-      <!-- TODO: replace this placeholder with the real screenshot.
-           Save it as screenshot-archive.png in this folder, then swap the
-           <div class="shot shot-ph"> below for:
-           <img class="shot" src="screenshot-archive.png" alt="THE ARCHIVE mid-search, showing footage results with licence receipts"> -->
-      <div class="shot shot-ph">
-        <span>Screenshot goes here</span>
-        <span style="letter-spacing:.06em;text-transform:none;font-size:11px">THE ARCHIVE mid-search — results on screen, licence receipts visible</span>
-      </div>
-      <figcaption>Searching cleared, monetisation-safe footage. Every download writes a receipt saying which licence it came under.</figcaption>
-    </figure>
-  </section>
-
-  <!-- 4 · THE STACK IT REPLACES -->
-  <section>
-    <h2>You're already paying for this</h2>
+  <!-- ═══ THE STACK ═══ -->
+  <section class="band">
+    <p class="eyebrow">// THE STACK IT REPLACES</p>
+    <h2 class="h2">You're already paying for this</h2>
     <table class="stack">
       <tbody>
-        <tr><td>Music and sound effects library <small>Epidemic Sound Personal</small></td><td>$9.99/mo</td></tr>
-        <tr><td>SEO and tags tool <small>TubeBuddy Star</small></td><td>$12/mo</td></tr>
-        <tr><td>Thumbnail editor <small>Canva Pro</small></td><td>$12/mo</td></tr>
-        <tr><td>Planning and notes <small>Notion Plus</small></td><td>$10/mo</td></tr>
-        <tr><td>Transcription <small>Otter Pro</small></td><td>$8.33/mo</td></tr>
-        <tr class="total"><td>Every month, forever</td><td>~$52/mo</td></tr>
+        <tr><td>Music &amp; sound effects <small>Epidemic Sound Personal</small></td><td>$9.99<span>/mo</span></td></tr>
+        <tr><td>SEO &amp; tags <small>TubeBuddy Star</small></td><td>$12<span>/mo</span></td></tr>
+        <tr><td>Thumbnail editor <small>Canva Pro</small></td><td>$12<span>/mo</span></td></tr>
+        <tr><td>Planning &amp; notes <small>Notion Plus</small></td><td>$10<span>/mo</span></td></tr>
+        <tr><td>Transcription <small>Otter Pro</small></td><td>$8.33<span>/mo</span></td></tr>
+        <tr class="total"><td>Every month, forever</td><td>~$52<span>/mo</span></td></tr>
       </tbody>
     </table>
-    <p class="note">Cheapest published plan for each, checked September 2026. SITS does all of it. Once.</p>
+    <p class="note">Cheapest published plan for each, checked September 2026.
+      SITS does all of it. Once.</p>
   </section>
 
-  <!-- 5 · THE PRICE -->
-  <section id="price">
-    <div class="price">
+  <!-- ═══ PRICE ═══ -->
+  <section class="band tight" id="price">
+    <div class="pricebox">
+      <p class="eyebrow">// THE PRICE</p>
       <p class="amt">$39</p>
-      <p class="once">One time · Not a subscription · Yours forever</p>
-      <!-- TODO: when Paddle is approved, replace href="#" with the Paddle checkout link. -->
-      <a class="buy" href="#">Buy SITS</a>
-      <p class="terms">$39 for the first 100 people, then $69. That's not a fake discount — early buyers are taking a real risk on a beta from one person, and the price goes up when the risk goes away.</p>
+      <p class="once">ONE TIME · NOT A SUBSCRIPTION · YOURS FOREVER</p>
+      <!-- TODO: swap href for the Paddle checkout link once approved. -->
+      <a class="cta" id="get" href="#get">DOWNLOAD — 14 DAYS FREE</a>
+      <p class="terms">$39 for the first 100 people, then $69. That's not a fake
+        discount — early buyers are taking a real risk on a beta from one person,
+        and the price goes up when the risk goes away.</p>
     </div>
   </section>
 
-  <!-- 6 · WHAT IT DOESN'T DO -->
-  <section id="honest">
-    <h2>Before you buy, the honest part</h2>
+  <!-- ═══ HONEST ═══ -->
+  <section class="band" id="honest">
+    <p class="eyebrow">// BEFORE YOU BUY</p>
+    <h2 class="h2">The honest part</h2>
     <div class="honest">
-      <div class="item"><h3>Windows only.</h3><p>No Mac version, and I won't pretend one is coming soon.</p></div>
-      <div class="item"><h3>It's a beta.</h3><p>Things break. I fix them fast, but you'll find some.</p></div>
-      <div class="item"><h3>Windows will warn you when you install it.</h3><p>"Windows protected your PC" — click More info, then Run anyway. That appears on any app that hasn't paid for a code-signing certificate. It's on my list, behind things that matter more right now.</p></div>
-      <div class="item"><h3>The AI features need your own key, or copy-and-paste.</h3><p>By default the app writes the prompt, you paste it into whatever AI you already use, you paste the answer back. Free, and nothing of yours goes near my servers — because I don't have any.</p></div>
-      <div class="item"><h3>One person builds this.</h3><p>Me. Support is me, at my desk, usually the same day.</p></div>
+      <div><h3>Windows only.</h3><p>No Mac version, and I won't pretend one is coming soon.</p></div>
+      <div><h3>It's a beta.</h3><p>Things break. I fix them fast, but you'll find some.</p></div>
+      <div><h3>Windows will warn you when you install it.</h3><p>"Windows protected your PC" — click More info, then Run anyway. That appears on any app that hasn't paid for a code-signing certificate. It's on my list, behind things that matter more right now.</p></div>
+      <div><h3>The AI features need your own key, or copy-and-paste.</h3><p>By default the app writes the prompt, you paste it into whatever AI you already use, you paste the answer back. Free, and nothing of yours goes near my servers — because I don't have any.</p></div>
+      <div><h3>One person builds this.</h3><p>Me. Support is me, at my desk, usually the same day.</p></div>
     </div>
   </section>
 
-  <!-- 7 · WHAT'S FREE -->
-  <section>
-    <h2>It isn't crippled if you don't pay</h2>
-    <div class="free">
-      <p>The pipeline, the calendar, the 3D city, the games, THE ARCHIVE, THE SOUND BOOTH, the Thumbnail Studio, SEO Lab and transcription are <b>free, forever, with no account.</b></p>
-      <p>$39 unlocks the intelligence layer — The Verdict unlimited, Signal Desk, the Coach, the Voice Refiner — and raises you from one channel to three.</p>
+  <!-- ═══ TRIAL ═══ -->
+  <section class="band">
+    <div class="trial">
+      <p class="eyebrow">// THE TRIAL</p>
+      <h2 class="h2">Fourteen days. Everything. No card.</h2>
+      <p>Download it and use the whole thing — every tool, every channel, the
+        city, the games, all of it. <b>No card, no account, no sign-up.</b></p>
+      <p>If it isn't for you, do nothing. It stops on day fifteen and you have
+        lost nothing but the download.</p>
     </div>
   </section>
 
-  <!-- 8 · THE REFUND LINE -->
-  <section>
-    <div class="refund">
-      <p><b>If it isn't what you expected, email me and I'll refund you the same day.</b></p>
-      <p class="small">No form, no questions. I'd rather you had your money back than a tool you don't use.</p>
-    </div>
+  <!-- ═══ REFUND ═══ -->
+  <section class="band refund">
+    <p class="big">If it isn't what you expected, email me and I'll refund you
+      the same day.</p>
+    <p class="note">No form, no questions. I'd rather you had your money back
+      than a tool you don't use.</p>
+    <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
   </section>
 
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="links">
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="refund.html">Refunds</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <p style="margin:0">Send It To Society — made by Christopher Leon Gales, one person, in Colorado.<br>
-    Payments handled by Paddle.com Market Ltd, merchant of record.</p>
+  <div class="links">
+    <a href="terms.html">TERMS</a>
+    <a href="privacy.html">PRIVACY</a>
+    <a href="refund.html">REFUNDS</a>
+    <a href="contact.html">CONTACT</a>
   </div>
+  <p>Send It To Society — made by one person, in Colorado.<br>
+    Payments handled by Paddle.com Market Ltd, merchant of record.</p>
 </footer>
 
+<script src="app.js" defer></script>
 </body>
 </html>

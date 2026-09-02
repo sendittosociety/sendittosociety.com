@@ -1,136 +1,253 @@
-/* Send It To Society — one stylesheet for every page. */
+/* ── SEND IT TO SOCIETY ───────────────────────────────────────────────────────
+   A console OS that happens to be a sales page.
+
+   THE RULE THAT OUTRANKS EVERY OTHER RULE IN THIS FILE: a visitor decides in
+   two seconds. If an effect makes the headline harder to read, the effect
+   loses. Immersion carries the message; it never replaces it.
+   ─────────────────────────────────────────────────────────────────────────── */
+
 :root{
-  --bg:#0A0C10;
-  --panel:#11151C;
-  --panel-2:#161B24;
-  --line:#232A36;
-  --line-soft:#1B212B;
-  --ink:#E9ECF1;
-  --muted:#98A2B3;
-  --faint:#6B7686;
-  --gold:#E8A33D;
-  --gold-dim:rgba(232,163,61,.12);
-  --green:#4ADE80;
-  --red:#F27059;
-  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --bg:#060B08;
+  --bg-2:#0A110D;
+  --panel:#0C1410;
+  --line:#1B2C22;
+  --line-soft:#132018;
+
+  --ink:#D8F0E0;
+  --muted:#7FA38C;
+  --faint:#4E6B5B;
+
+  /* phosphor — the app's green, and the only colour that means "go" */
+  --green:#4AE88A;
+  --green-dim:rgba(74,232,138,.14);
+  --green-glow:rgba(74,232,138,.45);
+
+  /* the logo is gold. it is used for the mark and headings, nothing else. */
+  --gold:#F5D547;
+
+  /* city neon, borrowed sparingly so the page and the product rhyme */
+  --magenta:#FF3D9A;
+  --cyan:#3DE0FF;
+
+  --pix:"Silkscreen","Share Tech Mono",monospace;
   --mono:"Share Tech Mono",ui-monospace,Consolas,monospace;
 }
+
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth}
 body{
   margin:0;background:var(--bg);color:var(--ink);
-  font-family:var(--sans);font-size:17px;line-height:1.65;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--mono);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-.wrap{max-width:720px;margin:0 auto;padding:0 22px}
-a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,163,61,.3)}
-a:hover{border-bottom-color:var(--gold)}
+a{color:var(--green);text-decoration:none}
 
-/* masthead */
-header.top{border-bottom:1px solid var(--line-soft);padding:18px 0}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--ink);border:none;display:inline-flex;align-items:center;gap:9px}
-.brand:hover{border:none;color:var(--gold)}
-.brand .dot{width:8px;height:8px;border-radius:2px;background:var(--gold);
-  box-shadow:0 0 10px rgba(232,163,61,.7);display:inline-block}
-.topnav{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--faint);
-  display:flex;gap:18px;text-transform:uppercase}
-.topnav a{color:var(--faint);border:none}
-.topnav a:hover{color:var(--gold)}
+/* ── CRT + GRAIN ────────────────────────────────────────────────────────────
+   Both are pointer-events:none and sit above everything. The scanlines are
+   deliberately weak — at the strength that "looks right" in a screenshot they
+   make body text measurably harder to read, which loses under the rule above. */
+.crt{
+  position:fixed;inset:0;z-index:90;pointer-events:none;
+  background:
+    repeating-linear-gradient(to bottom,
+      rgba(0,0,0,.16) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 100% at 50% 50%,
+      transparent 55%, rgba(0,0,0,.55) 100%);
+  mix-blend-mode:multiply;
+}
+.grain{
+  position:fixed;inset:-50%;z-index:91;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainShift 700ms steps(3) infinite;
+}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}33%{transform:translate(-2%,1%)}66%{transform:translate(1%,-2%)}
+}
 
-/* hero */
-.hero{padding:76px 0 8px}
-h1{font-size:46px;line-height:1.08;letter-spacing:-.03em;font-weight:700;margin:0 0 20px}
-.hero .sub{font-size:20px;color:var(--muted);margin:0;max-width:34ch}
-.hero .sub b{color:var(--ink);font-weight:600}
+/* ── BOOT ───────────────────────────────────────────────────────────────────
+   Once per session. The skip button is present from frame one and is not a
+   pity option: the visit that buys is usually the second one. */
+#boot{
+  position:fixed;inset:0;z-index:200;background:#030603;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .55s ease;
+}
+#boot.gone{opacity:0;pointer-events:none}
+.boot-inner{width:min(560px,86vw)}
+#bootlog{
+  margin:0 0 18px;font-family:var(--mono);font-size:13.5px;line-height:1.9;
+  color:var(--green);text-shadow:0 0 12px var(--green-glow);white-space:pre-wrap;
+  min-height:11em;
+}
+.boot-bar{height:5px;background:rgba(74,232,138,.14);border:1px solid var(--line);overflow:hidden}
+.boot-bar i{display:block;height:100%;width:0;background:var(--green);box-shadow:0 0 12px var(--green-glow)}
+#bootskip{
+  position:fixed;right:22px;bottom:20px;background:none;border:1px solid var(--line);
+  color:var(--faint);font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+  padding:8px 14px;cursor:pointer;
+}
+#bootskip:hover{color:var(--green);border-color:var(--green)}
 
-h2{font-size:27px;line-height:1.2;letter-spacing:-.02em;font-weight:700;margin:0 0 14px}
-h3{font-size:17px;font-weight:600;margin:0 0 6px}
-p{margin:0 0 16px;color:var(--muted)}
-p b,li b{color:var(--ink);font-weight:600}
-section{padding:52px 0;border-top:1px solid var(--line-soft)}
-section:first-of-type{border-top:none}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--faint);margin:0 0 14px}
+/* ── MASTHEAD ───────────────────────────────────────────────────────────── */
+header.top{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px 22px;background:linear-gradient(180deg,rgba(3,6,4,.92),transparent);
+}
+.brand{
+  font-family:var(--pix);font-size:12px;letter-spacing:.14em;color:var(--ink);
+  display:inline-flex;align-items:center;gap:10px;
+}
+.mark{
+  width:24px;height:24px;display:grid;place-items:center;background:var(--gold);
+  color:#0A0A06;font-family:var(--pix);font-size:14px;font-weight:700;
+  box-shadow:0 0 18px rgba(245,213,71,.4);
+}
+header nav{display:flex;gap:20px;align-items:center;font-size:11.5px;letter-spacing:.14em}
+header nav a{color:var(--muted)}
+header nav a:hover{color:var(--green)}
+.cta-sm{
+  border:1px solid var(--green);color:var(--green)!important;padding:6px 13px;
+  box-shadow:0 0 16px rgba(74,232,138,.18) inset;
+}
 
-/* screenshot */
-figure{margin:0}
-.shot{width:100%;border-radius:10px;border:1px solid var(--line);display:block;background:var(--panel-2)}
-.shot-ph{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:8px;color:var(--faint);font-family:var(--mono);font-size:12px;
-  letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:20px}
-figcaption{font-size:15px;color:var(--faint);margin-top:12px}
+/* ── HERO ───────────────────────────────────────────────────────────────────
+   400vh of scroll drives 24s of city. The video is pinned; only time moves. */
+.hero-scroll{height:400vh;position:relative}
+.hero-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.hero-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.08) contrast(1.04);
+}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(3,7,5,.92) 0%,rgba(3,7,5,.62) 42%,rgba(3,7,5,.15) 72%,transparent 100%),
+    linear-gradient(0deg,rgba(3,7,5,.85) 0%,transparent 40%);
+}
 
-/* the stack table */
-.stack{width:100%;border-collapse:collapse;font-size:16px;margin:6px 0 4px}
-.stack td{padding:11px 0;border-bottom:1px solid var(--line-soft);color:var(--muted)}
+/* THE HEADLINE IS NEVER JS-DEPENDENT. It ships with .on already set, so if
+   the script fails, is blocked, or rAF is throttled in a background tab, the
+   claim is still on the screen. Only LATER layers start hidden. */
+.hero-copy{
+  position:absolute;left:max(40px,6vw);top:50%;transform:translateY(-50%);
+  max-width:min(620px,64vw);opacity:0;transition:opacity .5s ease;
+}
+.hero-copy.on{opacity:1}
+html.no-js .hero-copy.alt{display:none}
+.kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.28em;color:var(--green);
+  margin:0 0 16px;text-shadow:0 0 14px var(--green-glow);
+}
+.hero-copy h1{
+  font-family:var(--pix);font-weight:700;
+  font-size:clamp(30px,4.6vw,62px);line-height:1.16;letter-spacing:.01em;
+  margin:0 0 22px;color:#fff;
+  text-shadow:0 0 34px rgba(0,0,0,.9),0 3px 0 rgba(0,0,0,.5);
+}
+.hero-copy h2{
+  font-family:var(--pix);font-weight:700;
+  font-size:clamp(24px,3.4vw,44px);line-height:1.2;margin:0 0 20px;color:var(--gold);
+  text-shadow:0 0 30px rgba(0,0,0,.9);
+}
+.hero-copy .sub{font-size:18px;color:var(--ink);margin:0 0 26px;max-width:44ch;
+  text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.hero-copy .sub b{color:var(--green)}
+.fine{font-size:12px;letter-spacing:.14em;color:var(--muted);margin:14px 0 0}
+
+.cta{
+  display:inline-block;font-family:var(--pix);font-size:13px;letter-spacing:.06em;
+  background:var(--green);color:#04150B;padding:16px 30px;border:none;
+  box-shadow:0 0 30px rgba(74,232,138,.35);transition:transform .12s,box-shadow .12s;
+}
+.cta:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(74,232,138,.6)}
+
+.scrollcue{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.3em;color:var(--faint);
+}
+.scrollcue i{width:1px;height:34px;background:linear-gradient(var(--green),transparent);
+  animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ── BANDS ──────────────────────────────────────────────────────────────── */
+main{position:relative;z-index:2;background:var(--bg)}
+.band{max-width:760px;margin:0 auto;padding:96px 24px}
+.band.tight{padding:56px 24px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--green);margin:0 0 16px}
+.h2{font-family:var(--pix);font-size:clamp(21px,2.6vw,32px);line-height:1.25;margin:0 0 22px;color:var(--gold)}
+.lede{font-size:19px;line-height:1.65;margin:0 0 16px;color:var(--ink)}
+.lede.dim{color:var(--muted)}
+.note{font-size:13.5px;color:var(--faint);margin:14px 0 0}
+p{margin:0 0 15px}
+
+/* stack table */
+.stack{width:100%;border-collapse:collapse;font-size:16px;margin:4px 0}
+.stack td{padding:13px 0;border-bottom:1px solid var(--line-soft);color:var(--muted)}
 .stack td:last-child{text-align:right;font-family:var(--mono);color:var(--ink);white-space:nowrap}
-.stack td small{display:block;color:var(--faint);font-size:12.5px;margin-top:2px}
-.stack tr.total td{border-bottom:none;border-top:1px solid var(--line);padding-top:14px;
-  color:var(--ink);font-weight:600}
-.stack tr.total td:last-child{color:var(--gold);font-size:19px}
-.note{font-size:13.5px;color:var(--faint);margin-top:14px}
+.stack td span{color:var(--faint);font-size:12px}
+.stack td small{display:block;color:var(--faint);font-size:12px;margin-top:3px}
+.stack tr.total td{border-bottom:none;border-top:1px solid var(--line);padding-top:16px;color:var(--ink)}
+.stack tr.total td:last-child{color:var(--green);font-size:21px}
 
 /* price */
-.price{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-  padding:34px 30px;text-align:center}
-.price .amt{font-size:62px;font-weight:700;letter-spacing:-.04em;line-height:1;margin:0;color:var(--ink)}
-.price .amt span{font-size:24px;color:var(--faint);font-weight:500;letter-spacing:0}
-.price .once{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gold);margin:10px 0 22px}
-.buy{display:inline-block;background:var(--gold);color:#12161C;border:none;border-radius:9px;
-  padding:15px 42px;font-weight:700;font-size:17px;letter-spacing:.01em;cursor:pointer;
-  font-family:var(--sans);transition:transform .12s ease,filter .12s ease}
-.buy:hover{filter:brightness(1.08);transform:translateY(-1px);border:none}
-.price .terms{font-size:14px;color:var(--faint);margin:20px auto 0;max-width:44ch}
+.pricebox{
+  border:1px solid var(--line);background:var(--panel);padding:40px 32px;text-align:center;
+  box-shadow:0 0 60px rgba(74,232,138,.05) inset;
+}
+.amt{font-family:var(--pix);font-size:clamp(46px,7vw,76px);line-height:1;margin:0;color:#fff}
+.once{font-size:11px;letter-spacing:.2em;color:var(--green);margin:14px 0 26px}
+.terms{font-size:14px;color:var(--faint);max-width:46ch;margin:22px auto 0}
 
-/* honest list */
-.honest{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--red);
-  border-radius:8px;padding:8px 26px 4px}
-.honest .item{padding:18px 0;border-bottom:1px solid var(--line-soft)}
-.honest .item:last-child{border-bottom:none}
-.honest .item p{margin:0;font-size:15.5px}
+/* honest */
+.honest{border-left:2px solid var(--magenta);padding-left:26px}
+.honest div{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.honest div:last-child{border-bottom:none}
+.honest h3{font-family:var(--pix);font-size:14px;margin:0 0 8px;color:var(--ink)}
+.honest p{margin:0;font-size:15.5px;color:var(--muted)}
 
-/* free */
-.free{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--green);
-  border-radius:8px;padding:24px 26px}
-.free p:last-child{margin-bottom:0}
+/* trial */
+.trial{border:1px solid var(--line);border-left:2px solid var(--green);background:var(--bg-2);padding:32px}
+.trial p{color:var(--muted)}
+.trial b{color:var(--green)}
 
 /* refund */
-.refund{text-align:center;padding:44px 0 0}
-.refund p{font-size:20px;color:var(--ink);max-width:40ch;margin:0 auto 14px;line-height:1.5}
-.refund .small{font-size:15px;color:var(--faint)}
+.refund{text-align:center}
+.refund .big{font-size:22px;line-height:1.5;color:var(--ink);max-width:40ch;margin:0 auto 12px}
+.refund .cta{margin-top:28px}
 
-footer{border-top:1px solid var(--line-soft);margin-top:70px;padding:34px 0 60px;
-  font-size:14px;color:var(--faint)}
-footer .links{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;font-family:var(--mono);
-  font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-footer a{color:var(--faint);border:none}
-footer a:hover{color:var(--gold)}
-
-/* legal pages */
-.legal{padding:52px 0 0}
-.legal h1{font-size:36px;margin-bottom:8px}
-.legal .updated{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--faint);margin:0 0 34px}
-.legal h2{font-size:21px;margin:38px 0 10px}
-.legal ul{color:var(--muted);padding-left:20px;margin:0 0 16px}
-.legal li{margin-bottom:7px}
-.legal li::marker{color:var(--faint)}
-.legal hr{border:none;border-top:1px solid var(--line-soft);margin:30px 0}
-.legal code{font-family:var(--mono);background:var(--panel-2);padding:2px 6px;border-radius:4px;
-  font-size:14px;color:var(--ink)}
-
-@media (max-width:640px){
-  body{font-size:16px}
-  h1{font-size:33px}
-  .hero{padding:52px 0 8px}
-  .hero .sub{font-size:18px}
-  h2{font-size:23px}
-  .price{padding:28px 20px}
-  .price .amt{font-size:50px}
-  .topnav{gap:13px;font-size:11px}
-  section{padding:42px 0}
+footer{
+  border-top:1px solid var(--line-soft);padding:34px 24px 70px;text-align:center;
+  font-size:13px;color:var(--faint);
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.16em;margin-bottom:18px}
+footer .links a{color:var(--faint)}
+footer .links a:hover{color:var(--green)}
+
+/* ── MOBILE ─────────────────────────────────────────────────────────────────
+   Chris's call: desktop is the experience, mobile gets a clean simple
+   fallback. Not a shrunken port — the video is dropped entirely for the
+   poster still, because a scrubbed 16 MB hero on a phone is a bounce. */
+@media (max-width:820px){
+  body{font-size:16px}
+  .hero-scroll{height:auto}
+  .hero-stage{position:relative;height:auto;min-height:82vh;display:flex;align-items:flex-end}
+  .hero-video{display:none}
+  .hero-stage{background:url("media/hero-poster.jpg") center/cover}
+  .hero-copy{position:relative;opacity:1;transform:none;top:auto;left:auto;
+    max-width:100%;padding:0 20px 46px}
+  .hero-copy.alt{display:none}
+  .scrollcue{display:none}
+  .band{padding:64px 20px}
+  .crt{background:radial-gradient(120% 100% at 50% 50%,transparent 60%,rgba(0,0,0,.5) 100%)}
+  .grain{display:none}
+  header nav a:not(.cta-sm){display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .grain,.scrollcue i{animation:none}
+  .hero-copy{transition:none}
+}
