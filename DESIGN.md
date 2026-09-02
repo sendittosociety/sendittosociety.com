@@ -96,7 +96,7 @@ The page had been alternating scene / band / scene / band, so the trailer kept
 stopping to explain itself. It is now two acts:
 
 > **ACT I · THE CITY** hero → day one → **the climb** → theater → the shop → send it → **end card**
-> **ACT II · THE MACHINE** what's in it → the swap → the price (trial + refund + who folded in) → the flaws
+> **ACT II · UNDER THE HOOD** the datasheet → the swap → the price (trial + refund + who folded in) → the flaws
 
 Six scenes with nothing between them, then a card that gives the page a visible
 finish, then the facts for anyone the trailer sold. Scene scroll went from
@@ -108,6 +108,29 @@ Act II opens on its own stamp instead of simply beginning.
 
 **THE ARCADE was cut** — Chris's call, it stays a thing you find rather than a
 thing you're sold.
+
+### UNDER THE HOOD
+
+Act II is a **datasheet, not a brochure.** Chris: *"i want the under the hood
+section to be really in depth and technological for anyone, really breaking down
+the features of the app."*
+
+Twelve tools, and each answers the same three questions in the same order:
+**WHAT IT IS / HOW YOU'D USE IT / UNDER THE HOOD.** The third line is the one
+that has to be true, so every one of them was read out of the app rather than
+written from memory — the seven pipeline stages from `lib/pipeline.ts`, the
+S-grade threshold of 92 from `lib/hookForge.ts`, the five scoring categories
+from `lib/verdictPrompt.ts` and `lib/scoringV7.ts`, the sound providers from
+`main/soundScout.ts`, the READ → DO → QUIZ shape from `lib/academy.ts`.
+
+Act I got shorter so Act II could get longer. That is the right trade: the
+trailer is what sells, the datasheet is what someone reads once they are already
+leaning in, and nobody scrolls it who has not decided to.
+
+**Open: eight of the twelve have no screenshot.** Pipeline, Sound Booth, Thumb
+Forge, SEO Lab, Script Lab, Hook Printer, Academy and Closed On Sundays ship as
+datasheet-only entries — the layout is built to take an image the moment one
+exists, and looks deliberate until then.
 
 ### THE CLIMB
 

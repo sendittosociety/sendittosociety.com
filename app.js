@@ -452,8 +452,9 @@
      - it fires only if the POINTER moved recently. Scrolling the page under a
        still cursor also fires pointerenter, and rippling every headline you
        drift past would be noise paid for out of the scrub's frame budget. */
-  var HEADS = [].slice.call(document.querySelectorAll('.layer h1, .layer h2, .h2, .tc-name'))
-  var COOLDOWN = 820
+  var HEADS = [].slice.call(document.querySelectorAll('.layer h1, .layer h2, .h2, .tc-name, .actstamp .an, .spec h3'))
+  /* Longer than the line flash, so a re-entry cannot stack two glows. */
+  var COOLDOWN = 1250
 
   function split(el) {
     /* Per-character spans can make a screen reader spell the line out, so the
@@ -506,7 +507,16 @@
         var r = c.getBoundingClientRect()
         return r.left + r.width / 2
       })
+      el._lo = Math.min.apply(null, el._xs)
+      el._hi = Math.max.apply(null, el._xs)
     }
+
+    /* A headline is a block, so its box runs the full width of the band while
+       the text may sit centred in the middle of it. Entering from the edge
+       would put every character the same 340 ms away and the wave would fire
+       flat, so the crossing point is clamped to where the text actually is. */
+    if (fromX < el._lo) fromX = el._lo
+    else if (fromX > el._hi) fromX = el._hi
 
     var max = 0
     for (var i = 0; i < el._chars.length; i++) {
@@ -519,7 +529,10 @@
     void el.offsetWidth                       /* restart the animation */
     el.classList.add('rip')
     clearTimeout(el._t)
-    el._t = setTimeout(function () { el.classList.remove('rip') }, max + 560)
+    /* The line flash runs 1.15s regardless of where the wave started, so the
+       class has to outlive whichever finishes last. */
+    el._t = setTimeout(function () { el.classList.remove('rip') },
+                       Math.max(1250, max + 700))
   }
 
   HEADS.forEach(function (el) {
