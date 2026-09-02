@@ -80,33 +80,64 @@
   }
 
   /* ── SCENES ─────────────────────────────────────────────────────────────── */
+  /* A scene can hold more than one plate. Each carries its own slice of the
+     scene's progress, so THE CLIMB plays the bedroom across the first half and
+     the penthouse across the second — one scroll, two rooms. */
   var scenes = [].slice.call(document.querySelectorAll('[data-scene]')).map(function (el) {
+    var vids = [].slice.call(el.querySelectorAll('video')).map(function (v) {
+      return {
+        el: v,
+        from: parseFloat(v.getAttribute('data-from') || '0'),
+        to: parseFloat(v.getAttribute('data-to') || '1')
+      }
+    })
     return {
       el: el,
-      video: el.querySelector('video'),
+      videos: vids,
       layers: [].slice.call(el.querySelectorAll('.layer')),
+      badges: [].slice.call(el.querySelectorAll('.badge')),
+      lines: [].slice.call(el.querySelectorAll('.tierline')),
+      shown: 0,
+      tier: -1,
       loaded: false,
       top: 0,
       h: 0
     }
   })
 
+  /* Chapters are every landmark on the page, not just the scenes — Act II's
+     bands are stops on the rail too. */
+  var chapters = [].slice.call(document.querySelectorAll('[data-chapter]')).map(function (el) {
+    return {
+      el: el,
+      name: el.getAttribute('data-chapter'),
+      act: el.getAttribute('data-act') || '',
+      top: 0
+    }
+  })
+
   /* Measured once, and again only on resize. Nothing here runs during a scroll. */
   function measure() {
     var y = window.pageYOffset || document.documentElement.scrollTop
-    for (var i = 0; i < scenes.length; i++) {
+    var i
+    for (i = 0; i < scenes.length; i++) {
       var sc = scenes[i]
       sc.top = sc.el.getBoundingClientRect().top + y
       sc.h = sc.el.offsetHeight
     }
+    for (i = 0; i < chapters.length; i++) {
+      chapters[i].top = chapters[i].el.getBoundingClientRect().top + y
+    }
   }
 
   /* ── CHAPTER RAIL ─────────────────────────────────────────────────────────
-     A level-select down the right edge, built from each scene's data-chapter.
-     It exists because "the page is too long" is mostly a feeling of not
-     knowing where you are — six labelled stops turn an unknown scroll into a
-     known one. It reads only the offsets measure() already cached, and touches
-     a class only when the chapter actually changes. */
+     A level-select down the right edge, grouped under ACT I and ACT II. It
+     exists because "the page is too long" is mostly a feeling of not knowing
+     where you are — ten labelled stops turn an unknown scroll into a known one
+     — and because the two-act shape is worth stating rather than implying.
+
+     It reads only the offsets measure() already cached, and touches a class
+     only when the chapter actually changes. */
   var rail = document.getElementById('rail')
   var railLinks = []
   var curChapter = -1
@@ -114,18 +145,24 @@
   function jumpTo(e) {
     e.preventDefault()
     var i = +this.getAttribute('data-i')
-    window.scrollTo({ top: scenes[i].top + 2, behavior: 'smooth' })
+    window.scrollTo({ top: chapters[i].top + 2, behavior: 'smooth' })
   }
 
   if (rail) {
-    for (var ri = 0; ri < scenes.length; ri++) {
-      var name = scenes[ri].el.getAttribute('data-chapter')
-      if (!name) continue
+    var act = null
+    for (var ri = 0; ri < chapters.length; ri++) {
+      if (chapters[ri].act && chapters[ri].act !== act) {
+        act = chapters[ri].act
+        var hd = document.createElement('p')
+        hd.className = 'ract'
+        hd.textContent = 'ACT ' + act
+        rail.appendChild(hd)
+      }
       var a = document.createElement('a')
       a.href = '#'
       a.setAttribute('data-i', ri)
       a.innerHTML = '<span class="t"></span><span class="d"></span>'
-      a.firstChild.textContent = name
+      a.firstChild.textContent = chapters[ri].name
       a.addEventListener('click', jumpTo)
       rail.appendChild(a)
       railLinks.push({ a: a, i: ri })
@@ -133,20 +170,15 @@
   }
 
   function paintRail(y, vh, phone) {
-    if (phone) {
-      if (rail.classList.contains('on')) rail.classList.remove('on')
-      return
-    }
-    var last = scenes[scenes.length - 1]
-    /* Visible only during the trailer: gone on the opening frame, gone again
-       once the end card lands. */
-    var show = y > vh * 0.55 && y < last.top + last.h - vh * 0.3
+    /* Gone on the opening frame — the first thing anyone sees should be the
+       headline, not a table of contents — and present from then on. */
+    var show = !phone && y > vh * 0.55
     if (rail.classList.contains('on') !== show) rail.classList.toggle('on', show)
     if (!show) return
 
     var mid = y + vh * 0.5
     var idx = 0
-    for (var i = 0; i < scenes.length; i++) if (scenes[i].top <= mid) idx = i
+    for (var i = 0; i < chapters.length; i++) if (chapters[i].top <= mid) idx = i
     if (idx === curChapter) return
     curChapter = idx
     for (var k = 0; k < railLinks.length; k++) {
@@ -155,13 +187,33 @@
   }
 
   function maybeLoad(sc) {
-    if (sc.loaded || !sc.video) return
-    var src = sc.video.getAttribute('data-src')
-    if (!src) { sc.loaded = true; return }
-    sc.video.setAttribute('src', src)
-    sc.video.removeAttribute('data-src')
-    sc.video.load()
+    if (sc.loaded) return
     sc.loaded = true
+    for (var i = 0; i < sc.videos.length; i++) {
+      var v = sc.videos[i].el
+      var src = v.getAttribute('data-src')
+      if (!src) continue
+      v.setAttribute('src', src)
+      v.removeAttribute('data-src')
+      v.load()
+    }
+  }
+
+  /* THE CLIMB. Nine tiers lit in order as the scene scrolls, the one you are
+     standing on raised, and its building line brought with it. Every line is
+     already in the HTML; this only moves classes, and only when the tier
+     actually changes. */
+  function paintLadder(sc, p) {
+    var n = sc.badges.length
+    var i = Math.floor(p * n)
+    if (i < 0) i = 0; else if (i > n - 1) i = n - 1
+    if (i === sc.tier) return
+    sc.tier = i
+    for (var k = 0; k < n; k++) {
+      sc.badges[k].classList.toggle('lit', k <= i)
+      sc.badges[k].classList.toggle('now', k === i)
+      if (sc.lines[k]) sc.lines[k].classList.toggle('on', k === i)
+    }
   }
 
   function paintLayers(sc, p) {
@@ -222,10 +274,29 @@
       if (p < 0) p = 0; else if (p > 1) p = 1
 
       paintLayers(sc, p)
+      if (sc.badges.length) paintLadder(sc, p)
 
-      var v = sc.video
-      if (!v || !v.duration || isNaN(v.duration)) continue
-      var t = clampToBuffered(v, p * (v.duration - 0.05))
+      /* The visible plate is the last one whose slice has begun. */
+      var vis = 0
+      for (var q = 0; q < sc.videos.length; q++) if (p >= sc.videos[q].from) vis = q
+      if (sc.videos.length > 1 && vis !== sc.shown) {
+        sc.videos[sc.shown].el.classList.remove('show')
+        sc.videos[vis].el.classList.add('show')
+        sc.shown = vis
+      }
+
+      /* ONLY THE VISIBLE PLATE IS SEEKED. Two seeks in a frame is ~18 ms
+         against a 16.7 ms budget, and the plate fading out is frozen on the
+         last frame of its own slice — which is exactly what a dissolve wants
+         anyway. */
+      var vd = sc.videos[vis]
+      if (!vd) continue
+      var v = vd.el
+      if (!v.duration || isNaN(v.duration)) continue
+      var span = vd.to - vd.from
+      var lp = span > 0 ? (p - vd.from) / span : 0
+      if (lp < 0) lp = 0; else if (lp > 1) lp = 1
+      var t = clampToBuffered(v, lp * (v.duration - 0.05))
       /* Track the scroll exactly. Every frame is a keyframe, so this lands in
          about 8 ms — well inside a 60 fps frame — and no easing is needed. */
       if (Math.abs(v.currentTime - t) > 0.015) {
@@ -260,7 +331,7 @@
   if (mqPhone.addEventListener) mqPhone.addEventListener('change', onResize)
   document.addEventListener('visibilitychange', paint)
   scenes.forEach(function (sc) {
-    if (sc.video) sc.video.addEventListener('loadedmetadata', paint)
+    sc.videos.forEach(function (vd) { vd.el.addEventListener('loadedmetadata', paint) })
   })
   window.addEventListener('load', onResize)
 

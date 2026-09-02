@@ -49,10 +49,10 @@
 <audio id="amb" src="media/city.ogg" loop preload="none"></audio>
 
 <!-- ═════ 1 · HERO ═════ -->
-<section class="scene tall-4" data-scene data-chapter="THE CITY">
+<section class="scene tall-4" data-scene data-chapter="THE CITY" data-act="I">
   <div class="stage" style="background-image:url(media/hero.jpg)">
     <video class="plate" data-src="media/hero.mp4" poster="media/hero.jpg"
-           playsinline muted data-eager preload="auto" aria-hidden="true"></video>
+           playsinline muted preload="auto" aria-hidden="true"></video>
     <div class="scrim left"></div>
     <div class="layer on" data-from="0" data-to="0.32">
       <p class="kicker">▸ SEND IT TO SOCIETY</p>
@@ -76,7 +76,7 @@
 </section>
 
 <!-- ═════ 2 · DAY ONE ═════ -->
-<section class="scene tall-25" data-scene data-chapter="DAY ONE" id="city">
+<section class="scene tall-25" data-scene data-chapter="DAY ONE" data-act="I" id="city">
   <div class="stage" style="background-image:url(media/empty.jpg)">
     <video class="plate" data-src="media/empty.mp4" poster="media/empty.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -94,36 +94,57 @@
   </div>
 </section>
 
-<!-- ═════ 3 · THE PENTHOUSE ═════ -->
-<section class="scene tall-2" data-scene data-chapter="RANK">
-  <div class="stage" style="background-image:url(media/penthouse.jpg)">
-    <video class="plate" data-src="media/penthouse.mp4" poster="media/penthouse.jpg"
+<!-- ═════ 3 · THE CLIMB ═════ -->
+<section class="scene tall-4 dual" data-scene data-chapter="THE CLIMB" data-act="I">
+  <div class="stage" style="background-image:url(media/bedroom.jpg)">
+    <video class="plate show" data-src="media/bedroom.mp4" poster="media/bedroom.jpg" data-from="0" data-to="0.5"
            playsinline muted preload="none" aria-hidden="true"></video>
-    <div class="scrim right"></div>
-    <div class="layer right on" data-from="0" data-to="1">
-      <p class="kicker">▸ THE PENTHOUSE</p>
-      <h2>Rank up and<br>the view changes.</h2>
-      <p class="sub">Nine tiers, twenty-seven rungs, every one gated on a real number instead of a badge you gave yourself.</p>
-      <p class="sub dim">Creator and above need real monetisation. The apex tiers can demote you if you go quiet.</p>
+    <video class="plate" data-src="media/penthouse.mp4" poster="media/penthouse.jpg" data-from="0.5" data-to="1"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim both"></div>
+    <div class="layer on" data-from="0" data-to="0.42">
+      <p class="kicker">▸ THE CLIMB</p>
+      <h2>You start in<br>a bedroom.</h2>
+      <p class="sub">Day one of the empire. Post, repeat, never quit — it is written on the whiteboard behind you.</p>
+    </div>
+    <div class="layer right" data-from="0.54" data-to="1">
+      <p class="kicker">▸ NINE TIERS · TWENTY-SEVEN RUNGS</p>
+      <h2>You finish in<br>the penthouse.</h2>
+      <p class="sub">Every rung is gated on a real number — uploads, subs, views, likes — not a badge you gave yourself.</p>
+      <p class="sub dim">Creator and above need real monetization. The apex tiers demote you if you go quiet.</p>
     </div>
 
-    <!-- The ladder itself, along the floor of the room you climb toward. -->
-    <div class="rankstrip" aria-label="The nine rank tiers, Iron through Icon">
-      <div class="badge" style="--t:#8B9DC3" title="Iron"><span class="sym">Fe</span><span class="nm">Iron</span></div>
-      <div class="badge" style="--t:#CD7F32" title="Bronze"><span class="sym">Br</span><span class="nm">Bronze</span></div>
-      <div class="badge" style="--t:#C0C0C0" title="Silver"><span class="sym">Ag</span><span class="nm">Silver</span></div>
-      <div class="badge" style="--t:#FFD700" title="Gold"><span class="sym">Au</span><span class="nm">Gold</span></div>
-      <div class="badge" style="--t:#00E5CC" title="Platinum"><span class="sym">Pt</span><span class="nm">Platinum</span></div>
-      <div class="badge" style="--t:#9EEEFF" title="Diamond"><span class="sym">◆</span><span class="nm">Diamond</span></div>
-      <div class="badge apex" style="--t:#B06EFF" title="Creator"><span class="sym">★</span><span class="nm">Creator</span></div>
-      <div class="badge apex" style="--t:#FF4FA3" title="Influencer"><span class="sym">✦</span><span class="nm">Influencer</span></div>
-      <div class="badge apex" style="--t:#FF6B35" title="Icon"><span class="sym">♛</span><span class="nm">Icon</span></div>
+    <!-- The ladder itself. Nine tiers, lit in order as you climb;
+         only a class moves, nothing is written during a scroll. -->
+    <div class="ladder" data-ladder>
+      <div class="tierlines">
+        <p class="tierline on" style="--t:#8B9DC3"><b>IRON</b>An empty lot with a construction sign — the ground you build on.</p>
+        <p class="tierline" style="--t:#CD7F32"><b>BRONZE</b>A little street booth. You are officially on the map.</p>
+        <p class="tierline" style="--t:#C0C0C0"><b>SILVER</b>A real storefront, with the lights on.</p>
+        <p class="tierline" style="--t:#FFD700"><b>GOLD</b>A mid-rise with a glowing neon sign.</p>
+        <p class="tierline" style="--t:#00E5CC"><b>PLATINUM</b>A tall tower. Bright neon, hard to miss.</p>
+        <p class="tierline" style="--t:#9EEEFF"><b>DIAMOND</b>A skyscraper sweeping the sky with searchlights.</p>
+        <p class="tierline" style="--t:#B06EFF"><b>CREATOR</b>A landmark tower with an animated billboard. Apex — defend it.</p>
+        <p class="tierline" style="--t:#FF4FA3"><b>INFLUENCER</b>A district-defining tower with holograms. Apex — defend it.</p>
+        <p class="tierline" style="--t:#FF6B35"><b>ICON</b>A city wonder, seen from every block. The top.</p>
+      </div>
+      <div class="rankstrip" aria-label="The nine rank tiers, Iron through Icon">
+        <div class="badge lit now" style="--t:#8B9DC3" title="Iron"><span class="sym">Fe</span><span class="nm">Iron</span></div>
+        <div class="badge" style="--t:#CD7F32" title="Bronze"><span class="sym">Br</span><span class="nm">Bronze</span></div>
+        <div class="badge" style="--t:#C0C0C0" title="Silver"><span class="sym">Ag</span><span class="nm">Silver</span></div>
+        <div class="badge" style="--t:#FFD700" title="Gold"><span class="sym">Au</span><span class="nm">Gold</span></div>
+        <div class="badge" style="--t:#00E5CC" title="Platinum"><span class="sym">Pt</span><span class="nm">Platinum</span></div>
+        <div class="badge" style="--t:#9EEEFF" title="Diamond"><span class="sym">◆</span><span class="nm">Diamond</span></div>
+        <div class="badge apex" style="--t:#B06EFF" title="Creator"><span class="sym">★</span><span class="nm">Creator</span></div>
+        <div class="badge apex" style="--t:#FF4FA3" title="Influencer"><span class="sym">✦</span><span class="nm">Influencer</span></div>
+        <div class="badge apex" style="--t:#FF6B35" title="Icon"><span class="sym">♛</span><span class="nm">Icon</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═════ 4 · THE THEATER ═════ -->
-<section class="scene tall-2" data-scene data-chapter="THEATER">
+<section class="scene tall-2" data-scene data-chapter="THE THEATER" data-act="I">
   <div class="stage" style="background-image:url(media/theater.jpg)">
     <video class="plate" data-src="media/theater.mp4" poster="media/theater.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -213,22 +234,8 @@
   </div>
 </section>
 
-<!-- ═════ 5 · THE ARCADE ═════ -->
-<section class="scene tall-2" data-scene data-chapter="ARCADE">
-  <div class="stage" style="background-image:url(media/arcade.jpg)">
-    <video class="plate" data-src="media/arcade.mp4" poster="media/arcade.jpg"
-           playsinline muted preload="none" aria-hidden="true"></video>
-    <div class="scrim right"></div>
-    <div class="layer right on" data-from="0" data-to="1">
-      <p class="kicker">▸ THE ARCADE</p>
-      <h2>Five games,<br>because you<br>will need them.</h2>
-      <p class="sub">Snake, pinball, brick breaker, two shooters. Some days the honest move is not to write another script.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═════ 6 · THE MARKET ═════ -->
-<section class="scene tall-2" data-scene data-chapter="MARKET">
+<!-- ═════ 5 · THE SHOP ═════ -->
+<section class="scene tall-2" data-scene data-chapter="THE SHOP" data-act="I">
   <div class="stage" style="background-image:url(media/market.jpg)">
     <video class="plate" data-src="media/market.mp4" poster="media/market.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -236,41 +243,56 @@
     <div class="layer on" data-from="0" data-to="1">
       <p class="kicker">▸ THE BUZZ MARKET</p>
       <h2>Everything here<br>is earned,<br>not bought.</h2>
-      <p class="sub">Priced in Buzz you get for shipping videos. There is no way to spend real money inside this app.</p>
+      <p class="sub">Cursors, themes, whole city landmarks — all of it priced in Buzz you get for shipping videos. There is no way to spend real money inside this app.</p>
     </div>
   </div>
 </section>
 
-<!-- ═════ 7 · DRIVE ═════ -->
-<section class="scene tall-2" data-scene data-chapter="DRIVE">
+<!-- ═════ 6 · SEND IT ═════ -->
+<section class="scene tall-25" data-scene data-chapter="SEND IT" data-act="I">
   <div class="stage" style="background-image:url(media/drive.jpg)">
     <video class="plate" data-src="media/drive.mp4" poster="media/drive.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
     <div class="scrim left"></div>
-    <div class="layer on" data-from="0" data-to="1">
-      <p class="kicker">▸ AND YOU CAN JUST DRIVE</p>
-      <h2>None of this<br>makes you<br>work faster.</h2>
-      <p class="sub">It makes you come back. Over a year, that was the only thing that mattered.</p>
+    <div class="layer on" data-from="0" data-to="0.48">
+      <p class="kicker">▸ BUILD · GROW · ORGANIZE</p>
+      <h2>Watch your city grow<br>right along with<br>your YouTube career.</h2>
+      <p class="sub">Build it, grow it, keep it organized — and every one of those turns into another block of a city that is only yours.</p>
+    </div>
+    <div class="layer" data-from="0.56" data-to="1">
+      <p class="kicker">▸ SO WHAT ARE YOU WAITING FOR</p>
+      <h2>Just<br>Send It.</h2>
+      <p class="sub">Fourteen days, everything, no card. The only thing you can lose is the download.</p>
     </div>
   </div>
 </section>
 
-<!-- ═════ END CARD ═════ -->
+<!-- ═════ END OF ACT I ═════ -->
 <section class="titlecard">
   <div class="tc-in">
+    <p class="tc-act">END OF ACT I</p>
     <svg class="mark big" viewBox="-.04 -.04 5 7.05" width="54" height="76" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="2" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="3" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="0" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="4" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="0" y="2" width=".92" height=".92" rx=".1" fill="#D25C6B"/><rect x="1" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="2" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="3" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="4" y="4" width=".92" height=".92" rx=".1" fill="#A855D6"/><rect x="0" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="4" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="1" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="2" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="3" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/></svg>
     <p class="tc-name">SEND IT TO SOCIETY</p>
+    <p class="tc-shout">JUST SEND IT.</p>
     <p class="tc-line">WINDOWS · $39 ONCE · 14 DAYS FREE</p>
     <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
     <p class="tc-fine">Public beta · no card · no account</p>
-    <a class="tc-more" href="#work">▾  WHAT'S ACTUALLY IN IT</a>
+    <a class="tc-more" href="#work">▾  ACT II — WHAT'S ACTUALLY IN IT</a>
   </div>
+</section>
+
+<!-- ═════ ACT II STAMP ═════ -->
+<section class="actstamp">
+  <p class="ai">ACT II</p>
+  <p class="an">THE MACHINE</p>
+  <p class="al">Everything the trailer just showed you, and the nine tools
+    running underneath it.</p>
 </section>
 
 <main>
 
   <!-- ═════ THE WORK ═════ -->
-  <section class="band wide" id="work">
+  <section class="band wide" id="work" data-chapter="THE WORK" data-act="II">
     <p class="eyebrow">// WHAT'S ACTUALLY IN IT</p>
     <h2 class="h2">The whole job, in one window</h2>
     <p class="lede dim">Idea to upload without opening a browser tab. Real
@@ -284,22 +306,22 @@
     </figure>
 
     <div class="shots2">
-    <figure class="cell">
-      <img src="media/shots/archive.jpg" loading="lazy" width="820" alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
-      <figcaption><b>THE ARCHIVE</b>A dozen public-domain libraries in one search. Nothing reaches you that you can’t legally put in a monetised video.</figcaption>
-    </figure>
-    <figure class="cell">
-      <img src="media/shots/outliers.jpg" loading="lazy" width="820" alt="EVOLVE outliers — competitor videos ranked by how far they beat their own channel average">
-      <figcaption><b>EVOLVE · OUTLIERS</b>The videos that beat their <i>own</i> channel’s average. Copy the pattern, not the subscriber count.</figcaption>
-    </figure>
-    <figure class="cell">
-      <img src="media/shots/trends.jpg" loading="lazy" width="820" alt="EVOLVE trends — which title words and formats pull views in your niche">
-      <figcaption><b>EVOLVE · TRENDS</b>What’s pulling views in <i>your</i> niche, with the numbers attached. ALL-CAPS +499%. Listicles −25%.</figcaption>
-    </figure>
-    <figure class="cell">
-      <img src="media/shots/transcribe.jpg" loading="lazy" width="820" alt="TRANSCRIBE — drop a voiceover and it becomes a script, processed on your own machine">
-      <figcaption><b>TRANSCRIBE</b>Voiceover in, script out. The speech model runs on your PC — no key, no per-minute fee.</figcaption>
-    </figure>
+      <figure class="cell">
+        <img src="media/shots/archive.jpg" loading="lazy" width="820" alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
+        <figcaption><b>THE ARCHIVE</b>A dozen public-domain libraries in one search. Nothing reaches you that you can’t legally put in a monetized video.</figcaption>
+      </figure>
+      <figure class="cell">
+        <img src="media/shots/outliers.jpg" loading="lazy" width="820" alt="EVOLVE outliers — competitor videos ranked by how far they beat their own channel average">
+        <figcaption><b>EVOLVE · OUTLIERS</b>The videos that beat their <i>own</i> channel’s average. Copy the pattern, not the subscriber count.</figcaption>
+      </figure>
+      <figure class="cell">
+        <img src="media/shots/trends.jpg" loading="lazy" width="820" alt="EVOLVE trends — which title words and formats pull views in your niche">
+        <figcaption><b>EVOLVE · TRENDS</b>What’s pulling views in <i>your</i> niche, with the numbers attached. ALL-CAPS +499%. Listicles −25%.</figcaption>
+      </figure>
+      <figure class="cell">
+        <img src="media/shots/transcribe.jpg" loading="lazy" width="820" alt="TRANSCRIBE — drop a voiceover and it becomes a script, processed on your own machine">
+        <figcaption><b>TRANSCRIBE</b>Voiceover in, script out. The speech model runs on your PC — no key, no per-minute fee.</figcaption>
+      </figure>
     </div>
 
     <figure class="shot lead">
@@ -310,19 +332,19 @@
     </figure>
 
     <div class="grid">
-    <div><h3>PRODUCTION PIPELINE</h3><p>Every video as a card moving through stages. What’s written, what’s filmed, what’s stuck.</p></div>
-    <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so tracks you can’t legally monetise never reach you.</p></div>
-    <div><h3>THUMB FORGE</h3><p>A real thumbnail editor. Layers, masks, blends, arc text, A/B compare.</p></div>
-    <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what works in your niche.</p></div>
-    <div><h3>SCRIPT LAB</h3><p>Drop a script, get it graded, and learn why — not just a score.</p></div>
-    <div><h3>HOOK PRINTER</h3><p>Print a hook, graded F to S. The first ten seconds decide the rest.</p></div>
-    <div><h3>THE ACADEMY</h3><p>Lessons that make you do the thing in the real tool, then check that you did.</p></div>
-    <div><h3>CLOSED ON SUNDAYS</h3><p>The shop shuts. A day the app refuses to let you work is a feature.</p></div>
+      <div><h3>PRODUCTION PIPELINE</h3><p>Every video as a card moving through stages. What’s written, what’s filmed, what’s stuck.</p></div>
+      <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so tracks you can’t legally monetize never reach you.</p></div>
+      <div><h3>THUMB FORGE</h3><p>A real thumbnail editor. Layers, masks, blends, arc text, A/B compare.</p></div>
+      <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what works in your niche.</p></div>
+      <div><h3>SCRIPT LAB</h3><p>Drop a script, get it graded, and learn why — not just a score.</p></div>
+      <div><h3>HOOK PRINTER</h3><p>Print a hook, graded F to S. The first ten seconds decide the rest.</p></div>
+      <div><h3>THE ACADEMY</h3><p>Lessons that make you do the thing in the real tool, then check that you did.</p></div>
+      <div><h3>CLOSED ON SUNDAYS</h3><p>The shop shuts. A day the app refuses to let you work is a feature.</p></div>
     </div>
   </section>
 
-  <!-- ═════ THE STACK ═════ -->
-  <section class="band">
+  <!-- ═════ THE SWAP ═════ -->
+  <section class="band" data-chapter="THE SWAP" data-act="II">
     <p class="eyebrow">// THE STACK IT REPLACES</p>
     <h2 class="h2">You're already paying for this</h2>
     <table class="stack">
@@ -339,8 +361,8 @@
       SITS does all of it. Once.</p>
   </section>
 
-  <!-- ═════ PRICE · TRIAL · REFUND · WHO ═════ -->
-  <section class="band tight" id="price">
+  <!-- ═════ THE PRICE ═════ -->
+  <section class="band tight" id="price" data-chapter="THE PRICE" data-act="II">
     <div class="pricebox">
       <p class="eyebrow">// THE PRICE</p>
       <p class="amt">$39</p>
@@ -366,8 +388,8 @@
       thumbnail guy and a manager, this isn't for you.</p>
   </section>
 
-  <!-- ═════ THE HONEST PART ═════ -->
-  <section class="band" id="honest">
+  <!-- ═════ THE FLAWS ═════ -->
+  <section class="band" id="honest" data-chapter="THE FLAWS" data-act="II">
     <p class="eyebrow">// BEFORE YOU BUY</p>
     <h2 class="h2">The honest part</h2>
     <div class="honest">

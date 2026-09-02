@@ -95,12 +95,34 @@ like a hype game trailer or announcement."*
 The page had been alternating scene / band / scene / band, so the trailer kept
 stopping to explain itself. It is now two acts:
 
-> **ACT I** hero → day one → rank → theater → arcade → market → drive → **end card**
-> **ACT II** what's in it → the swap → the price (trial + refund + who folded in) → the flaws
+> **ACT I · THE CITY** hero → day one → **the climb** → theater → the shop → send it → **end card**
+> **ACT II · THE MACHINE** what's in it → the swap → the price (trial + refund + who folded in) → the flaws
 
-Seven scenes with nothing between them, then a title card that gives the page a
-visible finish, then the facts for anyone the trailer sold. Scene scroll went
-from 2400vh to 1650vh; two whole bands were folded away.
+Six scenes with nothing between them, then a card that gives the page a visible
+finish, then the facts for anyone the trailer sold. Scene scroll went from
+2400vh to 1700vh; two whole bands were folded away.
+
+**The acts are now stated, not implied.** The rail groups every stop under ACT I
+or ACT II, the end card is marked END OF ACT I and points at Act II by name, and
+Act II opens on its own stamp instead of simply beginning.
+
+**THE ARCADE was cut** — Chris's call, it stays a thing you find rather than a
+thing you're sold.
+
+### THE CLIMB
+
+The centrepiece, and the one scene that holds two videos. The bedroom plays
+across the first half of the scroll and the penthouse across the second, so one
+gesture carries you from day one to the top floor. Underneath, the nine tiers
+light in order, the one you are standing on lifts, and its building line comes
+with it — Iron's empty lot through Icon's city wonder.
+
+Colours and building lines come from the app's own `TIERS` table
+(`src/renderer/src/lib/rank.ts`), so the site and the product cannot drift on
+what Gold looks like. All nine lines ship in the HTML; only classes move, and
+only when the tier changes. **Only the visible plate is ever seeked** — two
+seeks in one frame is ~18 ms against a 16.7 ms budget, and the outgoing plate
+frozen on its last frame is what a dissolve wants anyway.
 
 The conversion order survives intact — what → who → proof → the swap → the
 price → the flaws → the trial → the refund — because nothing above the price
