@@ -27,6 +27,7 @@
   <button id="bootskip" type="button">SKIP ▸</button>
 </div>
 
+<div id="glow" aria-hidden="true"></div>
 <div class="crt" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -114,16 +115,87 @@
 <section class="band wide" id="work">
   <p class="eyebrow">// WHAT'S ACTUALLY IN IT</p>
   <h2 class="h2">The whole job, in one window</h2>
-  <p class="lede dim">Idea to upload without opening a browser tab.</p>
+  <p class="lede dim">Idea to upload without opening a browser tab. These are
+    real screens, not mockups.</p>
+
+  <figure class="shot lead">
+    <img src="media/shots/toolkit.jpg" loading="lazy" width="1000"
+         alt="The SITS toolkit laid out as a node map: Academy, Transcribe, Script Lab, Hook Printer, Thumb Forge, The Archive, The Sound Booth, SEO Lab and Health">
+    <figcaption>Nine stations. Tap any one to learn the skill behind it, then do
+      it for real in the tool next door.</figcaption>
+  </figure>
+
+  <div class="feat">
+    <figure class="shot">
+      <img src="media/shots/archive.jpg" loading="lazy" width="1000"
+           alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
+    </figure>
+    <div>
+      <h3>THE ARCHIVE</h3>
+      <p>One search across a dozen public-domain libraries — Internet Archive,
+        the Library of Congress, NASA, Wikimedia, Pexels, Pixabay. Every clip
+        carries the licence it was offered under, and every download writes a
+        receipt saying so.</p>
+      <p class="small">Nothing reaches you that you can't legally put in a
+        monetised video. That check happens before you see it, not after you
+        upload.</p>
+    </div>
+  </div>
+
+  <div class="feat flip">
+    <figure class="shot">
+      <img src="media/shots/outliers.jpg" loading="lazy" width="1000"
+           alt="EVOLVE outliers — competitor videos ranked by how many times they beat their channel's own average">
+    </figure>
+    <div>
+      <h3>EVOLVE</h3>
+      <p>Track the channels you're actually competing with. It finds the videos
+        that beat their <i>own</i> channel's average — a 51× outlier on a small
+        channel counts the same as one on a big one — so you're copying the
+        pattern, not the subscriber count.</p>
+      <p class="small">Then FORGE FROM THIS turns any of them into a starting
+        point for one of yours.</p>
+    </div>
+  </div>
+
+  <div class="feat">
+    <figure class="shot">
+      <img src="media/shots/trends.jpg" loading="lazy" width="1000"
+           alt="EVOLVE trends — which title words and formats pull views in your niche">
+    </figure>
+    <div>
+      <h3>WHAT'S WORKING, IN YOUR NICHE</h3>
+      <p>Not general advice. The words and formats pulling views across the
+        channels <i>you</i> track, with the numbers attached — ALL-CAPS emphasis
+        at +499% versus typical, question hooks at +85%, listicles at −25%.</p>
+      <p class="small">Copy what's working. Not the topic — the pattern.</p>
+    </div>
+  </div>
+
+  <div class="feat flip">
+    <figure class="shot">
+      <img src="media/shots/transcribe.jpg" loading="lazy" width="1000"
+           alt="TRANSCRIBE — drop a voiceover and it becomes a script, processed on your own machine">
+    </figure>
+    <div>
+      <h3>TRANSCRIBE</h3>
+      <p>Drop a voiceover and get a script back. It runs a speech model
+        <b>on your PC</b> — no key, no per-minute fee, and the audio never
+        leaves the machine.</p>
+      <p class="small">Then it's shaped into Hook / Body / CTA and sent
+        straight into a new video.</p>
+    </div>
+  </div>
+
   <div class="grid">
     <div><h3>PRODUCTION PIPELINE</h3><p>Every video as a card moving through stages. What's written, what's filmed, what's stuck.</p></div>
-    <div><h3>THE ARCHIVE</h3><p>Public-domain footage, searched across a dozen libraries. Every download writes a receipt saying which licence it came under.</p></div>
-    <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so the ones you can't legally use in a monetised video never reach you.</p></div>
+    <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so tracks you can't legally use in a monetised video never reach you.</p></div>
     <div><h3>THUMB FORGE</h3><p>A real thumbnail editor. Layers, masks, blends, arc text, A/B compare.</p></div>
-    <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what's actually working in your niche.</p></div>
-    <div><h3>TRANSCRIBE</h3><p>Voiceover to script, on your machine, with a local model. No upload, no per-minute fee.</p></div>
-    <div><h3>EVOLVE</h3><p>Track competitors. See which of their videos beat their own average, and by how many times.</p></div>
+    <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what's working in your niche.</p></div>
+    <div><h3>SCRIPT LAB</h3><p>Drop a script, get it graded, and learn why — not just a score.</p></div>
+    <div><h3>HOOK PRINTER</h3><p>Print a hook, graded F to S. The first ten seconds decide the rest.</p></div>
     <div><h3>THE ACADEMY</h3><p>Lessons that make you do the thing in the real tool, then check that you did.</p></div>
+    <div><h3>CLOSED ON SUNDAYS</h3><p>The shop shuts. A day the app refuses to let you work is a feature, not an oversight.</p></div>
   </div>
 </section>
 
@@ -141,6 +213,43 @@
         climb it.</p>
       <p class="sub dim">The ticker on the window reads
         <i>EVERY LIGHT BELOW IS YOURS.</i></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ 5b · THE LADDER ══════════ -->
+<section class="band wide" id="ladder">
+  <p class="eyebrow">// THE LADDER</p>
+  <h2 class="h2">Nine tiers. Twenty-seven rungs.<br>Every one of them is a building.</h2>
+  <p class="lede dim">Rank is computed from your real numbers — uploads, subs,
+    views, likes — not from a badge you awarded yourself. It can go down.</p>
+
+  <div class="ladder">
+      <div class="rung" style="--t:#8B9DC3"><span class="sym">Fe</span><span class="nm">Iron</span><span class="bld">An empty lot with a construction sign.</span></div>
+      <div class="rung" style="--t:#CD7F32"><span class="sym">Br</span><span class="nm">Bronze</span><span class="bld">A little street booth.</span></div>
+      <div class="rung" style="--t:#C0C0C0"><span class="sym">Ag</span><span class="nm">Silver</span><span class="bld">A real storefront with the lights on.</span></div>
+      <div class="rung" style="--t:#FFD700"><span class="sym">Au</span><span class="nm">Gold</span><span class="bld">A mid-rise with a glowing neon sign.</span></div>
+      <div class="rung" style="--t:#00E5CC"><span class="sym">Pt</span><span class="nm">Platinum</span><span class="bld">A tall tower, bright neon, hard to miss.</span></div>
+      <div class="rung" style="--t:#9EEEFF"><span class="sym">◆</span><span class="nm">Diamond</span><span class="bld">A skyscraper sweeping the sky with searchlights.</span></div>
+      <div class="rung apex" style="--t:#B06EFF"><span class="sym">★</span><span class="nm">Creator</span><span class="bld">A landmark tower with an animated billboard.</span></div>
+      <div class="rung apex" style="--t:#FF4FA3"><span class="sym">✦</span><span class="nm">Influencer</span><span class="bld">A district-defining tower with holograms.</span></div>
+      <div class="rung apex" style="--t:#FF6B35"><span class="sym">♛</span><span class="nm">Icon</span><span class="bld">A city wonder — a beacon seen from every block.</span></div>
+  </div>
+
+  <div class="feat flip" style="margin-top:44px">
+    <figure class="shot">
+      <img src="media/shots/rank.jpg" loading="lazy" width="1000"
+           alt="The rank card showing Gold 1, the requirements for the next rung, and live channel vitals">
+    </figure>
+    <div>
+      <h3>IT TELLS YOU WHAT IT TAKES</h3>
+      <p>Not a mystery meter. Every rung lists the exact numbers that open it and
+        how close you are — uploads, subscribers, views, likes — beside live
+        vitals from your actual channel.</p>
+      <p class="small"><b>Creator and above require real monetisation.</b> The
+        numbers alone cap you at Diamond. Apex tiers can demote you if you go
+        quiet — the top is earned and defended.</p>
     </div>
   </div>
 </section>

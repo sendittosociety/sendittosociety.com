@@ -225,3 +225,65 @@ footer .links a:hover{color:var(--green)}
   .grain,.scrollcue i,.sendy-bob,.sendy-wave,.sendy-pulse{animation:none}
   .layer{transition:none}
 }
+
+/* ── SCREENSHOTS ────────────────────────────────────────────────────────────
+   Real screens, framed like something on a shelf rather than floated on the
+   page. The border and inner glow keep a dark screenshot from dissolving into
+   a dark background. */
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border:1px solid var(--line);
+  box-shadow:0 0 0 1px rgba(74,232,138,.06),0 24px 60px rgba(0,0,0,.6);background:#050a07}
+.shot figcaption{margin-top:12px;font-size:14px;color:var(--faint);line-height:1.55}
+.shot.lead{margin:34px 0 10px}
+
+.feat{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center;
+  padding:44px 0;border-bottom:1px solid var(--line-soft)}
+.feat.flip .shot{order:2}
+.feat h3{font-family:var(--pix);font-size:14px;letter-spacing:.04em;color:var(--green);margin:0 0 12px}
+.feat p{margin:0 0 12px;font-size:16px;color:var(--muted);line-height:1.62}
+.feat p b{color:var(--ink)}
+.feat p.small{font-size:14px;color:var(--faint);margin:0}
+
+/* ── THE LADDER ─────────────────────────────────────────────────────────────
+   Nine tiers, coloured from the app's own TIERS table so the website and the
+   product agree on what Gold looks like. Apex tiers are marked because they
+   behave differently: they can demote you. */
+.ladder{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin:30px 0 0}
+.rung{display:grid;grid-template-columns:56px 132px 1fr;align-items:center;gap:16px;
+  background:var(--bg);padding:14px 18px;position:relative}
+.rung .sym{display:grid;place-items:center;width:38px;height:38px;font-size:16px;
+  color:var(--t);border:1px solid var(--t);background:color-mix(in srgb,var(--t) 9%,transparent);
+  box-shadow:0 0 18px color-mix(in srgb,var(--t) 26%,transparent)}
+.rung .nm{font-family:var(--pix);font-size:14px;color:var(--t);letter-spacing:.03em}
+.rung .bld{font-size:14.5px;color:var(--muted)}
+.rung.apex{background:linear-gradient(90deg,color-mix(in srgb,var(--t) 7%,var(--bg)),var(--bg) 60%)}
+.rung.apex::after{content:'APEX · CAN DEMOTE';position:absolute;right:16px;top:50%;
+  transform:translateY(-50%);font-size:9px;letter-spacing:.16em;color:var(--t);opacity:.72}
+
+/* ── CURSOR ─────────────────────────────────────────────────────────────────
+   A soft glow that follows the pointer, and a thin trail of falling glyphs.
+   Both are pointer-events:none and composited (transform/opacity only), so
+   neither can touch the scroll budget the video scrub depends on. */
+#glow{position:fixed;left:0;top:0;width:340px;height:340px;margin:-170px 0 0 -170px;
+  z-index:88;pointer-events:none;opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(circle,rgba(74,232,138,.13) 0%,rgba(74,232,138,.05) 38%,transparent 68%);
+  mix-blend-mode:screen;will-change:transform}
+#glow.on{opacity:1}
+.rain{position:fixed;z-index:87;pointer-events:none;font-family:var(--mono);
+  font-size:14px;color:var(--green);text-shadow:0 0 8px var(--green-glow);
+  animation:rainfall 1.1s linear forwards;will-change:transform,opacity}
+@keyframes rainfall{
+  0%{opacity:.85;transform:translateY(0) scale(1)}
+  100%{opacity:0;transform:translateY(46px) scale(.85)}
+}
+
+@media (max-width:820px){
+  .feat{grid-template-columns:1fr;gap:20px;padding:32px 0}
+  .feat.flip .shot{order:0}
+  .rung{grid-template-columns:44px 1fr;gap:12px;padding:12px 14px}
+  .rung .bld{grid-column:1 / -1;font-size:13.5px}
+  .rung.apex::after{display:none}
+  #glow,.rain{display:none}
+}
+@media (prefers-reduced-motion:reduce){ .rain{display:none} }
+@media (hover:none){ #glow,.rain{display:none} }

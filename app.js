@@ -240,3 +240,70 @@
     })
   }
 })()
+
+/* ── CURSOR ───────────────────────────────────────────────────────────────────
+   A soft glow that follows the pointer, and a thin trail of falling glyphs
+   behind it.
+
+   THE CONSTRAINT: the scroll scrub owns the frame budget. So this writes only
+   transform and opacity (both composited, neither triggers layout), spawns at
+   most one glyph every 45 ms, hard-caps how many exist at once, and removes
+   each one when its CSS animation ends rather than running a JS loop. On touch
+   devices and under reduced-motion it does not run at all.
+   ───────────────────────────────────────────────────────────────────────── */
+;(function () {
+  'use strict'
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (window.matchMedia('(hover: none)').matches) return
+
+  var glow = document.getElementById('glow')
+  if (!glow) return
+
+  var GLYPHS = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ01'
+  var MAX_ALIVE = 26
+  var MIN_GAP_MS = 45
+
+  var alive = 0
+  var lastSpawn = 0
+  var gx = 0, gy = 0, tx = 0, ty = 0
+  var running = false
+
+  /* The glow lags the pointer very slightly — a dot welded to the cursor reads
+     as a rendering artifact; one that trails by a few frames reads as light. */
+  function follow() {
+    gx += (tx - gx) * 0.18
+    gy += (ty - gy) * 0.18
+    glow.style.transform = 'translate3d(' + gx.toFixed(1) + 'px,' + gy.toFixed(1) + 'px,0)'
+    if (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) requestAnimationFrame(follow)
+    else running = false
+  }
+
+  function spawn(x, y) {
+    if (alive >= MAX_ALIVE) return
+    var el = document.createElement('span')
+    el.className = 'rain'
+    el.textContent = GLYPHS.charAt((Math.random() * GLYPHS.length) | 0)
+    el.style.left = (x + (Math.random() * 26 - 13)) + 'px'
+    el.style.top = (y + (Math.random() * 14 - 7)) + 'px'
+    el.style.opacity = String(0.35 + Math.random() * 0.5)
+    document.body.appendChild(el)
+    alive++
+    el.addEventListener('animationend', function () {
+      if (el.parentNode) el.parentNode.removeChild(el)
+      alive--
+    })
+  }
+
+  window.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return
+    tx = e.clientX; ty = e.clientY
+    if (!glow.classList.contains('on')) glow.classList.add('on')
+    if (!running) { running = true; requestAnimationFrame(follow) }
+
+    var now = e.timeStamp || Date.now()
+    if (now - lastSpawn >= MIN_GAP_MS) { lastSpawn = now; spawn(e.clientX, e.clientY) }
+  }, { passive: true })
+
+  document.addEventListener('mouseleave', function () { glow.classList.remove('on') })
+  document.addEventListener('mouseenter', function () { glow.classList.add('on') })
+})()
