@@ -9,9 +9,11 @@ commands (see README).
 
 <https://github.com/signup> — use **sendittosociety@gmail.com**.
 
-Pick a username you'd be happy printing on a business card; it becomes part of
-your URLs and is a nuisance to change later. `sendittosociety` is the obvious
-one if it's free.
+**The username must be `sendittosociety`.** This is not a preference — the app
+already ships with its update feed pointed at `github.com/sendittosociety/sits-releases`
+(`build.publish` in package.json). A different username means editing that and
+rebuilding. If it is taken, tell me and I will change the config to match
+whatever you get instead.
 
 **Turn on 2FA immediately.** Settings → Password and authentication. Same
 reasoning as Porkbun: this account will hold the app's update feed.
@@ -24,6 +26,7 @@ reasoning as Porkbun: this account will hold the app's update feed.
 |---|---|---|
 | `sendittosociety.com` | **Public** | This folder. The site is public anyway. |
 | `sits-app` | **Private** | The application source. Nobody sees it. |
+| `sits-releases` | **Public** | Installers only, no code. This is the update feed the shipped app already looks at, and it must be public or customers' update checks fail. |
 
 Create both **empty** — no README, no .gitignore, no licence. Both folders
 already have those, and letting GitHub add its own creates a conflict on the
