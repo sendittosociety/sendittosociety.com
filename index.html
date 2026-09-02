@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap">
 <link rel="preload" as="image" href="media/hero.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,6 +37,7 @@
   <nav>
     <a href="#city">THE CITY</a>
     <a href="#work">THE WORK</a>
+    <a href="#ladder">RANK</a>
     <a href="#price">PRICE</a>
     <a class="cta-sm" href="#get">GET IT</a>
   </nav>
@@ -208,48 +210,44 @@
     <div class="layer right on" data-from="0" data-to="1">
       <p class="kicker">▸ THE PENTHOUSE</p>
       <h2>Rank up and<br>the view changes.</h2>
-      <p class="sub">Twenty-five rungs, each one gated on a real number rather
-        than a badge you gave yourself. The office you work in changes as you
-        climb it.</p>
+      <p class="sub">Twenty-seven rungs across nine tiers, each gated on a real number rather than a badge you gave yourself.</p>
       <p class="sub dim">The ticker on the window reads
         <i>EVERY LIGHT BELOW IS YOURS.</i></p>
+    </div>
+
+    <!-- The ladder itself, along the floor of the room you climb toward. -->
+    <div class="rankstrip" aria-label="The nine rank tiers, Iron through Icon">
+      <div class="badge" style="--t:#8B9DC3" title="Iron"><span class="sym">Fe</span><span class="nm">Iron</span></div>
+      <div class="badge" style="--t:#CD7F32" title="Bronze"><span class="sym">Br</span><span class="nm">Bronze</span></div>
+      <div class="badge" style="--t:#C0C0C0" title="Silver"><span class="sym">Ag</span><span class="nm">Silver</span></div>
+      <div class="badge" style="--t:#FFD700" title="Gold"><span class="sym">Au</span><span class="nm">Gold</span></div>
+      <div class="badge" style="--t:#00E5CC" title="Platinum"><span class="sym">Pt</span><span class="nm">Platinum</span></div>
+      <div class="badge" style="--t:#9EEEFF" title="Diamond"><span class="sym">◆</span><span class="nm">Diamond</span></div>
+      <div class="badge apex" style="--t:#B06EFF" title="Creator"><span class="sym">★</span><span class="nm">Creator</span></div>
+      <div class="badge apex" style="--t:#FF4FA3" title="Influencer"><span class="sym">✦</span><span class="nm">Influencer</span></div>
+      <div class="badge apex" style="--t:#FF6B35" title="Icon"><span class="sym">♛</span><span class="nm">Icon</span></div>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════ 5b · THE LADDER ══════════ -->
+<!-- ══════════ 5b · WHAT A RANK TAKES ══════════ -->
 <section class="band wide" id="ladder">
-  <p class="eyebrow">// THE LADDER</p>
-  <h2 class="h2">Nine tiers. Twenty-seven rungs.<br>Every one of them is a building.</h2>
-  <p class="lede dim">Rank is computed from your real numbers — uploads, subs,
-    views, likes — not from a badge you awarded yourself. It can go down.</p>
-
-  <div class="ladder">
-      <div class="rung" style="--t:#8B9DC3"><span class="sym">Fe</span><span class="nm">Iron</span><span class="bld">An empty lot with a construction sign.</span></div>
-      <div class="rung" style="--t:#CD7F32"><span class="sym">Br</span><span class="nm">Bronze</span><span class="bld">A little street booth.</span></div>
-      <div class="rung" style="--t:#C0C0C0"><span class="sym">Ag</span><span class="nm">Silver</span><span class="bld">A real storefront with the lights on.</span></div>
-      <div class="rung" style="--t:#FFD700"><span class="sym">Au</span><span class="nm">Gold</span><span class="bld">A mid-rise with a glowing neon sign.</span></div>
-      <div class="rung" style="--t:#00E5CC"><span class="sym">Pt</span><span class="nm">Platinum</span><span class="bld">A tall tower, bright neon, hard to miss.</span></div>
-      <div class="rung" style="--t:#9EEEFF"><span class="sym">◆</span><span class="nm">Diamond</span><span class="bld">A skyscraper sweeping the sky with searchlights.</span></div>
-      <div class="rung apex" style="--t:#B06EFF"><span class="sym">★</span><span class="nm">Creator</span><span class="bld">A landmark tower with an animated billboard.</span></div>
-      <div class="rung apex" style="--t:#FF4FA3"><span class="sym">✦</span><span class="nm">Influencer</span><span class="bld">A district-defining tower with holograms.</span></div>
-      <div class="rung apex" style="--t:#FF6B35"><span class="sym">♛</span><span class="nm">Icon</span><span class="bld">A city wonder — a beacon seen from every block.</span></div>
-  </div>
-
-  <div class="feat flip" style="margin-top:44px">
+  <div class="feat flip">
     <figure class="shot">
       <img src="media/shots/rank.jpg" loading="lazy" width="1000"
            alt="The rank card showing Gold 1, the requirements for the next rung, and live channel vitals">
     </figure>
     <div>
-      <h3>IT TELLS YOU WHAT IT TAKES</h3>
-      <p>Not a mystery meter. Every rung lists the exact numbers that open it and
-        how close you are — uploads, subscribers, views, likes — beside live
-        vitals from your actual channel.</p>
-      <p class="small"><b>Creator and above require real monetisation.</b> The
-        numbers alone cap you at Diamond. Apex tiers can demote you if you go
-        quiet — the top is earned and defended.</p>
+      <h3>NINE TIERS · TWENTY-SEVEN RUNGS</h3>
+      <p>Rank is computed from your real numbers — uploads, subscribers, views,
+        likes — not from a badge you awarded yourself. Every rung lists exactly
+        what opens it and how close you are.</p>
+      <p><b>It can go down.</b> Creator and above require real monetisation, so
+        the numbers alone cap you at Diamond, and the apex tiers demote you if
+        you go quiet. The top is earned and defended.</p>
+      <p class="small">Each tier is also a building. Iron is an empty lot with a
+        construction sign. Icon is a city wonder, seen from every block.</p>
     </div>
   </div>
 </section>
@@ -348,6 +346,34 @@
   </div>
 </section>
 
+<!-- ══════════ 6b · THE ARCADE ══════════ -->
+<section class="scene tall-3" data-scene>
+  <div class="stage" style="background-image:url(media/arcade.jpg)">
+    <video class="plate" data-src="media/arcade.mp4" poster="media/arcade.jpg"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim right"></div>
+    <div class="layer right on" data-from="0" data-to="1">
+      <p class="kicker">▸ THE ARCADE</p>
+      <h2>Five games,<br>because you<br>will need them.</h2>
+      <p class="sub">Snake, pinball, brick breaker, two shooters. Earned with the same Buzz everything else costs. Some days the honest move is not to write another script.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6c · THE MARKET ══════════ -->
+<section class="scene tall-3" data-scene>
+  <div class="stage" style="background-image:url(media/market.jpg)">
+    <video class="plate" data-src="media/market.mp4" poster="media/market.jpg"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim left"></div>
+    <div class="layer on" data-from="0" data-to="1">
+      <p class="kicker">▸ THE BUZZ MARKET</p>
+      <h2>Everything here<br>is earned,<br>not bought.</h2>
+      <p class="sub">Themes, cursors, city upgrades — all of it priced in Buzz you get for shipping videos. There is no way to spend real money inside this app. Sendy keeps the shop and will tell you the same thing.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ 7 · DRIVE ══════════ -->
 <section class="scene tall-3" data-scene>
   <div class="stage" style="background-image:url(media/drive.jpg)">
@@ -387,8 +413,9 @@
       <p class="eyebrow">// THE PRICE</p>
       <p class="amt">$39</p>
       <p class="once">ONE TIME · NOT A SUBSCRIPTION · YOURS FOREVER</p>
-      <!-- TODO: swap href for the Paddle checkout link once approved. -->
-      <a class="cta" id="get" href="#get">DOWNLOAD — 14 DAYS FREE</a>
+      <!-- Points at GitHub Releases until Paddle is live; the trial is the
+           download, so this is the real destination either way. -->
+      <a class="cta" id="get" href="https://github.com/sendittosociety/sits-releases/releases/latest">DOWNLOAD — 14 DAYS FREE</a>
       <p class="terms">$39 for the first 100 people, then $69. That's not a fake
         discount — early buyers are taking a real risk on a beta from one person,
         and the price goes up when the risk goes away.</p>

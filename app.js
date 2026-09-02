@@ -260,8 +260,8 @@
   if (!glow) return
 
   var GLYPHS = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ01'
-  var MAX_ALIVE = 26
-  var MIN_GAP_MS = 45
+  var MAX_ALIVE = 70
+  var MIN_GAP_MS = 14
 
   var alive = 0
   var lastSpawn = 0
@@ -283,7 +283,7 @@
     var el = document.createElement('span')
     el.className = 'rain'
     el.textContent = GLYPHS.charAt((Math.random() * GLYPHS.length) | 0)
-    el.style.left = (x + (Math.random() * 26 - 13)) + 'px'
+    el.style.left = (x + (Math.random() * 34 - 17)) + 'px'
     el.style.top = (y + (Math.random() * 14 - 7)) + 'px'
     el.style.opacity = String(0.35 + Math.random() * 0.5)
     document.body.appendChild(el)
