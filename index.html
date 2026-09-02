@@ -8,19 +8,17 @@
 <meta name="theme-color" content="#060B08">
 <meta property="og:title" content="SITS — the game for running a YouTube channel">
 <meta property="og:description" content="Every tool you need, inside a city you build. $39, once.">
-<meta property="og:image" content="https://sendittosociety.com/media/hero-poster.jpg">
+<meta property="og:image" content="https://sendittosociety.com/media/hero.jpg">
 <meta property="og:url" content="https://sendittosociety.com/">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap">
-<link rel="preload" as="image" href="media/hero-poster.jpg">
+<link rel="preload" as="image" href="media/hero.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ═══ BOOT ═══ Plays once per session. Skippable at any time, because the
-     second visit is the one that buys and nobody buys through a cutscene. -->
 <div id="boot" aria-hidden="true">
   <div class="boot-inner">
     <pre id="bootlog"></pre>
@@ -29,31 +27,32 @@
   <button id="bootskip" type="button">SKIP ▸</button>
 </div>
 
-<!-- ═══ CRT ═══ Scanlines + vignette + grain, over everything, never clickable -->
 <div class="crt" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="top">
   <a class="brand" href="/"><span class="mark">S</span> SEND_IT_TO_SOCIETY</a>
   <nav>
-    <a href="#what">WHAT</a>
+    <a href="#city">THE CITY</a>
+    <a href="#work">THE WORK</a>
     <a href="#price">PRICE</a>
-    <a href="#honest">HONEST</a>
     <a class="cta-sm" href="#get">GET IT</a>
   </nav>
 </header>
 
-<!-- ═══ HERO ═══ The city, scrubbed by scroll. The claim and the proof of the
-     claim occupy the same rectangle, which is the entire idea of this page. -->
-<section class="hero-scroll" id="top">
-  <div class="hero-stage">
-    <video id="cityvid" class="hero-video" playsinline muted preload="auto"
-           poster="media/hero-poster.jpg" aria-hidden="true">
-      <source src="media/hero-night.mp4" type="video/mp4">
-    </video>
-    <div class="hero-scrim"></div>
+<button id="sound" type="button" aria-pressed="false" title="Toggle city ambience">
+  <span class="ico" aria-hidden="true"></span><span class="lbl">SOUND OFF</span>
+</button>
+<audio id="amb" src="media/city.ogg" loop preload="none"></audio>
 
-    <div class="hero-copy on" data-from="0" data-to="0.42">
+<!-- ══════════ 1 · HERO ══════════ -->
+<section class="scene tall-6" data-scene id="top">
+  <div class="stage" style="background-image:url(media/hero.jpg)">
+    <video class="plate" data-src="media/hero.mp4" data-eager poster="media/hero.jpg"
+           playsinline muted preload="auto" aria-hidden="true"></video>
+    <div class="scrim left"></div>
+
+    <div class="layer on" data-from="0" data-to="0.30">
       <p class="kicker">▸ SEND IT TO SOCIETY</p>
       <h1>The game for<br>running a<br>YouTube channel.</h1>
       <p class="sub">Every tool you need, inside a city you build.<br>
@@ -62,30 +61,201 @@
       <p class="fine">Windows · no card · no account</p>
     </div>
 
-    <div class="hero-copy alt" data-from="0.48" data-to="0.80">
+    <div class="layer" data-from="0.36" data-to="0.62">
       <p class="kicker">▸ THIS IS YOUR CHANNEL</p>
       <h2>Every building<br>is something<br>you shipped.</h2>
       <p class="sub">The towers carry your channel names. The signs carry your
-        real numbers. Upload, and the skyline changes.</p>
+        real subscriber counts. Upload, and the skyline changes.</p>
+    </div>
+
+    <div class="layer" data-from="0.68" data-to="1">
+      <p class="kicker">▸ AND IT'S YOURS</p>
+      <h2>No account.<br>No cloud.<br>No one watching.</h2>
+      <p class="sub">It runs on your PC. Your scripts, your numbers, your work —
+        none of it leaves the machine, because there is no server to leave to.</p>
     </div>
 
     <div class="scrollcue" aria-hidden="true"><span>SCROLL</span><i></i></div>
   </div>
 </section>
 
+<!-- ══════════ 2 · WHO ══════════ -->
+<section class="band">
+  <p class="eyebrow">// WHO IT'S FOR</p>
+  <p class="lede">For people running a YouTube channel on their own — writing it,
+    filming it, editing it, packaging it, posting it — who are tired of paying
+    five subscriptions to do one job.</p>
+  <p class="lede dim">If you have an editor, a thumbnail guy and a manager,
+    this isn't for you.</p>
+</section>
+
+<!-- ══════════ 3 · BEFORE ══════════ -->
+<section class="scene tall-3" data-scene id="city">
+  <div class="stage" style="background-image:url(media/empty.jpg)">
+    <video class="plate" data-src="media/empty.mp4" poster="media/empty.jpg"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim left"></div>
+    <div class="layer on" data-from="0" data-to="0.45">
+      <p class="kicker">▸ DAY ONE</p>
+      <h2>You start with<br>an empty lot.</h2>
+      <p class="sub">Nothing here is decoration. Every tower, every sign, every
+        light is a readout of something you actually finished.</p>
+    </div>
+    <div class="layer" data-from="0.52" data-to="1">
+      <p class="kicker">▸ AND THEN YOU WORK</p>
+      <h2>The city is<br>the scoreboard.</h2>
+      <p class="sub">Ship a video and a building goes up. Hit a milestone and the
+        district changes. You can see a year of work from the street.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 4 · THE WORK ══════════ -->
+<section class="band wide" id="work">
+  <p class="eyebrow">// WHAT'S ACTUALLY IN IT</p>
+  <h2 class="h2">The whole job, in one window</h2>
+  <p class="lede dim">Idea to upload without opening a browser tab.</p>
+  <div class="grid">
+    <div><h3>PRODUCTION PIPELINE</h3><p>Every video as a card moving through stages. What's written, what's filmed, what's stuck.</p></div>
+    <div><h3>THE ARCHIVE</h3><p>Public-domain footage, searched across a dozen libraries. Every download writes a receipt saying which licence it came under.</p></div>
+    <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so the ones you can't legally use in a monetised video never reach you.</p></div>
+    <div><h3>THUMB FORGE</h3><p>A real thumbnail editor. Layers, masks, blends, arc text, A/B compare.</p></div>
+    <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what's actually working in your niche.</p></div>
+    <div><h3>TRANSCRIBE</h3><p>Voiceover to script, on your machine, with a local model. No upload, no per-minute fee.</p></div>
+    <div><h3>EVOLVE</h3><p>Track competitors. See which of their videos beat their own average, and by how many times.</p></div>
+    <div><h3>THE ACADEMY</h3><p>Lessons that make you do the thing in the real tool, then check that you did.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ 5 · PENTHOUSE ══════════ -->
+<section class="scene tall-3" data-scene>
+  <div class="stage" style="background-image:url(media/penthouse.jpg)">
+    <video class="plate" data-src="media/penthouse.mp4" poster="media/penthouse.jpg"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim right"></div>
+    <div class="layer right on" data-from="0" data-to="1">
+      <p class="kicker">▸ THE PENTHOUSE</p>
+      <h2>Rank up and<br>the view changes.</h2>
+      <p class="sub">Twenty-five rungs, each one gated on a real number rather
+        than a badge you gave yourself. The office you work in changes as you
+        climb it.</p>
+      <p class="sub dim">The ticker on the window reads
+        <i>EVERY LIGHT BELOW IS YOURS.</i></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6 · THEATER + SENDY ══════════ -->
+<section class="scene tall-3" data-scene>
+  <div class="stage" style="background-image:url(media/theater.jpg)">
+    <video class="plate" data-src="media/theater.mp4" poster="media/theater.jpg"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim left"></div>
+    <div class="layer on" data-from="0" data-to="1">
+      <p class="kicker">▸ THE OLD TOWN THEATER</p>
+      <h2>Your videos<br>get a poster.</h2>
+      <p class="sub">Everything you've published, showing on the marquee of a
+        cinema you own. It is a completely unnecessary feature and it is the one
+        people won't shut up about.</p>
+    </div>
+  </div>
+  <div class="sendy-pop" aria-label="Sendy, the SITS mascot">
+    <svg viewBox="28 22 372 348" width="230" height="215" role="img" xmlns="http://www.w3.org/2000/svg">
+      <title>Sendy</title>
+      <defs>
+        <linearGradient id="sBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3a434b"/><stop offset=".55" stop-color="#2a3138"/><stop offset="1" stop-color="#1a2025"/>
+        </linearGradient>
+        <radialGradient id="sScreen" cx=".5" cy=".42" r=".8">
+          <stop offset="0" stop-color="#1d5733"/><stop offset=".5" stop-color="#0f3a22"/><stop offset="1" stop-color="#06170d"/>
+        </radialGradient>
+        <radialGradient id="sEye" cx=".4" cy=".35" r=".8">
+          <stop offset="0" stop-color="#eafff2"/><stop offset=".4" stop-color="#5cf59a"/><stop offset="1" stop-color="#138a45"/>
+        </radialGradient>
+        <radialGradient id="sOrb" cx=".4" cy=".35" r=".85">
+          <stop offset="0" stop-color="#e2ffee"/><stop offset=".45" stop-color="#54f593"/><stop offset="1" stop-color="#1c9b50"/>
+        </radialGradient>
+        <linearGradient id="sGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffd877"/><stop offset="1" stop-color="#cf9633"/>
+        </linearGradient>
+        <clipPath id="sScr"><rect x="126" y="120" width="148" height="116" rx="15"/></clipPath>
+      </defs>
+      <g class="sendy-bob">
+        <ellipse cx="200" cy="352" rx="96" ry="15" fill="#0a0d0f" opacity=".5"/>
+        <rect x="160" y="280" width="22" height="54" rx="11" fill="#20262b" stroke="#0c0f11" stroke-width="2"/>
+        <rect x="218" y="280" width="22" height="54" rx="11" fill="#20262b" stroke="#0c0f11" stroke-width="2"/>
+        <rect x="146" y="328" width="50" height="20" rx="10" fill="#2a3138" stroke="#0c0f11" stroke-width="2"/>
+        <rect x="204" y="328" width="50" height="20" rx="10" fill="#2a3138" stroke="#0c0f11" stroke-width="2"/>
+        <path d="M104,202 Q70,212 60,246" stroke="#313a41" stroke-width="16" fill="none" stroke-linecap="round"/>
+        <circle cx="58" cy="252" r="15" fill="#313a41" stroke="#0c0f11" stroke-width="2"/>
+        <g class="sendy-wave">
+          <path d="M296,196 Q336,182 352,150" stroke="#313a41" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <circle cx="356" cy="144" r="16" fill="#313a41" stroke="#0c0f11" stroke-width="2"/>
+          <path d="M376,128 Q384,138 378,150" stroke="#54f593" stroke-width="2.5" fill="none" opacity=".8"/>
+          <path d="M384,120 Q396,138 386,158" stroke="#54f593" stroke-width="2.5" fill="none" opacity=".5"/>
+        </g>
+        <rect x="96" y="92" width="208" height="200" rx="30" fill="url(#sBody)" stroke="#0c0f11" stroke-width="3"/>
+        <rect x="112" y="99" width="176" height="10" rx="5" fill="#535c64" opacity=".45"/>
+        <rect x="116" y="112" width="168" height="132" rx="20" fill="#12161a" stroke="#0a0d0f" stroke-width="2"/>
+        <rect x="126" y="120" width="148" height="116" rx="15" fill="url(#sScreen)"/>
+        <g clip-path="url(#sScr)">
+          <ellipse cx="158" cy="148" rx="32" ry="18" fill="#fff" opacity=".06"/>
+          <rect x="126" y="130" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
+          <rect x="126" y="150" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
+          <rect x="126" y="170" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
+          <rect x="126" y="190" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
+          <rect x="126" y="210" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
+        </g>
+        <rect x="126" y="120" width="148" height="116" rx="15" fill="none" stroke="#2bd46e" stroke-width="2" opacity=".32"/>
+        <circle cx="150" cy="196" r="8" fill="#4bf58e" opacity=".14"/>
+        <circle cx="250" cy="196" r="8" fill="#4bf58e" opacity=".14"/>
+        <g>
+          <circle cx="176" cy="168" r="23" fill="#3df285" opacity=".1"/><circle cx="176" cy="168" r="17" fill="#3df285" opacity=".16"/>
+          <circle cx="176" cy="168" r="14" fill="#05130b"/><circle cx="176" cy="168" r="10" fill="url(#sEye)"/>
+          <circle cx="176" cy="168" r="3.5" fill="#eafff5"/><circle cx="172" cy="164" r="2.5" fill="#fff" opacity=".85"/>
+        </g>
+        <g>
+          <circle cx="224" cy="168" r="23" fill="#3df285" opacity=".1"/><circle cx="224" cy="168" r="17" fill="#3df285" opacity=".16"/>
+          <circle cx="224" cy="168" r="14" fill="#05130b"/><circle cx="224" cy="168" r="10" fill="url(#sEye)"/>
+          <circle cx="224" cy="168" r="3.5" fill="#eafff5"/><circle cx="220" cy="164" r="2.5" fill="#fff" opacity=".85"/>
+        </g>
+        <path d="M176,196 Q200,224 224,196" stroke="#2bd46e" stroke-width="12" fill="none" stroke-linecap="round" opacity=".18"/>
+        <path d="M176,196 Q200,224 224,196" stroke="#5bf59a" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="150" cy="268" r="13" fill="url(#sGold)" stroke="#b9842c" stroke-width="2"/>
+        <line x1="150" y1="268" x2="150" y2="258" stroke="#6e4d12" stroke-width="3" stroke-linecap="round"/>
+        <path d="M178,261 L191,268 L178,275 Z" fill="#4bf58e"/>
+        <rect x="212" y="256" width="74" height="26" rx="7" fill="#12161a" stroke="#0a0d0f" stroke-width="1.5"/>
+        <rect x="223" y="261" width="5" height="16" rx="2.5" fill="#38424a"/><rect x="236" y="261" width="5" height="16" rx="2.5" fill="#38424a"/>
+        <rect x="249" y="261" width="5" height="16" rx="2.5" fill="#38424a"/><rect x="262" y="261" width="5" height="16" rx="2.5" fill="#38424a"/>
+        <rect x="275" y="261" width="5" height="16" rx="2.5" fill="#38424a"/>
+        <circle cx="232" cy="96" r="8" fill="#3a434b" stroke="#0c0f11" stroke-width="2"/>
+        <path d="M232,94 Q244,68 262,50" stroke="#cdd5db" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="262" cy="48" r="16" fill="#3df285" opacity=".16" class="sendy-pulse"/>
+        <circle cx="262" cy="48" r="12" fill="url(#sOrb)"/>
+      </g>
+    </svg>
+    <p class="bubble">Hi. I'm Sendy. I live in here and I'll show you around —
+      then get out of your way.</p>
+  </div>
+</section>
+
+<!-- ══════════ 7 · DRIVE ══════════ -->
+<section class="scene tall-3" data-scene>
+  <div class="stage" style="background-image:url(media/drive.jpg)">
+    <video class="plate" data-src="media/drive.mp4" poster="media/drive.jpg"
+           playsinline muted preload="none" aria-hidden="true"></video>
+    <div class="scrim left"></div>
+    <div class="layer on" data-from="0" data-to="1">
+      <p class="kicker">▸ AND YOU CAN JUST DRIVE</p>
+      <h2>None of this<br>makes you<br>work faster.</h2>
+      <p class="sub">It makes you come back. Which, over a year, is the only
+        thing that actually mattered.</p>
+    </div>
+  </div>
+</section>
+
 <main>
 
-  <!-- ═══ WHO ═══ -->
-  <section class="band" id="what">
-    <p class="eyebrow">// WHO IT'S FOR</p>
-    <p class="lede">For people running a YouTube channel on their own — writing it,
-      filming it, editing it, packaging it, posting it — who are tired of paying
-      five subscriptions to do one job.</p>
-    <p class="lede dim">If you have an editor, a thumbnail guy and a manager,
-      this isn't for you.</p>
-  </section>
-
-  <!-- ═══ THE STACK ═══ -->
   <section class="band">
     <p class="eyebrow">// THE STACK IT REPLACES</p>
     <h2 class="h2">You're already paying for this</h2>
@@ -103,7 +273,6 @@
       SITS does all of it. Once.</p>
   </section>
 
-  <!-- ═══ PRICE ═══ -->
   <section class="band tight" id="price">
     <div class="pricebox">
       <p class="eyebrow">// THE PRICE</p>
@@ -117,7 +286,6 @@
     </div>
   </section>
 
-  <!-- ═══ HONEST ═══ -->
   <section class="band" id="honest">
     <p class="eyebrow">// BEFORE YOU BUY</p>
     <h2 class="h2">The honest part</h2>
@@ -130,7 +298,6 @@
     </div>
   </section>
 
-  <!-- ═══ TRIAL ═══ -->
   <section class="band">
     <div class="trial">
       <p class="eyebrow">// THE TRIAL</p>
@@ -142,7 +309,6 @@
     </div>
   </section>
 
-  <!-- ═══ REFUND ═══ -->
   <section class="band refund">
     <p class="big">If it isn't what you expected, email me and I'll refund you
       the same day.</p>
