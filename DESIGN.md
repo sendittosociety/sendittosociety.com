@@ -88,12 +88,29 @@ is a claim; that would be evidence.
 
 ## Order of the page
 
-Unchanged from `LANDING-COPY.md`, because order is the thing that converts:
+**Revised 2 Sep — the trailer cut.** Chris: *"the journey feels a little too
+long. make it more compact and simplified, seamless. i almost want it to feel
+like a hype game trailer or announcement."*
 
-> what → who → proof → the swap → the price → the flaws → the trial → the refund
+The page had been alternating scene / band / scene / band, so the trailer kept
+stopping to explain itself. It is now two acts:
 
-Nothing above the price asks for money. Everything below it removes a reason
-not to buy.
+> **ACT I** hero → day one → rank → theater → arcade → market → drive → **end card**
+> **ACT II** what's in it → the swap → the price (trial + refund + who folded in) → the flaws
+
+Seven scenes with nothing between them, then a title card that gives the page a
+visible finish, then the facts for anyone the trailer sold. Scene scroll went
+from 2400vh to 1650vh; two whole bands were folded away.
+
+The conversion order survives intact — what → who → proof → the swap → the
+price → the flaws → the trial → the refund — because nothing above the price
+asks for money and everything below it removes a reason not to buy. The trial
+and the refund now sit *inside* the price box rather than trailing it, which
+puts every reason-not-to-worry in the same frame as the number.
+
+A chapter rail runs down the right edge during Act I. "Too long" is mostly not
+knowing where you are; seven labelled stops turn an unknown scroll into a known
+one.
 
 ## Open
 

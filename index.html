@@ -29,6 +29,7 @@
 </div>
 
 <div id="glow" aria-hidden="true"></div>
+<nav id="rail" aria-hidden="true"></nav>
 <div class="crt" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -37,7 +38,6 @@
   <nav>
     <a href="#city">THE CITY</a>
     <a href="#work">THE WORK</a>
-    <a href="#ladder">RANK</a>
     <a href="#price">PRICE</a>
     <a class="cta-sm" href="#get">GET IT</a>
   </nav>
@@ -48,161 +48,54 @@
 </button>
 <audio id="amb" src="media/city.ogg" loop preload="none"></audio>
 
-<!-- ══════════ 1 · HERO ══════════ -->
-<section class="scene tall-6" data-scene id="top">
+<!-- ═════ 1 · HERO ═════ -->
+<section class="scene tall-4" data-scene data-chapter="THE CITY">
   <div class="stage" style="background-image:url(media/hero.jpg)">
-    <video class="plate" data-src="media/hero.mp4" data-eager poster="media/hero.jpg"
-           playsinline muted preload="auto" aria-hidden="true"></video>
+    <video class="plate" data-src="media/hero.mp4" poster="media/hero.jpg"
+           playsinline muted data-eager preload="auto" aria-hidden="true"></video>
     <div class="scrim left"></div>
-
-    <div class="layer on" data-from="0" data-to="0.30">
+    <div class="layer on" data-from="0" data-to="0.32">
       <p class="kicker">▸ SEND IT TO SOCIETY</p>
       <h1>The game for<br>running a<br>YouTube channel.</h1>
-      <p class="sub">Every tool you need, inside a city you build.<br>
-        Replaces about <b>$52 a month</b> of subscriptions. <b>$39, once.</b></p>
+      <p class="sub">Every tool you need, inside a city you build.<br>Replaces about <b>$52 a month</b> of subscriptions. <b>$39, once.</b></p>
       <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
       <p class="fine">Windows · no card · no account</p>
     </div>
-
-    <div class="layer" data-from="0.36" data-to="0.62">
+    <div class="layer" data-from="0.38" data-to="0.64">
       <p class="kicker">▸ THIS IS YOUR CHANNEL</p>
       <h2>Every building<br>is something<br>you shipped.</h2>
-      <p class="sub">The towers carry your channel names. The signs carry your
-        real subscriber counts. Upload, and the skyline changes.</p>
+      <p class="sub">Towers carry your channel names. Signs carry your real subscriber counts. Upload, and the skyline changes.</p>
     </div>
-
-    <div class="layer" data-from="0.68" data-to="1">
+    <div class="layer" data-from="0.70" data-to="1">
       <p class="kicker">▸ AND IT'S YOURS</p>
       <h2>No account.<br>No cloud.<br>No one watching.</h2>
-      <p class="sub">It runs on your PC. Your scripts, your numbers, your work —
-        none of it leaves the machine, because there is no server to leave to.</p>
+      <p class="sub">It runs on your PC. Nothing leaves the machine, because there is no server to leave to.</p>
     </div>
-
     <div class="scrollcue" aria-hidden="true"><span>SCROLL</span><svg viewBox="0 0 26 13" width="52" height="26"><path d="M2 2 L13 11 L24 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></div>
   </div>
 </section>
 
-<!-- ══════════ 2 · WHO ══════════ -->
-<section class="band">
-  <p class="eyebrow">// WHO IT'S FOR</p>
-  <p class="lede">For people running a YouTube channel on their own — writing it,
-    filming it, editing it, packaging it, posting it — who are tired of paying
-    five subscriptions to do one job.</p>
-  <p class="lede dim">If you have an editor, a thumbnail guy and a manager,
-    this isn't for you.</p>
-</section>
-
-<!-- ══════════ 3 · BEFORE ══════════ -->
-<section class="scene tall-3" data-scene id="city">
+<!-- ═════ 2 · DAY ONE ═════ -->
+<section class="scene tall-25" data-scene data-chapter="DAY ONE" id="city">
   <div class="stage" style="background-image:url(media/empty.jpg)">
     <video class="plate" data-src="media/empty.mp4" poster="media/empty.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
     <div class="scrim left"></div>
-    <div class="layer on" data-from="0" data-to="0.45">
+    <div class="layer on" data-from="0" data-to="0.46">
       <p class="kicker">▸ DAY ONE</p>
       <h2>You start with<br>an empty lot.</h2>
-      <p class="sub">Nothing here is decoration. Every tower, every sign, every
-        light is a readout of something you actually finished.</p>
+      <p class="sub">Nothing here is decoration. Every tower, every sign, every light is something you actually finished.</p>
     </div>
-    <div class="layer" data-from="0.52" data-to="1">
+    <div class="layer" data-from="0.54" data-to="1">
       <p class="kicker">▸ AND THEN YOU WORK</p>
       <h2>The city is<br>the scoreboard.</h2>
-      <p class="sub">Ship a video and a building goes up. Hit a milestone and the
-        district changes. You can see a year of work from the street.</p>
+      <p class="sub">Ship a video, a building goes up. Hit a milestone, the district changes.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 4 · THE WORK ══════════ -->
-<section class="band wide" id="work">
-  <p class="eyebrow">// WHAT'S ACTUALLY IN IT</p>
-  <h2 class="h2">The whole job, in one window</h2>
-  <p class="lede dim">Idea to upload without opening a browser tab. These are
-    real screens, not mockups.</p>
-
-  <figure class="shot lead">
-    <img src="media/shots/toolkit.jpg" loading="lazy" width="1000"
-         alt="The SITS toolkit laid out as a node map: Academy, Transcribe, Script Lab, Hook Printer, Thumb Forge, The Archive, The Sound Booth, SEO Lab and Health">
-    <figcaption>Nine stations. Tap any one to learn the skill behind it, then do
-      it for real in the tool next door.</figcaption>
-  </figure>
-
-  <div class="feat">
-    <figure class="shot">
-      <img src="media/shots/archive.jpg" loading="lazy" width="1000"
-           alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
-    </figure>
-    <div>
-      <h3>THE ARCHIVE</h3>
-      <p>One search across a dozen public-domain libraries — Internet Archive,
-        the Library of Congress, NASA, Wikimedia, Pexels, Pixabay. Every clip
-        carries the licence it was offered under, and every download writes a
-        receipt saying so.</p>
-      <p class="small">Nothing reaches you that you can't legally put in a
-        monetised video. That check happens before you see it, not after you
-        upload.</p>
-    </div>
-  </div>
-
-  <div class="feat flip">
-    <figure class="shot">
-      <img src="media/shots/outliers.jpg" loading="lazy" width="1000"
-           alt="EVOLVE outliers — competitor videos ranked by how many times they beat their channel's own average">
-    </figure>
-    <div>
-      <h3>EVOLVE</h3>
-      <p>Track the channels you're actually competing with. It finds the videos
-        that beat their <i>own</i> channel's average — a 51× outlier on a small
-        channel counts the same as one on a big one — so you're copying the
-        pattern, not the subscriber count.</p>
-      <p class="small">Then FORGE FROM THIS turns any of them into a starting
-        point for one of yours.</p>
-    </div>
-  </div>
-
-  <div class="feat">
-    <figure class="shot">
-      <img src="media/shots/trends.jpg" loading="lazy" width="1000"
-           alt="EVOLVE trends — which title words and formats pull views in your niche">
-    </figure>
-    <div>
-      <h3>WHAT'S WORKING, IN YOUR NICHE</h3>
-      <p>Not general advice. The words and formats pulling views across the
-        channels <i>you</i> track, with the numbers attached — ALL-CAPS emphasis
-        at +499% versus typical, question hooks at +85%, listicles at −25%.</p>
-      <p class="small">Copy what's working. Not the topic — the pattern.</p>
-    </div>
-  </div>
-
-  <div class="feat flip">
-    <figure class="shot">
-      <img src="media/shots/transcribe.jpg" loading="lazy" width="1000"
-           alt="TRANSCRIBE — drop a voiceover and it becomes a script, processed on your own machine">
-    </figure>
-    <div>
-      <h3>TRANSCRIBE</h3>
-      <p>Drop a voiceover and get a script back. It runs a speech model
-        <b>on your PC</b> — no key, no per-minute fee, and the audio never
-        leaves the machine.</p>
-      <p class="small">Then it's shaped into Hook / Body / CTA and sent
-        straight into a new video.</p>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div><h3>PRODUCTION PIPELINE</h3><p>Every video as a card moving through stages. What's written, what's filmed, what's stuck.</p></div>
-    <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so tracks you can't legally use in a monetised video never reach you.</p></div>
-    <div><h3>THUMB FORGE</h3><p>A real thumbnail editor. Layers, masks, blends, arc text, A/B compare.</p></div>
-    <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what's working in your niche.</p></div>
-    <div><h3>SCRIPT LAB</h3><p>Drop a script, get it graded, and learn why — not just a score.</p></div>
-    <div><h3>HOOK PRINTER</h3><p>Print a hook, graded F to S. The first ten seconds decide the rest.</p></div>
-    <div><h3>THE ACADEMY</h3><p>Lessons that make you do the thing in the real tool, then check that you did.</p></div>
-    <div><h3>CLOSED ON SUNDAYS</h3><p>The shop shuts. A day the app refuses to let you work is a feature, not an oversight.</p></div>
-  </div>
-</section>
-
-<!-- ══════════ 5 · PENTHOUSE ══════════ -->
-<section class="scene tall-3" data-scene>
+<!-- ═════ 3 · THE PENTHOUSE ═════ -->
+<section class="scene tall-2" data-scene data-chapter="RANK">
   <div class="stage" style="background-image:url(media/penthouse.jpg)">
     <video class="plate" data-src="media/penthouse.mp4" poster="media/penthouse.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -210,9 +103,8 @@
     <div class="layer right on" data-from="0" data-to="1">
       <p class="kicker">▸ THE PENTHOUSE</p>
       <h2>Rank up and<br>the view changes.</h2>
-      <p class="sub">Twenty-seven rungs across nine tiers, each gated on a real number rather than a badge you gave yourself.</p>
-      <p class="sub dim">The ticker on the window reads
-        <i>EVERY LIGHT BELOW IS YOURS.</i></p>
+      <p class="sub">Nine tiers, twenty-seven rungs, every one gated on a real number instead of a badge you gave yourself.</p>
+      <p class="sub dim">Creator and above need real monetisation. The apex tiers can demote you if you go quiet.</p>
     </div>
 
     <!-- The ladder itself, along the floor of the room you climb toward. -->
@@ -230,30 +122,8 @@
   </div>
 </section>
 
-
-<!-- ══════════ 5b · WHAT A RANK TAKES ══════════ -->
-<section class="band wide" id="ladder">
-  <div class="feat flip">
-    <figure class="shot">
-      <img src="media/shots/rank.jpg" loading="lazy" width="1000"
-           alt="The rank card showing Gold 1, the requirements for the next rung, and live channel vitals">
-    </figure>
-    <div>
-      <h3>NINE TIERS · TWENTY-SEVEN RUNGS</h3>
-      <p>Rank is computed from your real numbers — uploads, subscribers, views,
-        likes — not from a badge you awarded yourself. Every rung lists exactly
-        what opens it and how close you are.</p>
-      <p><b>It can go down.</b> Creator and above require real monetisation, so
-        the numbers alone cap you at Diamond, and the apex tiers demote you if
-        you go quiet. The top is earned and defended.</p>
-      <p class="small">Each tier is also a building. Iron is an empty lot with a
-        construction sign. Icon is a city wonder, seen from every block.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ 6 · THEATER + SENDY ══════════ -->
-<section class="scene tall-3" data-scene>
+<!-- ═════ 4 · THE THEATER ═════ -->
+<section class="scene tall-2" data-scene data-chapter="THEATER">
   <div class="stage" style="background-image:url(media/theater.jpg)">
     <video class="plate" data-src="media/theater.mp4" poster="media/theater.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -261,9 +131,7 @@
     <div class="layer on" data-from="0" data-to="1">
       <p class="kicker">▸ THE OLD TOWN THEATER</p>
       <h2>Your videos<br>get a poster.</h2>
-      <p class="sub">Everything you've published, showing on the marquee of a
-        cinema you own. It is a completely unnecessary feature and it is the one
-        people won't shut up about.</p>
+      <p class="sub">Everything you have published, on the marquee of a cinema you own. Completely unnecessary. Nobody shuts up about it.</p>
     </div>
   </div>
   <div class="sendy-pop" aria-label="Sendy, the SITS mascot">
@@ -341,13 +209,12 @@
         <circle cx="262" cy="48" r="12" fill="url(#sOrb)"/>
       </g>
     </svg>
-    <p class="bubble">Hi. I'm Sendy. I live in here and I'll show you around —
-      then get out of your way.</p>
+    <p class="bubble">Hi. I'm Sendy. I live in here and I'll show you around — then get out of your way.</p>
   </div>
 </section>
 
-<!-- ══════════ 6b · THE ARCADE ══════════ -->
-<section class="scene tall-3" data-scene>
+<!-- ═════ 5 · THE ARCADE ═════ -->
+<section class="scene tall-2" data-scene data-chapter="ARCADE">
   <div class="stage" style="background-image:url(media/arcade.jpg)">
     <video class="plate" data-src="media/arcade.mp4" poster="media/arcade.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -355,13 +222,13 @@
     <div class="layer right on" data-from="0" data-to="1">
       <p class="kicker">▸ THE ARCADE</p>
       <h2>Five games,<br>because you<br>will need them.</h2>
-      <p class="sub">Snake, pinball, brick breaker, two shooters. Earned with the same Buzz everything else costs. Some days the honest move is not to write another script.</p>
+      <p class="sub">Snake, pinball, brick breaker, two shooters. Some days the honest move is not to write another script.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 6c · THE MARKET ══════════ -->
-<section class="scene tall-3" data-scene>
+<!-- ═════ 6 · THE MARKET ═════ -->
+<section class="scene tall-2" data-scene data-chapter="MARKET">
   <div class="stage" style="background-image:url(media/market.jpg)">
     <video class="plate" data-src="media/market.mp4" poster="media/market.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -369,13 +236,13 @@
     <div class="layer on" data-from="0" data-to="1">
       <p class="kicker">▸ THE BUZZ MARKET</p>
       <h2>Everything here<br>is earned,<br>not bought.</h2>
-      <p class="sub">Themes, cursors, city upgrades — all of it priced in Buzz you get for shipping videos. There is no way to spend real money inside this app. Sendy keeps the shop and will tell you the same thing.</p>
+      <p class="sub">Priced in Buzz you get for shipping videos. There is no way to spend real money inside this app.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 7 · DRIVE ══════════ -->
-<section class="scene tall-3" data-scene>
+<!-- ═════ 7 · DRIVE ═════ -->
+<section class="scene tall-2" data-scene data-chapter="DRIVE">
   <div class="stage" style="background-image:url(media/drive.jpg)">
     <video class="plate" data-src="media/drive.mp4" poster="media/drive.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -383,14 +250,78 @@
     <div class="layer on" data-from="0" data-to="1">
       <p class="kicker">▸ AND YOU CAN JUST DRIVE</p>
       <h2>None of this<br>makes you<br>work faster.</h2>
-      <p class="sub">It makes you come back. Which, over a year, is the only
-        thing that actually mattered.</p>
+      <p class="sub">It makes you come back. Over a year, that was the only thing that mattered.</p>
     </div>
+  </div>
+</section>
+
+<!-- ═════ END CARD ═════ -->
+<section class="titlecard">
+  <div class="tc-in">
+    <svg class="mark big" viewBox="-.04 -.04 5 7.05" width="54" height="76" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="2" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="3" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="0" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="4" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="0" y="2" width=".92" height=".92" rx=".1" fill="#D25C6B"/><rect x="1" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="2" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="3" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="4" y="4" width=".92" height=".92" rx=".1" fill="#A855D6"/><rect x="0" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="4" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="1" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="2" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="3" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/></svg>
+    <p class="tc-name">SEND IT TO SOCIETY</p>
+    <p class="tc-line">WINDOWS · $39 ONCE · 14 DAYS FREE</p>
+    <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
+    <p class="tc-fine">Public beta · no card · no account</p>
+    <a class="tc-more" href="#work">▾  WHAT'S ACTUALLY IN IT</a>
   </div>
 </section>
 
 <main>
 
+  <!-- ═════ THE WORK ═════ -->
+  <section class="band wide" id="work">
+    <p class="eyebrow">// WHAT'S ACTUALLY IN IT</p>
+    <h2 class="h2">The whole job, in one window</h2>
+    <p class="lede dim">Idea to upload without opening a browser tab. Real
+      screens, not mockups.</p>
+
+    <figure class="shot lead">
+      <img src="media/shots/toolkit.jpg" loading="lazy" width="1000"
+           alt="The SITS toolkit laid out as a node map: Academy, Transcribe, Script Lab, Hook Printer, Thumb Forge, The Archive, The Sound Booth, SEO Lab and Health">
+      <figcaption>Nine stations. Learn the skill, then do it for real in the tool
+        next door.</figcaption>
+    </figure>
+
+    <div class="shots2">
+    <figure class="cell">
+      <img src="media/shots/archive.jpg" loading="lazy" width="820" alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
+      <figcaption><b>THE ARCHIVE</b>A dozen public-domain libraries in one search. Nothing reaches you that you can’t legally put in a monetised video.</figcaption>
+    </figure>
+    <figure class="cell">
+      <img src="media/shots/outliers.jpg" loading="lazy" width="820" alt="EVOLVE outliers — competitor videos ranked by how far they beat their own channel average">
+      <figcaption><b>EVOLVE · OUTLIERS</b>The videos that beat their <i>own</i> channel’s average. Copy the pattern, not the subscriber count.</figcaption>
+    </figure>
+    <figure class="cell">
+      <img src="media/shots/trends.jpg" loading="lazy" width="820" alt="EVOLVE trends — which title words and formats pull views in your niche">
+      <figcaption><b>EVOLVE · TRENDS</b>What’s pulling views in <i>your</i> niche, with the numbers attached. ALL-CAPS +499%. Listicles −25%.</figcaption>
+    </figure>
+    <figure class="cell">
+      <img src="media/shots/transcribe.jpg" loading="lazy" width="820" alt="TRANSCRIBE — drop a voiceover and it becomes a script, processed on your own machine">
+      <figcaption><b>TRANSCRIBE</b>Voiceover in, script out. The speech model runs on your PC — no key, no per-minute fee.</figcaption>
+    </figure>
+    </div>
+
+    <figure class="shot lead">
+      <img src="media/shots/rank.jpg" loading="lazy" width="1000"
+           alt="The rank card showing Gold 1, the requirements for the next rung, and live channel vitals">
+      <figcaption>Rank is computed from your real numbers, and every rung lists
+        exactly what opens it and how close you are.</figcaption>
+    </figure>
+
+    <div class="grid">
+    <div><h3>PRODUCTION PIPELINE</h3><p>Every video as a card moving through stages. What’s written, what’s filmed, what’s stuck.</p></div>
+    <div><h3>THE SOUND BOOTH</h3><p>Free music and SFX, filtered so tracks you can’t legally monetise never reach you.</p></div>
+    <div><h3>THUMB FORGE</h3><p>A real thumbnail editor. Layers, masks, blends, arc text, A/B compare.</p></div>
+    <div><h3>SEO LAB</h3><p>Titles, descriptions and tags, checked against what works in your niche.</p></div>
+    <div><h3>SCRIPT LAB</h3><p>Drop a script, get it graded, and learn why — not just a score.</p></div>
+    <div><h3>HOOK PRINTER</h3><p>Print a hook, graded F to S. The first ten seconds decide the rest.</p></div>
+    <div><h3>THE ACADEMY</h3><p>Lessons that make you do the thing in the real tool, then check that you did.</p></div>
+    <div><h3>CLOSED ON SUNDAYS</h3><p>The shop shuts. A day the app refuses to let you work is a feature.</p></div>
+    </div>
+  </section>
+
+  <!-- ═════ THE STACK ═════ -->
   <section class="band">
     <p class="eyebrow">// THE STACK IT REPLACES</p>
     <h2 class="h2">You're already paying for this</h2>
@@ -408,6 +339,7 @@
       SITS does all of it. Once.</p>
   </section>
 
+  <!-- ═════ PRICE · TRIAL · REFUND · WHO ═════ -->
   <section class="band tight" id="price">
     <div class="pricebox">
       <p class="eyebrow">// THE PRICE</p>
@@ -416,12 +348,25 @@
       <!-- Points at GitHub Releases until Paddle is live; the trial is the
            download, so this is the real destination either way. -->
       <a class="cta" id="get" href="https://github.com/sendittosociety/sits-releases/releases/latest">DOWNLOAD — 14 DAYS FREE</a>
-      <p class="terms">$39 for the first 100 people, then $69. That's not a fake
-        discount — early buyers are taking a real risk on a beta from one person,
-        and the price goes up when the risk goes away.</p>
+      <p class="fine">Windows · no card · no account</p>
+      <ul class="pricefacts">
+        <li><b>Fourteen days, everything.</b> Every tool, every channel, the city,
+          the games. If it isn't for you, do nothing — it stops on day
+          fifteen and you have lost nothing but the download.</li>
+        <li><b>$39 for the first 100, then $69.</b> Not a fake discount. Early
+          buyers take a real risk on a beta from one person, and the price goes up
+          when the risk goes away.</li>
+        <li><b>Email me and I'll refund you the same day.</b> No form, no
+          questions. I'd rather you had your money back than a tool you
+          don't use.</li>
+      </ul>
     </div>
+    <p class="who">For people running a channel on their own — writing it,
+      filming it, editing it, packaging it, posting it. If you have an editor, a
+      thumbnail guy and a manager, this isn't for you.</p>
   </section>
 
+  <!-- ═════ THE HONEST PART ═════ -->
   <section class="band" id="honest">
     <p class="eyebrow">// BEFORE YOU BUY</p>
     <h2 class="h2">The honest part</h2>
@@ -432,25 +377,6 @@
       <div><h3>The AI features need your own key, or copy-and-paste.</h3><p>By default the app writes the prompt, you paste it into whatever AI you already use, you paste the answer back. Free, and nothing of yours goes near my servers — because I don't have any.</p></div>
       <div><h3>One person builds this.</h3><p>Me. Support is me, at my desk, usually the same day.</p></div>
     </div>
-  </section>
-
-  <section class="band">
-    <div class="trial">
-      <p class="eyebrow">// THE TRIAL</p>
-      <h2 class="h2">Fourteen days. Everything. No card.</h2>
-      <p>Download it and use the whole thing — every tool, every channel, the
-        city, the games, all of it. <b>No card, no account, no sign-up.</b></p>
-      <p>If it isn't for you, do nothing. It stops on day fifteen and you have
-        lost nothing but the download.</p>
-    </div>
-  </section>
-
-  <section class="band refund">
-    <p class="big">If it isn't what you expected, email me and I'll refund you
-      the same day.</p>
-    <p class="note">No form, no questions. I'd rather you had your money back
-      than a tool you don't use.</p>
-    <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
   </section>
 
 </main>

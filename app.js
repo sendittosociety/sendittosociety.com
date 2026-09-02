@@ -101,6 +101,59 @@
     }
   }
 
+  /* ── CHAPTER RAIL ─────────────────────────────────────────────────────────
+     A level-select down the right edge, built from each scene's data-chapter.
+     It exists because "the page is too long" is mostly a feeling of not
+     knowing where you are — six labelled stops turn an unknown scroll into a
+     known one. It reads only the offsets measure() already cached, and touches
+     a class only when the chapter actually changes. */
+  var rail = document.getElementById('rail')
+  var railLinks = []
+  var curChapter = -1
+
+  function jumpTo(e) {
+    e.preventDefault()
+    var i = +this.getAttribute('data-i')
+    window.scrollTo({ top: scenes[i].top + 2, behavior: 'smooth' })
+  }
+
+  if (rail) {
+    for (var ri = 0; ri < scenes.length; ri++) {
+      var name = scenes[ri].el.getAttribute('data-chapter')
+      if (!name) continue
+      var a = document.createElement('a')
+      a.href = '#'
+      a.setAttribute('data-i', ri)
+      a.innerHTML = '<span class="t"></span><span class="d"></span>'
+      a.firstChild.textContent = name
+      a.addEventListener('click', jumpTo)
+      rail.appendChild(a)
+      railLinks.push({ a: a, i: ri })
+    }
+  }
+
+  function paintRail(y, vh, phone) {
+    if (phone) {
+      if (rail.classList.contains('on')) rail.classList.remove('on')
+      return
+    }
+    var last = scenes[scenes.length - 1]
+    /* Visible only during the trailer: gone on the opening frame, gone again
+       once the end card lands. */
+    var show = y > vh * 0.55 && y < last.top + last.h - vh * 0.3
+    if (rail.classList.contains('on') !== show) rail.classList.toggle('on', show)
+    if (!show) return
+
+    var mid = y + vh * 0.5
+    var idx = 0
+    for (var i = 0; i < scenes.length; i++) if (scenes[i].top <= mid) idx = i
+    if (idx === curChapter) return
+    curChapter = idx
+    for (var k = 0; k < railLinks.length; k++) {
+      railLinks[k].a.classList.toggle('cur', railLinks[k].i === idx)
+    }
+  }
+
   function maybeLoad(sc) {
     if (sc.loaded || !sc.video) return
     var src = sc.video.getAttribute('data-src')
@@ -179,6 +232,8 @@
         try { v.currentTime = t } catch (e) {}
       }
     }
+
+    if (railLinks.length) paintRail(y, vh, phone)
   }
 
   /* rAF coalesces to at most one paint per frame. If rAF never fires — hidden
@@ -269,10 +324,12 @@
   var running = false
 
   /* The glow lags the pointer very slightly — a dot welded to the cursor reads
-     as a rendering artifact; one that trails by a few frames reads as light. */
+     as a rendering artifact; one that trails by a few frames reads as light.
+     Tightened from .18: at the smaller radius the lag was visible as a gap
+     between the arrow and its own light. */
   function follow() {
-    gx += (tx - gx) * 0.18
-    gy += (ty - gy) * 0.18
+    gx += (tx - gx) * 0.32
+    gy += (ty - gy) * 0.32
     glow.style.transform = 'translate3d(' + gx.toFixed(1) + 'px,' + gy.toFixed(1) + 'px,0)'
     if (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) requestAnimationFrame(follow)
     else running = false
@@ -294,9 +351,12 @@
     })
   }
 
+  var lastMove = 0
+
   window.addEventListener('pointermove', function (e) {
     if (e.pointerType === 'touch') return
     tx = e.clientX; ty = e.clientY
+    lastMove = Date.now()
     if (!glow.classList.contains('on')) glow.classList.add('on')
     if (!running) { running = true; requestAnimationFrame(follow) }
 
@@ -306,4 +366,101 @@
 
   document.addEventListener('mouseleave', function () { glow.classList.remove('on') })
   document.addEventListener('mouseenter', function () { glow.classList.add('on') })
+
+  /* ── HEADLINES THAT ANSWER THE POINTER ──────────────────────────────────────
+     Every headline is split into characters once. When the pointer crosses one,
+     a wave starts AT THE POINT IT CROSSED and travels outward — each letter's
+     delay is its distance from that x. So the text reacts to where you touched
+     it, not just that you touched it.
+
+     THREE RULES, all of them the scroll scrub's doing:
+     - transform only, so the wave is composited and never repaints;
+     - x positions are measured once per element and cached until resize
+       (a page scrolling does not move anything sideways, so they cannot go
+       stale mid-gesture);
+     - it fires only if the POINTER moved recently. Scrolling the page under a
+       still cursor also fires pointerenter, and rippling every headline you
+       drift past would be noise paid for out of the scrub's frame budget. */
+  var HEADS = [].slice.call(document.querySelectorAll('.layer h1, .layer h2, .h2, .tc-name'))
+  var COOLDOWN = 820
+
+  function split(el) {
+    /* Per-character spans can make a screen reader spell the line out, so the
+       whole string becomes the element's accessible name first. <br> has no
+       textContent, so it is turned back into the space it reads as. */
+    var kids = [].slice.call(el.childNodes)
+    var label = kids.map(function (n) {
+      return n.nodeType === 3 ? n.nodeValue : ' '
+    }).join('')
+    el.setAttribute('aria-label', label.replace(/\s+/g, ' ').trim())
+    for (var i = 0; i < kids.length; i++) {
+      var n = kids[i]
+      if (n.nodeType !== 3) continue          /* leave <br> alone */
+      /* WORDS FIRST, THEN CHARACTERS. An inline-block per character lets the
+         browser break the line between any two letters — the hero headline
+         came back as "YOUTUBE CHAN / NEL." Each word gets its own nowrap
+         inline-block box, so breaks can still only happen at real spaces. */
+      var frag = document.createDocumentFragment()
+      var parts = n.nodeValue.split(/(\s+)/)
+      for (var w = 0; w < parts.length; w++) {
+        var word = parts[w]
+        if (word === '') continue
+        if (/^\s+$/.test(word)) {
+          frag.appendChild(document.createTextNode(word))
+          continue
+        }
+        var ws = document.createElement('span')
+        ws.className = 'w'
+        for (var c = 0; c < word.length; c++) {
+          var sp = document.createElement('span')
+          sp.className = 'ch'
+          sp.textContent = word.charAt(c)
+          ws.appendChild(sp)
+        }
+        frag.appendChild(ws)
+      }
+      el.replaceChild(frag, n)
+    }
+    el._chars = [].slice.call(el.querySelectorAll('.ch'))
+    el._xs = null
+  }
+
+  function ripple(el, fromX) {
+    var now = Date.now()
+    if (el._last && now - el._last < COOLDOWN) return
+    el._last = now
+
+    if (!el._xs) {
+      el._xs = el._chars.map(function (c) {
+        var r = c.getBoundingClientRect()
+        return r.left + r.width / 2
+      })
+    }
+
+    var max = 0
+    for (var i = 0; i < el._chars.length; i++) {
+      var d = Math.min(340, Math.abs(el._xs[i] - fromX) * 0.85)
+      el._chars[i].style.setProperty('--d', d.toFixed(0) + 'ms')
+      if (d > max) max = d
+    }
+
+    el.classList.remove('rip')
+    void el.offsetWidth                       /* restart the animation */
+    el.classList.add('rip')
+    clearTimeout(el._t)
+    el._t = setTimeout(function () { el.classList.remove('rip') }, max + 560)
+  }
+
+  HEADS.forEach(function (el) {
+    split(el)
+    el.addEventListener('pointerenter', function (e) {
+      if (e.pointerType === 'touch') return
+      if (Date.now() - lastMove > 420) return
+      ripple(el, e.clientX)
+    })
+  })
+
+  window.addEventListener('resize', function () {
+    for (var i = 0; i < HEADS.length; i++) HEADS[i]._xs = null
+  })
 })()
