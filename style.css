@@ -57,7 +57,7 @@ p{margin:0 0 15px}
 header.top{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;
   justify-content:space-between;gap:16px;padding:12px 22px;
   background:linear-gradient(180deg,rgba(3,6,4,.92),transparent)}
-.brand{font-family:var(--pix);font-size:12px;letter-spacing:.14em;color:var(--ink);
+.brand{font-family:var(--pix);font-size:13px;letter-spacing:.04em;color:var(--ink);
   display:inline-flex;align-items:center;gap:10px}
 /* The mark is the app's own boot logo — a 5x7 block S in the icon's colours,
    not a gold letter in a box. Same object in both places or it is two brands. */
@@ -123,9 +123,9 @@ header nav a:hover{color:var(--green)}
 
 /* Top centre, under the masthead: the first place the eye lands after the
    headline, rather than the bottom corner nobody looks at. */
-.scrollcue{position:absolute;left:50%;top:74px;transform:translateX(-50%);display:flex;
-  flex-direction:column;align-items:center;gap:7px;font-size:10px;letter-spacing:.32em;
-  color:var(--green);opacity:.72;text-shadow:0 0 12px var(--green-glow);pointer-events:none}
+.scrollcue{position:absolute;left:50%;top:82px;transform:translateX(-50%);display:flex;
+  flex-direction:column;align-items:center;gap:12px;font-size:20px;letter-spacing:.32em;
+  color:var(--green);opacity:.8;text-shadow:0 0 16px var(--green-glow);pointer-events:none}
 .scrollcue svg{animation:cue 2.1s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:translateY(-3px);opacity:.45}50%{transform:translateY(3px);opacity:1}}
 
