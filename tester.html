@@ -1,0 +1,435 @@
+<title>SITS Tester Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Share+Tech+Mono&family=Silkscreen:wght@400;700&display=swap">
+
+<style>
+  :root{
+    --ground:#0A0F16;
+    --surface:#111823;
+    --surface-2:#161F2C;
+    --line:#233042;
+    --gold:#E8BB42;
+    --gold-dim:#8A7028;
+    --signal:#4CD174;
+    --text:#EDF1F6;
+    --muted:#8994A5;
+    --faint:#5C6879;
+    --danger:#FF8C6B;
+    --font-body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-mono:"Share Tech Mono",ui-monospace,Consolas,monospace;
+    --font-pixel:"Silkscreen","Courier New",monospace;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:660px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ── header panel: echoes the app's own EARLY ACCESS splash ── */
+  .panel{
+    position:relative;
+    margin:40px 0 56px;
+    padding:38px 34px 34px;
+    background:linear-gradient(180deg,#131C28,#0B111A);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .panel::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.022) 0 1px,
+      transparent 1px 4px
+    );
+    pointer-events:none;
+  }
+  .panel > *{position:relative}
+
+  .gel{
+    height:3px;
+    border-radius:2px;
+    background:linear-gradient(90deg,#FFD24A,#FF7A9C 34%,#C86BFF 67%,#5BC8FF);
+    margin:0 0 26px;
+    width:120px;
+  }
+
+  .eyebrow{
+    font-family:var(--font-pixel);
+    font-size:10px;
+    letter-spacing:0.14em;
+    color:var(--signal);
+    margin:0 0 14px;
+    text-transform:uppercase;
+  }
+
+  h1{
+    font-size:38px;
+    line-height:1.1;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    margin:0 0 14px;
+    text-wrap:balance;
+  }
+
+  .lede{
+    font-size:18px;
+    color:var(--muted);
+    margin:0;
+    max-width:52ch;
+  }
+
+  .from{
+    margin:24px 0 0;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--faint);
+  }
+
+  h2{
+    font-size:13px;
+    font-family:var(--font-pixel);
+    font-weight:400;
+    letter-spacing:0.1em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin:56px 0 18px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+
+  h3{
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:34px 0 8px;
+    text-wrap:balance;
+  }
+
+  p{margin:0 0 16px;max-width:62ch}
+
+  strong{font-weight:600;color:#fff}
+
+  code{
+    font-family:var(--font-mono);
+    font-size:0.92em;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:1px 6px;
+    color:var(--gold);
+  }
+
+  /* ── the warning: the single most important block on the page ── */
+  .alarm{
+    margin:28px 0;
+    padding:26px 28px;
+    background:linear-gradient(180deg,rgba(232,187,66,0.07),rgba(232,187,66,0.02));
+    border:1px solid rgba(232,187,66,0.34);
+    border-radius:12px;
+  }
+  .alarm .eyebrow{color:var(--gold)}
+  .alarm p:last-child{margin-bottom:0}
+
+  .screenquote{
+    font-family:var(--font-mono);
+    font-size:15px;
+    color:var(--text);
+    background:#05080D;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 18px;
+    margin:0 0 18px;
+  }
+  .screenquote span{color:var(--faint);display:block;font-size:13px;margin-top:6px}
+
+  /* ── numbered steps: genuinely sequential, so numbers earn their place ── */
+  ol.steps{
+    list-style:none;
+    counter-reset:step;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  ol.steps > li{
+    counter-increment:step;
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:16px;
+    align-items:start;
+  }
+  ol.steps > li::before{
+    content:counter(step,decimal-leading-zero);
+    font-family:var(--font-pixel);
+    font-size:11px;
+    color:var(--gold);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:7px 0;
+    text-align:center;
+  }
+  ol.steps p{margin:0 0 6px}
+  ol.steps p:last-child{margin-bottom:0}
+
+  .note{
+    font-size:15px;
+    color:var(--muted);
+  }
+
+  /* ── tool cards ── */
+  .tools{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin:22px 0 0;
+  }
+  .tool{
+    padding:20px 22px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:2px solid var(--gold-dim);
+    border-radius:10px;
+  }
+  .tool h4{
+    margin:0 0 6px;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .tool .where{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--faint);
+    display:block;
+    margin-bottom:10px;
+  }
+  .tool p{margin:0;font-size:15.5px;color:var(--muted)}
+  .tool p + p{margin-top:10px}
+
+  /* ── the ask ── */
+  .ask{
+    margin:30px 0;
+    padding:34px 30px;
+    background:linear-gradient(180deg,rgba(76,209,116,0.07),rgba(76,209,116,0.015));
+    border:1px solid rgba(76,209,116,0.32);
+    border-radius:12px;
+  }
+  .ask .eyebrow{color:var(--signal)}
+  .ask .q{
+    font-size:26px;
+    font-weight:700;
+    line-height:1.25;
+    letter-spacing:-0.02em;
+    margin:0 0 16px;
+    color:#fff;
+    text-wrap:balance;
+  }
+  .ask p:last-child{margin-bottom:0}
+
+  ul.plain{
+    margin:0 0 16px;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    max-width:62ch;
+  }
+  ul.plain li{
+    padding-left:18px;
+    position:relative;
+    color:var(--muted);
+  }
+  ul.plain li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0.68em;
+    width:6px;
+    height:1px;
+    background:var(--gold);
+  }
+
+  footer{
+    margin-top:70px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--faint);
+  }
+  footer p{margin:0 0 6px}
+
+  a{color:var(--gold)}
+
+  @media (max-width:560px){
+    body{font-size:16px}
+    h1{font-size:30px}
+    .wrap{padding:0 18px 64px}
+    .panel{padding:30px 22px 26px}
+    .ask{padding:26px 22px}
+    .ask .q{font-size:22px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="panel">
+    <div class="gel"></div>
+    <p class="eyebrow">Send It To Society · Early Access</p>
+    <h1>You're one of the first people to open this.</h1>
+    <p class="lede">A studio for running a YouTube channel end to end — idea, script, footage, music, thumbnail, title and tags. Everything on your own PC. No account, no sign-up, no subscription.</p>
+    <p class="from">Built by Chris · sendittosociety@gmail.com · v1.0.0-beta.2</p>
+  </div>
+
+  <p>Thanks for doing this. You starting a channel from scratch is genuinely the most useful test there is, because you're going to walk straight into everything I can't see anymore.</p>
+
+  <p>This should take about twenty minutes. Read the next box before you download anything.</p>
+
+  <h2>Read this first</h2>
+
+  <div class="alarm">
+    <p class="eyebrow">⚠ Windows is going to try to stop you</p>
+    <div class="screenquote">
+      Windows protected your PC
+      <span>Microsoft Defender SmartScreen prevented an unrecognized app from starting.</span>
+    </div>
+    <p><strong>Click "More info", then "Run anyway."</strong> That's the whole fix.</p>
+    <p>This isn't a virus warning. It's a "we don't know who wrote this" warning, and it appears on every app that hasn't paid for a code-signing certificate. That's about $120 a year and it's on my list, behind things that matter more right now. I'd rather tell you straight than have you find it on your own and quietly decide not to open it.</p>
+  </div>
+
+  <h2>Installing</h2>
+
+  <ol class="steps">
+    <li>
+      <p>Download it from <a href="https://sendittosociety.com/download">sendittosociety.com/download</a></p>
+      <p class="note">About 212 MB. That is the whole app, including the offline transcription model — nothing else gets fetched later.</p>
+    </li>
+    <li>
+      <p>Run it. Get past the Windows warning above.</p>
+    </li>
+    <li>
+      <p>The installer asks who to install for. <strong>"Only for me" is already selected</strong> — just click Install. Nothing else to decide.</p>
+    </li>
+    <li>
+      <p>It opens on a black EARLY ACCESS screen. Press Enter, or click anywhere.</p>
+    </li>
+  </ol>
+
+  <h2>It's going to look empty</h2>
+
+  <p>This is the part I most want you to expect, because otherwise it reads as broken.</p>
+
+  <p>You're starting a channel from nothing, so the app has nothing to show you yet. The 3D city will be a mostly empty lot. Your stats will be zeroes. Your rank will be blank. <strong>All of that is correct.</strong> The city grows as you actually upload, and you haven't uploaded.</p>
+
+  <p>And on that — the city, the ⚡ Buzz, the ranks. It looks like a game and it half is one, but it's not decoration. Everything in it is driven by real numbers from your real channel. It's there because a spreadsheet has never once made anybody want to open it on a Tuesday.</p>
+
+  <h2>The fourteen days</h2>
+
+  <p>It runs in full for <strong>fourteen days from the first time you open it</strong> — every tool, every channel, the city, the games. No card, no account, nothing to sign up for.</p>
+
+  <p>On day fifteen it stops and asks for a licence key. <strong>Nothing you made is deleted</strong> — every script, every card, every building is still there and comes straight back the moment a key goes in. If you're still testing when you hit it, just tell me and I'll send you a key; don't let it stop you.</p>
+
+  <p>Say something if that wall feels unfair when you hit it. You're the only person who'll ever see it fresh.</p>
+
+  <h2>Start with these</h2>
+
+  <div class="tools">
+
+    <div class="tool">
+      <h4>Add your channel</h4>
+      <span class="where">The Society → add an account</span>
+      <p>Just type a name. You don't need to connect Google or paste any keys. Auto-syncing your real stats is possible later, but it's fiddly — skip it today.</p>
+    </div>
+
+    <div class="tool">
+      <h4>THE ARCHIVE and THE SOUND BOOTH</h4>
+      <span class="where">Create</span>
+      <p>Free footage, and free music and sound effects. Everything in here is legally cleared for a monetized channel, and every download writes you a receipt saying exactly which licence it came under and whether you owe a credit.</p>
+      <p>Try <code>neon city</code> in the ARCHIVE, and <code>lofi</code> in the SOUND BOOTH.</p>
+    </div>
+
+    <div class="tool">
+      <h4>SEO LAB</h4>
+      <span class="where">Create → Tools</span>
+      <p>Paste your script, then drop in links to up to ten videos in your niche that are doing well. It pulls their <strong>actual titles, descriptions and tags</strong> and builds yours from what's already working.</p>
+      <p>The tags part is the thing other tools charge a monthly fee for.</p>
+    </div>
+
+    <div class="tool">
+      <h4>Hook Printer, then The Verdict</h4>
+      <span class="where">Create</span>
+      <p>If you've got time left. The Hook Printer is fast and needs no setup. The Verdict grades your whole package — title, thumbnail, hook — before you upload it.</p>
+    </div>
+
+  </div>
+
+  <h2>The AI features</h2>
+
+  <p>You don't need an API key and you don't need a paid subscription. The default mode is free and works like this:</p>
+
+  <ul class="plain">
+    <li>The app writes the prompt for you</li>
+    <li>You paste it into whatever AI you already use — ChatGPT, Claude, Gemini, your pick in <code>Settings → AI</code></li>
+    <li>You paste the answer back</li>
+  </ul>
+
+  <p>That's it. If you'd rather it was one click and you already have an API key, there's a One-Click mode in the same place.</p>
+
+  <h2>What I actually need back</h2>
+
+  <div class="ask">
+    <p class="eyebrow">The one that matters</p>
+    <p class="q">Where did you get stuck in the first ten minutes?</p>
+    <p>Everything else is a bonus. What did you expect to be there and couldn't find? What was confusing, or slow, or ugly? What did you open, look at, and close again without using?</p>
+  </div>
+
+  <p><strong>Please don't be polite about it.</strong> "I opened it and didn't know what to click" is the single most useful sentence you could send me. I've been staring at this thing for two months and I can't see it fresh anymore. You can — but only once, and only for about ten minutes. That first impression is the entire reason you're here, and it's gone as soon as you figure the app out.</p>
+
+  <p>If it crashes or freezes, that's useful too. Just tell me what you clicked right before it happened.</p>
+
+  <p>There's an EMAIL button in Settings that fills in the version number for you, or just message me.</p>
+
+  <h2>Honest warnings</h2>
+
+  <ul class="plain">
+    <li><strong>It's a beta.</strong> Things will break. That's the point of you being here.</li>
+    <li><strong>Your data is yours and it's local.</strong> It lives in your AppData folder, not on a server. I can't see any of it.</li>
+    <li><strong>Nothing leaves your machine</strong> unless you deliberately use a feature that goes out to the internet — searching for footage, or an AI feature.</li>
+    <li><strong>It won't update itself.</strong> When I fix something I'll send you a new installer.</li>
+  </ul>
+
+  <h3>If you want it gone</h3>
+  <p>Windows Settings → Apps → Send It To Society → Uninstall. Your projects stay in AppData afterwards in case you change your mind, and you can delete that folder yourself.</p>
+
+  <footer>
+    <p>Send It To Society · v1.0.0-beta.2 · Windows</p>
+    <p>Built by one person. Seriously, tell me what's broken.</p>
+  </footer>
+
+</div>
