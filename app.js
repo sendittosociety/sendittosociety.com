@@ -33,52 +33,6 @@
   var mqPhone = window.matchMedia('(max-width: 820px)')
   function isPhone() { return mqPhone.matches }
 
-  /* ── BOOT ───────────────────────────────────────────────────────────────── */
-  var boot = document.getElementById('boot')
-  var bootlog = document.getElementById('bootlog')
-  var bootbar = document.querySelector('.boot-bar i')
-  var bootskip = document.getElementById('bootskip')
-
-  var LINES = [
-    'SEND_IT_TO_SOCIETY v1.0',
-    'mounting studio ..................... OK',
-    'loading city ........................ OK',
-    'no account required ................. OK',
-    'nothing leaves this machine ......... OK',
-    '',
-    'READY.'
-  ]
-
-  function endBoot() {
-    if (!boot || boot.classList.contains('gone')) return
-    boot.classList.add('gone')
-    try { sessionStorage.setItem('sits_booted', '1') } catch (e) {}
-    setTimeout(function () { if (boot && boot.parentNode) boot.parentNode.removeChild(boot) }, 700)
-  }
-
-  var booted = false
-  try { booted = sessionStorage.getItem('sits_booted') === '1' } catch (e) {}
-
-  if (boot && (booted || reduce)) {
-    boot.parentNode.removeChild(boot)
-  } else if (boot) {
-    if (bootskip) bootskip.addEventListener('click', endBoot)
-    boot.addEventListener('click', endBoot)
-    var li = 0
-    var tick = function () {
-      if (li < LINES.length) {
-        bootlog.textContent += (li ? '\n' : '') + LINES[li]
-        if (bootbar) bootbar.style.width = Math.round(((li + 1) / LINES.length) * 100) + '%'
-        li++
-        setTimeout(tick, li === LINES.length ? 400 : 175)
-      } else {
-        setTimeout(endBoot, 360)
-      }
-    }
-    setTimeout(tick, 240)
-    setTimeout(endBoot, 6000)   /* a boot that can hang is worse than no boot */
-  }
-
   /* ── SCENES ─────────────────────────────────────────────────────────────── */
   /* A scene can hold more than one plate. Each carries its own slice of the
      scene's progress, so THE CLIMB plays the bedroom across the first half and
@@ -193,6 +147,10 @@
       var v = sc.videos[i].el
       var src = v.getAttribute('data-src')
       if (!src) continue
+      /* The markup says preload="none" so nothing downloads before it is
+         wanted. Once it IS wanted we want the whole file, not the metadata:
+         a plate that arrives in pieces is a plate that freezes mid-scrub. */
+      v.setAttribute('preload', 'auto')
       v.setAttribute('src', src)
       v.removeAttribute('data-src')
       v.load()
@@ -342,6 +300,141 @@
 
   measure()
   paint()
+
+  /* ── BOOT, AND THE WARM-UP ──────────────────────────────────────────────────
+     The boot screen used to be decoration on a fixed timer. It is a real gate
+     now: it holds until the hero has enough of itself banked to be scrubbed
+     without stalling and every poster has decoded, so that the first thing
+     anyone does — scroll — is smooth rather than a slideshow.
+
+     THREE NUMBERS, each a compromise between "no lag once you are inside" and
+     "do not make a stranger watch a progress bar":
+       BOOT_MIN  the console sequence is part of the brand; never shorter
+       BOOT_MAX  never hold anyone longer, however slow their connection
+       WARM      seconds of the hero to bank before opening the door
+
+     Then, once they are in, the remaining plates are fetched ONE AT A TIME in
+     scene order. Sequential and not parallel on purpose: seven files racing
+     each other means the one you are about to scroll into arrives last, which
+     is exactly how the closing drive ended up frozen on its first frame. */
+  var BOOT_MIN = 2400
+  var BOOT_MAX = 9000
+  var WARM = 8
+
+  var boot = document.getElementById('boot')
+  var bootlog = document.getElementById('bootlog')
+  var bootbar = document.querySelector('.boot-bar i')
+  var bootpct = document.querySelector('#bootstat b')
+  var bootskip = document.getElementById('bootskip')
+  var heroVid = scenes.length && scenes[0].videos.length ? scenes[0].videos[0].el : null
+
+  var posterTotal = 0
+  var posterDone = 0
+  function warmPosters() {
+    var seen = {}
+    scenes.forEach(function (sc) {
+      sc.videos.forEach(function (vd) {
+        var src = vd.el.getAttribute('poster')
+        if (!src || seen[src]) return
+        seen[src] = 1
+        posterTotal++
+        var im = new Image()
+        im.onload = im.onerror = function () { posterDone++ }
+        im.src = src
+      })
+    })
+  }
+
+  /* 0 to 1. Weighted toward the hero because that is what gets scrubbed first;
+     the posters matter too, since a scene whose poster has not decoded is a
+     black rectangle until its video does. */
+  function warmth() {
+    var vid = 0
+    if (heroVid && heroVid.duration) {
+      var b = heroVid.buffered
+      if (b.length) vid = Math.min(1, b.end(b.length - 1) / Math.min(WARM, heroVid.duration))
+    }
+    var pos = posterTotal ? posterDone / posterTotal : 1
+    return vid * 0.7 + pos * 0.3
+  }
+
+  function prefetch(i) {
+    if (i >= scenes.length) return
+    var sc = scenes[i]
+    maybeLoad(sc)
+    var started = Date.now()
+    var check = function () {
+      var done = true
+      for (var k = 0; k < sc.videos.length; k++) {
+        var v = sc.videos[k].el
+        var b = v.buffered
+        if (!v.duration || !b.length || b.end(b.length - 1) < v.duration - 0.4) { done = false; break }
+      }
+      /* Give up on a plate after 25 s rather than blocking the queue behind it
+         — the next scene is more use than this one arriving complete. */
+      if (done || Date.now() - started > 25000) prefetch(i + 1)
+      else setTimeout(check, 400)
+    }
+    setTimeout(check, 400)
+  }
+
+  function endBoot() {
+    if (!boot || boot.classList.contains('gone')) return
+    boot.classList.add('gone')
+    try { sessionStorage.setItem('sits_booted', '1') } catch (e) {}
+    setTimeout(function () {
+      if (boot && boot.parentNode) boot.parentNode.removeChild(boot)
+    }, 700)
+    prefetch(0)
+  }
+
+  var booted = false
+  try { booted = sessionStorage.getItem('sits_booted') === '1' } catch (e) {}
+
+  warmPosters()
+
+  if (boot && (booted || reduce)) {
+    boot.parentNode.removeChild(boot)
+    prefetch(0)
+  } else if (boot) {
+    if (bootskip) bootskip.addEventListener('click', endBoot)
+    boot.addEventListener('click', endBoot)
+
+    var LINES = [
+      'SEND_IT_TO_SOCIETY v1.0',
+      'mounting studio ..................... OK',
+      'no account required ................. OK',
+      'nothing leaves this machine ......... OK'
+    ]
+    var li = 0
+    var typed = function () {
+      if (li >= LINES.length) return
+      bootlog.textContent += (li ? '\n' : '') + LINES[li]
+      li++
+      setTimeout(typed, 165)
+    }
+    setTimeout(typed, 200)
+
+    var t0 = Date.now()
+    var poll = setInterval(function () {
+      var w = warmth()
+      var el = Date.now() - t0
+      /* The bar never goes backwards and never sits at zero on a slow line:
+         it shows whichever of real progress or elapsed time is further along,
+         so it always looks like something is happening — because it is. */
+      var shown = Math.max(w, Math.min(el / BOOT_MAX, 0.97))
+      if (bootbar) bootbar.style.width = Math.round(shown * 100) + '%'
+      if (bootpct) bootpct.textContent = Math.round(shown * 100) + '%'
+      if ((w >= 1 && el >= BOOT_MIN) || el >= BOOT_MAX) {
+        clearInterval(poll)
+        if (bootbar) bootbar.style.width = '100%'
+        if (bootpct) bootpct.textContent = 'READY'
+        setTimeout(endBoot, 420)
+      }
+    }, 120)
+  } else {
+    prefetch(0)
+  }
 
   /* ── OPEN ALL ─────────────────────────────────────────────────────────────
      The datasheet is <details>, so it already works without this. Fourteen

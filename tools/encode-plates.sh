@@ -77,7 +77,7 @@ plate empty     "$EDITS/MedalTVSendItToSociety20260902224233357-trim-17884069678
 plate bedroom   "$EDITS/MedalTVSendItToSociety20260902165710070-trim-1788386255011.mp4"    0 14.92 "crop=1550:900:350:120" 930
 plate penthouse "$EDITS/MedalTVSendItToSociety20260902223939979-trim-1788406801955.mp4" 4.35 14.04 "crop=1550:868:350:140" 896
 plate market    "$EDITS/MedalTVSendItToSociety20260902165912277-trim-1788386392114.mp4"    0  9.22 "crop=1550:900:350:120" 930
-plate drive     "$EDITS/MedalTVSendItToSociety20260902184622192-trim-1788392817991.mp4"    9 24.00 "crop=1974:1080:0:0" 876
+plate drive     "$EDITS/MedalTVSendItToSociety20260902184622192-trim-1788392817991.mp4"    9 16.00 "crop=1974:1080:0:0" 876
 # The theater has no source, so it is gridded from its own plate -- one extra
 # generation, which the grid quantises away anyway. Skipped on a re-run so it
 # can never be pixelated twice; delete media/theater.mp4 and re-record to bring

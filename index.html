@@ -11,6 +11,16 @@
 <meta property="og:image" content="https://sendittosociety.com/media/hero.jpg">
 <meta property="og:url" content="https://sendittosociety.com/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Send It To Society">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="836">
+<meta property="og:image:alt" content="A neon city at night, built out of one creator's uploads">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SITS — the game for running a YouTube channel">
+<meta name="twitter:description" content="Every tool you need, inside a city you build. $39, once.">
+<meta name="twitter:image" content="https://sendittosociety.com/media/hero.jpg">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://sendittosociety.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap">
@@ -23,6 +33,7 @@
 <div id="boot" aria-hidden="true">
   <div class="boot-inner">
     <pre id="bootlog"></pre>
+    <p id="bootstat">streaming the city <b>0%</b></p>
     <div class="boot-bar"><i></i></div>
   </div>
   <button id="bootskip" type="button">SKIP ▸</button>
@@ -32,6 +43,8 @@
 <nav id="rail" aria-hidden="true"></nav>
 <div class="crt" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#work">Skip to what’s in it</a>
 
 <header class="top">
   <a class="brand" href="/"><svg class="mark" viewBox="-.04 -.04 5 7.05" width="20" height="28" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="2" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="3" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="0" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="4" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="0" y="2" width=".92" height=".92" rx=".1" fill="#D25C6B"/><rect x="1" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="2" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="3" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="4" y="4" width=".92" height=".92" rx=".1" fill="#A855D6"/><rect x="0" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="4" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="1" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="2" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="3" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/></svg> Send It To Society</a>
@@ -250,22 +263,22 @@
     <svg viewBox="28 22 372 348" width="230" height="215" role="img" xmlns="http://www.w3.org/2000/svg">
       <title>Sendy</title>
       <defs>
-        <linearGradient id="sBody" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="sBody2" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#3a434b"/><stop offset=".55" stop-color="#2a3138"/><stop offset="1" stop-color="#1a2025"/>
         </linearGradient>
-        <radialGradient id="sScreen" cx=".5" cy=".42" r=".8">
+        <radialGradient id="sScreen2" cx=".5" cy=".42" r=".8">
           <stop offset="0" stop-color="#1d5733"/><stop offset=".5" stop-color="#0f3a22"/><stop offset="1" stop-color="#06170d"/>
         </radialGradient>
-        <radialGradient id="sEye" cx=".4" cy=".35" r=".8">
+        <radialGradient id="sEye2" cx=".4" cy=".35" r=".8">
           <stop offset="0" stop-color="#eafff2"/><stop offset=".4" stop-color="#5cf59a"/><stop offset="1" stop-color="#138a45"/>
         </radialGradient>
-        <radialGradient id="sOrb" cx=".4" cy=".35" r=".85">
+        <radialGradient id="sOrb2" cx=".4" cy=".35" r=".85">
           <stop offset="0" stop-color="#e2ffee"/><stop offset=".45" stop-color="#54f593"/><stop offset="1" stop-color="#1c9b50"/>
         </radialGradient>
-        <linearGradient id="sGold" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="sGold2" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#ffd877"/><stop offset="1" stop-color="#cf9633"/>
         </linearGradient>
-        <clipPath id="sScr"><rect x="126" y="120" width="148" height="116" rx="15"/></clipPath>
+        <clipPath id="sScr2"><rect x="126" y="120" width="148" height="116" rx="15"/></clipPath>
       </defs>
       <g class="sendy-bob">
         <ellipse cx="200" cy="352" rx="96" ry="15" fill="#0a0d0f" opacity=".5"/>
@@ -281,11 +294,11 @@
           <path d="M376,128 Q384,138 378,150" stroke="#54f593" stroke-width="2.5" fill="none" opacity=".8"/>
           <path d="M384,120 Q396,138 386,158" stroke="#54f593" stroke-width="2.5" fill="none" opacity=".5"/>
         </g>
-        <rect x="96" y="92" width="208" height="200" rx="30" fill="url(#sBody)" stroke="#0c0f11" stroke-width="3"/>
+        <rect x="96" y="92" width="208" height="200" rx="30" fill="url(#sBody2)" stroke="#0c0f11" stroke-width="3"/>
         <rect x="112" y="99" width="176" height="10" rx="5" fill="#535c64" opacity=".45"/>
         <rect x="116" y="112" width="168" height="132" rx="20" fill="#12161a" stroke="#0a0d0f" stroke-width="2"/>
-        <rect x="126" y="120" width="148" height="116" rx="15" fill="url(#sScreen)"/>
-        <g clip-path="url(#sScr)">
+        <rect x="126" y="120" width="148" height="116" rx="15" fill="url(#sScreen2)"/>
+        <g clip-path="url(#sScr2)">
           <ellipse cx="158" cy="148" rx="32" ry="18" fill="#fff" opacity=".06"/>
           <rect x="126" y="130" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
           <rect x="126" y="150" width="148" height="2" fill="#1e6b3c" opacity=".13"/>
@@ -298,17 +311,17 @@
         <circle cx="250" cy="196" r="8" fill="#4bf58e" opacity=".14"/>
         <g>
           <circle cx="176" cy="168" r="23" fill="#3df285" opacity=".1"/><circle cx="176" cy="168" r="17" fill="#3df285" opacity=".16"/>
-          <circle cx="176" cy="168" r="14" fill="#05130b"/><circle cx="176" cy="168" r="10" fill="url(#sEye)"/>
+          <circle cx="176" cy="168" r="14" fill="#05130b"/><circle cx="176" cy="168" r="10" fill="url(#sEye2)"/>
           <circle cx="176" cy="168" r="3.5" fill="#eafff5"/><circle cx="172" cy="164" r="2.5" fill="#fff" opacity=".85"/>
         </g>
         <g>
           <circle cx="224" cy="168" r="23" fill="#3df285" opacity=".1"/><circle cx="224" cy="168" r="17" fill="#3df285" opacity=".16"/>
-          <circle cx="224" cy="168" r="14" fill="#05130b"/><circle cx="224" cy="168" r="10" fill="url(#sEye)"/>
+          <circle cx="224" cy="168" r="14" fill="#05130b"/><circle cx="224" cy="168" r="10" fill="url(#sEye2)"/>
           <circle cx="224" cy="168" r="3.5" fill="#eafff5"/><circle cx="220" cy="164" r="2.5" fill="#fff" opacity=".85"/>
         </g>
         <path d="M176,196 Q200,224 224,196" stroke="#2bd46e" stroke-width="12" fill="none" stroke-linecap="round" opacity=".18"/>
         <path d="M176,196 Q200,224 224,196" stroke="#5bf59a" stroke-width="6" fill="none" stroke-linecap="round"/>
-        <circle cx="150" cy="268" r="13" fill="url(#sGold)" stroke="#b9842c" stroke-width="2"/>
+        <circle cx="150" cy="268" r="13" fill="url(#sGold2)" stroke="#b9842c" stroke-width="2"/>
         <line x1="150" y1="268" x2="150" y2="258" stroke="#6e4d12" stroke-width="3" stroke-linecap="round"/>
         <path d="M178,261 L191,268 L178,275 Z" fill="#4bf58e"/>
         <rect x="212" y="256" width="74" height="26" rx="7" fill="#12161a" stroke="#0a0d0f" stroke-width="1.5"/>
@@ -318,7 +331,7 @@
         <circle cx="232" cy="96" r="8" fill="#3a434b" stroke="#0c0f11" stroke-width="2"/>
         <path d="M232,94 Q244,68 262,50" stroke="#cdd5db" stroke-width="5" fill="none" stroke-linecap="round"/>
         <circle cx="262" cy="48" r="16" fill="#3df285" opacity=".16" class="sendy-pulse"/>
-        <circle cx="262" cy="48" r="12" fill="url(#sOrb)"/>
+        <circle cx="262" cy="48" r="12" fill="url(#sOrb2)"/>
       </g>
     </svg>
     <p class="bubble">Ah, a regular! The ⚡ in your pocket is looking heavy — let me take some off your hands.</p>

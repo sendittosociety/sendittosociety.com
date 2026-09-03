@@ -234,3 +234,40 @@ one.
 - [ ] Which district maps to which section
 - [ ] Whether the boot sequence plays on every visit or only the first
 - [ ] Loading: the city is heavy, and a loading screen is an opportunity, not a cost
+
+## The polish pass (2 Sep, evening)
+
+**The boot screen is a real gate now, not a timer.** It holds until the hero has
+banked eight seconds of itself and every poster has decoded, showing genuine
+progress rather than a fake bar. Three numbers: `BOOT_MIN` 2.4 s (the console
+sequence is part of the brand), `BOOT_MAX` 9 s (never hold a stranger longer,
+however slow their line), `WARM` 8 s of hero. Then, once they are in, the
+remaining plates are fetched **one at a time in scene order** — sequential and
+not parallel on purpose, because seven files racing each other means the one you
+are about to scroll into arrives last. That is exactly how the closing drive
+ended up frozen on its first frame.
+
+**Four bugs found and fixed:**
+
+- **The hero H1 was invisible on every phone.** `.layer.on` carries
+  `transform:translateY(-50%)` for desktop centring and outranks a bare `.layer`
+  override in the mobile block, so every visible layer was lifted by half its own
+  height. Compounded by a bottom-aligned flex stage with `overflow:hidden`, which
+  clipped what the transform pushed up. The single most important line on the
+  page, gone, on the device half the traffic will arrive on.
+- **The four legal pages were completely unstyled.** They share `style.css` but
+  were written against classes it never had — `.wrap`, `.topnav`, `.dot`,
+  `.legal`, `.updated`. No measure, wrong headings, a 263px header. These are the
+  pages a buyer reads before paying.
+- **Duplicate SVG ids.** Sendy appears twice now and both copies carried the same
+  gradient ids, so the shop Sendy's fills resolved to the theater Sendy's
+  `<defs>`. Deleting one would have stripped the other's colour.
+- **No focus styles at all.** On a near-black page a keyboard user could not see
+  where they were.
+
+Also added: a skip link, `::selection`, a branded 404, and the social/canonical
+meta the page had been missing.
+
+**Still open, and needing Chris:** the contact page ships a literal `[NUMBER]`
+placeholder for the phone, and the download button points at a releases page
+with nothing on it.
