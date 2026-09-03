@@ -104,3 +104,29 @@ longer," never "something is broken."
 - [ ] Screenshot in place of the placeholder in `index.html`
 - [ ] Phone number on the contact page — currently `[NUMBER]`
 - [ ] Paddle checkout link on the Buy button — currently `href="#"`
+
+---
+
+## Every new release, one line
+
+The download button goes to **`download.html`**, not to GitHub. That page starts
+the installer from GitHub's asset host, so nobody is ever dropped on a repo page
+full of tags and "Source code (zip)" rows — and, more usefully, it explains the
+"Windows protected your PC" warning *before* Windows shows it. An unsigned
+installer meeting somebody cold is the biggest single way to lose a person who
+had already decided to try it.
+
+The cost of that is one line to change when you ship a new build. In
+`download.html`, near the bottom:
+
+```js
+var FILE = 'https://github.com/sendittosociety/sits-releases/releases/download/v1.0.0-beta.2/SendItToSociety-Setup-1.0.0-beta.2.exe'
+```
+
+Swap both version numbers, and the version in the line under the headline. It is
+pinned on purpose: a link that silently points at a release that doesn't exist
+yet is worse than one that obviously needs updating.
+
+**Do not host the .exe in this repo.** Git keeps every version forever, so three
+releases would be 600 MB of history, and GitHub Pages is not meant to serve large
+downloads. The release asset host is built for exactly this and costs nothing.
