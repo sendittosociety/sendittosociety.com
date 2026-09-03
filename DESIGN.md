@@ -141,6 +141,42 @@ pointing at the wrong chapter.
 
 Open, the page is 29.7 screens. Shut, 23.3.
 
+### The plates, and where the sharpness actually went
+
+The scroll plates looked soft and the instinct was that they needed more
+resolution. **They did not.** Measured on the bedroom whiteboard, from the same
+source second, three ways:
+
+| | bitrate | result |
+|---|---|---|
+| what shipped — crop 1550 upscaled to 1600, crf 31 | 0.47 MB/s | *"of the empire"* unreadable |
+| same framing, crf 23 + unsharp | 1.23 MB/s | reads cleanly |
+| native 1700 crop, crf 23 + unsharp | 1.52 MB/s | no better than the row above |
+
+So it was **bitrate, not pixels** — which is lucky, because it means every scene
+keeps the framing it was approved with. `tools/encode-plates.sh` re-encodes from
+source at one crf for all six plates (crf is a quality target, so one value gives
+uniform *quality* across a still penthouse and a moving drive; one bitrate would
+do the opposite).
+
+**crf 31 is where the curve bends.** On the hero's COMICSNEXT tower, 26 is
+sharper by an amount nobody will see and costs 82 MB for 34 seconds; at 35 the
+tower windows smear together and the sign goes mushy.
+
+The in-points for hero, empty and penthouse were never written down, so they were
+recovered by SSIM-matching each shipped plate's first frame back against its
+source and taking the peak.
+
+**THE CEILING IS NOT IN THIS REPO.** Medal is set to `"resolution":"FULL_HD"`, so
+it downscales the 2560×1392 app window to 1974×1080 before any of this runs —
+a third of the picture thrown away at capture, and the reason the site still
+upscales 1.5× on a 1440p monitor. Set Medal to 1440p, re-record, re-run the
+script.
+
+**The theater has no source left.** Only its already-compressed 1600px plate
+survives, and re-encoding that cannot put back what was thrown away. It is the
+one plate that needs re-recording rather than re-encoding.
+
 ### THE CLIMB
 
 The centrepiece, and the one scene that holds two videos. The bedroom plays
