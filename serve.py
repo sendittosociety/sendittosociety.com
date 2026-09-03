@@ -30,6 +30,15 @@ class RangeHandler(SimpleHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store, must-revalidate")
         super().end_headers()
 
+    def guess_type(self, path):
+        # GitHub Pages sends "text/html; charset=utf-8"; Python's stock server
+        # sends bare "text/html" and lets the browser guess. That difference hid
+        # a real mojibake bug in a page that had no charset meta of its own.
+        t = super().guess_type(path)
+        if t in ("text/html", "text/css", "application/javascript", "text/javascript"):
+            return t + "; charset=utf-8"
+        return t
+
     def send_head(self):
         rng = self.headers.get("Range")
         if not rng:
