@@ -585,3 +585,34 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;
   .topnav{gap:13px;font-size:10.5px}
   .legal{padding-top:88px;font-size:15.5px}
 }
+
+/* ── CURSOR ──────────────────────────────────────────────────────
+   A soft glow that follows the pointer, and a thin trail of falling glyphs.
+   Both are pointer-events:none and composited (transform/opacity only), so
+   neither can touch the scroll budget the video scrub depends on.
+
+   THIS BLOCK WAS DELETED BY ACCIDENT ONCE (f3f9bf9) and shipped missing for a
+   day. A cleanup removed a dead `.feat` rule by slicing "from .feat up to THE
+   LADDER" — but an earlier edit had moved the ladder further down the file, so
+   the slice swallowed everything in between, which was all of this. The check
+   afterwards confirmed the dead selectors were gone and never confirmed the
+   live ones survived, which is the wrong half to verify. Never delete a range
+   by two landmarks that other edits are free to move.
+
+   Tight to the pointer — a wide soft field read as a smudge following the
+   mouse; a small bright one reads as the cursor itself carrying light. */
+#glow{position:fixed;left:0;top:0;width:76px;height:76px;margin:-38px 0 0 -38px;
+  z-index:88;pointer-events:none;opacity:0;transition:opacity .35s ease;
+  background:radial-gradient(circle,rgba(74,232,138,.46) 0%,rgba(74,232,138,.24) 26%,rgba(74,232,138,.07) 50%,transparent 72%);
+  mix-blend-mode:screen;will-change:transform}
+#glow.on{opacity:1}
+.rain{position:fixed;z-index:87;pointer-events:none;font-family:var(--mono);
+  font-size:12px;color:var(--green);text-shadow:0 0 8px var(--green-glow);
+  animation:rainfall .9s linear forwards;will-change:transform,opacity}
+@keyframes rainfall{
+  0%{opacity:.85;transform:translateY(0) scale(1)}
+  100%{opacity:0;transform:translateY(46px) scale(.85)}
+}
+@media (max-width:820px){ #glow,.rain{display:none} }
+@media (prefers-reduced-motion:reduce){ .rain{display:none} }
+@media (hover:none){ #glow,.rain{display:none} }

@@ -1,0 +1,5 @@
+# Unlisted while the beta is invite-only. Reachable by anyone holding a
+# link; simply not advertised to search engines. Remove this file (and the
+# noindex tags in the pages) on the day the doors open.
+User-agent: *
+Disallow: /
