@@ -161,6 +161,12 @@ def main():
         print("\n  ! NEEDS ATTENTION BEFORE PUBLISHING:")
         for w in warnings:
             print(f"    - {w}")
+        # A WARNING IS NOT ENOUGH. This printed "unfilled placeholder [NUMBER]"
+        # on every run for days and the page still went on shipping a literal
+        # [NUMBER] where Paddle requires a phone. Anything a human is expected
+        # to notice every single time is something they will eventually stop
+        # noticing, so this now fails the build instead of mentioning it.
+        sys.exit("\n  BUILD FAILED - fill the placeholders above, then re-run.")
 
 
 if __name__ == "__main__":
