@@ -140,6 +140,25 @@
     }
   }
 
+  /* WAKE A PLATE UP BEFORE IT IS EVER SHOWN.
+     paint() only ever seeks the VISIBLE plate, which is right for the frame
+     budget — but it meant a scene's second plate sat at currentTime 0 with no
+     decoded frame at all until the instant it was faded in. It then had to
+     fetch and decode from cold while already on screen, and the climb, being
+     the only two-plate scene on the page, was the only place that showed:
+     scroll into the penthouse and the picture was blank or stuck.
+
+     One seek, once, as soon as metadata lands. 0.04 rather than 0 because
+     seeking to the time it already reports does nothing — the browser has to
+     be asked to MOVE before it will decode and present a frame. */
+  function primePlate(v) {
+    if (v._primed) return
+    v._primed = true
+    var go = function () { try { v.currentTime = 0.04 } catch (e) {} }
+    if (v.readyState >= 1) go()
+    else v.addEventListener('loadedmetadata', go, { once: true })
+  }
+
   function maybeLoad(sc) {
     if (sc.loaded) return
     sc.loaded = true
@@ -154,6 +173,7 @@
       v.setAttribute('src', src)
       v.removeAttribute('data-src')
       v.load()
+      primePlate(v)
     }
   }
 
@@ -358,8 +378,26 @@
     return vid * 0.7 + pos * 0.3
   }
 
-  function prefetch(i) {
-    if (i >= scenes.length) return
+  /* ALWAYS FETCH WHAT IS AHEAD, not what is next in the list. The first version
+     of this walked the scenes in order, which meant that somebody who had
+     scrolled to the fourth scene was still having their bandwidth spent on the
+     first — the one they had already read past. Now it picks the nearest
+     unloaded scene the reader has NOT yet gone by, and only falls back to
+     something behind them when there is nothing left in front. */
+  function nextToPrefetch() {
+    var y = window.pageYOffset || document.documentElement.scrollTop
+    var behind = -1
+    for (var i = 0; i < scenes.length; i++) {
+      if (scenes[i].loaded) continue
+      if (scenes[i].top + scenes[i].h > y) return i
+      if (behind === -1) behind = i
+    }
+    return behind
+  }
+
+  function prefetch() {
+    var i = nextToPrefetch()
+    if (i < 0) return
     var sc = scenes[i]
     maybeLoad(sc)
     var started = Date.now()
@@ -372,7 +410,7 @@
       }
       /* Give up on a plate after 25 s rather than blocking the queue behind it
          — the next scene is more use than this one arriving complete. */
-      if (done || Date.now() - started > 25000) prefetch(i + 1)
+      if (done || Date.now() - started > 25000) prefetch()
       else setTimeout(check, 400)
     }
     setTimeout(check, 400)
@@ -385,7 +423,7 @@
     setTimeout(function () {
       if (boot && boot.parentNode) boot.parentNode.removeChild(boot)
     }, 700)
-    prefetch(0)
+    prefetch()
   }
 
   var booted = false
@@ -395,7 +433,7 @@
 
   if (boot && (booted || reduce)) {
     boot.parentNode.removeChild(boot)
-    prefetch(0)
+    prefetch()
   } else if (boot) {
     if (bootskip) bootskip.addEventListener('click', endBoot)
     boot.addEventListener('click', endBoot)
@@ -433,7 +471,7 @@
       }
     }, 120)
   } else {
-    prefetch(0)
+    prefetch()
   }
 
   /* ── OPEN ALL ─────────────────────────────────────────────────────────────
