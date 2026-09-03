@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<script src="gate.js"></script>
+<noscript><style>html:not(.unlocked) body > *:not(#gate){visibility:visible}</style><p style="font-family:monospace;padding:20px">This page needs JavaScript.</p></noscript>
+
 <style>
   /* This page exists for ONE reason. The 212 MB is downloading in the
      background and Windows is about to say "Windows protected your PC" — an
@@ -123,10 +126,24 @@
 var FILE = 'https://github.com/sendittosociety/sits-releases/releases/download/v1.0.0-beta.2/SendItToSociety-Setup-1.0.0-beta.2.exe'
 
 document.getElementById('dl').href = FILE
-/* A beat before firing it, so the page has painted and they can see WHY their
+
+/* WAIT FOR THE DOOR. This page hands over a 212 MB installer, so it must not
+   fire while the invite gate is still up -- hiding the page but starting the
+   download anyway would defeat the whole point of having a gate. gate.js marks
+   <html> .unlocked; nothing here happens until it does. */
+function startDownload () { window.location.href = FILE }
+function whenUnlocked (fn) {
+  var root = document.documentElement
+  if (root.classList.contains('unlocked')) return fn()
+  var obs = new MutationObserver(function () {
+    if (root.classList.contains('unlocked')) { obs.disconnect(); fn() }
+  })
+  obs.observe(root, { attributes: true, attributeFilter: ['class'] })
+}
+/* A beat after unlocking, so the page has painted and they can see WHY their
    browser just started downloading 212 MB. An unexplained download is a
    deleted download. */
-setTimeout(function () { window.location.href = FILE }, 900)
+whenUnlocked(function () { setTimeout(startDownload, 900) })
 </script>
 </body>
 </html>
