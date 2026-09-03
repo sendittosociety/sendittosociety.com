@@ -84,6 +84,7 @@ header nav a:hover{color:var(--green)}
 /* Trailer cadence. Each scene holds for one screen and travels for one,
    so a clip plays out in a single flick of the wheel instead of three. */
 .tall-4{height:400vh}
+.tall-3{height:300vh}
 .tall-25{height:250vh}
 .tall-2{height:200vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden}
@@ -205,7 +206,7 @@ footer .links a:hover{color:var(--green)}
    poster stills, because scrubbing 39 MB on a phone is a bounce. */
 @media (max-width:820px){
   body{font-size:16px}
-  .scene,.tall-4,.tall-25,.tall-2{height:auto}
+  .scene,.tall-4,.tall-3,.tall-25,.tall-2{height:auto}
   .stage{position:relative;height:auto;min-height:78vh;display:flex;flex-direction:column;
     justify-content:flex-end;background-size:cover;background-position:center}
   .plate{display:none}
@@ -447,20 +448,44 @@ footer .links a:hover{color:var(--green)}
 }
 
 /* ── THE DATASHEET ───────────────────────────────────────────
-   Every tool gets the same three questions answered in the same order — what
-   it is, how you would use it, what is underneath — so the section reads as a
-   spec sheet rather than a brochure. An entry with a screenshot runs two
-   columns and alternates sides; one without runs the full width and looks
-   deliberate rather than unfinished. */
+   Fourteen tools, each answering the same three questions in the same order —
+   what it is, how you would use it, what is underneath.
+
+   COLLAPSED BY DEFAULT, on <details> rather than a scripted accordion: it opens
+   with JavaScript off, the keyboard and screen readers get correct behaviour for
+   free, and the browser owns the open state. Shut, the whole section is fourteen
+   readable rows; open, each is the full sheet. The first ships open so the shape
+   is obvious without a click. */
+.specbar{display:flex;justify-content:flex-end;margin:26px 0 10px}
+#allspecs{background:none;border:1px solid var(--line);color:var(--faint);cursor:pointer;
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding:9px 15px;
+  transition:color .2s ease,border-color .2s ease}
+#allspecs:hover{color:var(--green);border-color:var(--green)}
+
 .specs{display:grid;gap:1px;background:var(--line-soft);
-  border:1px solid var(--line-soft);margin:34px 0 12px}
-.spec{background:var(--bg);padding:32px 30px;display:grid;gap:30px;align-items:start;
-  transition:background .25s ease}
-.spec:hover{background:#0A120D}
-.spec:has(.shot){grid-template-columns:1.02fr .98fr}
-.spec:nth-child(even):has(.shot) .shot{order:2}
-.spec h3{font-family:var(--pix);font-size:15px;letter-spacing:.05em;color:var(--green);
-  margin:0 0 20px;text-shadow:0 0 22px rgba(74,232,138,.28)}
+  border:1px solid var(--line-soft);margin:0 0 12px}
+.spec{background:var(--bg);transition:background .25s ease}
+.spec[open]{background:#080F0B}
+
+.spec summary{display:flex;align-items:baseline;gap:18px;padding:19px 26px;
+  cursor:pointer;list-style:none}
+.spec summary::-webkit-details-marker{display:none}
+.spec summary:hover{background:rgba(74,232,138,.03)}
+.spec h3{font-family:var(--pix);font-size:14px;letter-spacing:.04em;color:var(--green);
+  margin:0;flex:0 0 auto;min-width:min(250px,42vw)}
+.spec .tease{flex:1 1 auto;font-size:14.5px;line-height:1.5;color:var(--faint);
+  transition:color .25s ease}
+.spec summary:hover .tease{color:var(--muted)}
+.spec summary::after{content:'+';flex:0 0 auto;margin-left:auto;font-family:var(--mono);
+  font-size:17px;line-height:1;color:var(--faint);transition:color .25s ease}
+.spec[open] summary::after{content:'2';color:var(--green)}
+.spec[open] h3{text-shadow:0 0 22px rgba(74,232,138,.3)}
+
+.spec .inner{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;
+  padding:2px 26px 30px;align-items:start;animation:specIn .34s ease both}
+.spec:nth-of-type(even) .inner .shot{order:2}
+@keyframes specIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
 .spec dl{margin:0}
 .spec dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;
   color:var(--faint);margin:0 0 7px}
@@ -470,8 +495,8 @@ footer .links a:hover{color:var(--green)}
 .spec dd:hover{color:var(--ink)}
 .spec dd b{color:var(--ink);font-weight:400}
 .spec dd i{font-style:italic}
-.spec .shot img{transition:border-color .25s,transform .25s,box-shadow .25s}
-.spec:hover .shot img{border-color:rgba(74,232,138,.4);
+.spec .shot img{transition:border-color .25s,box-shadow .25s}
+.spec[open]:hover .shot img{border-color:rgba(74,232,138,.4);
   box-shadow:0 16px 44px rgba(0,0,0,.6),0 0 0 1px rgba(74,232,138,.16)}
 
 /* Sendy keeps the shop as well as the theater — same character, second
@@ -480,7 +505,9 @@ footer .links a:hover{color:var(--green)}
 .sendy-pop.left .bubble{border-left:1px solid var(--line);border-right:2px solid var(--green)}
 
 @media (max-width:820px){
-  .spec,.spec:has(.shot){grid-template-columns:1fr;gap:20px;padding:26px 20px}
-  .spec:nth-child(even):has(.shot) .shot{order:0}
+  .spec summary{flex-wrap:wrap;gap:8px;padding:16px 18px}
+  .spec h3{min-width:100%}
+  .spec .inner{grid-template-columns:1fr;gap:18px;padding:0 18px 24px}
+  .spec:nth-of-type(even) .inner .shot{order:0}
   .sendy-pop.left{left:auto;flex-direction:row}
 }

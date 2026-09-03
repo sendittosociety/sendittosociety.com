@@ -338,6 +338,31 @@
   measure()
   paint()
 
+  /* ── OPEN ALL ─────────────────────────────────────────────────────────────
+     The datasheet is <details>, so it already works without this. Fourteen
+     clicks is a lot to ask of someone who wants the whole thing, though, so
+     there is one button that does it — and the offsets change when it fires. */
+  var allBtn = document.getElementById('allspecs')
+  if (allBtn) {
+    allBtn.addEventListener('click', function () {
+      var open = allBtn.getAttribute('data-open') !== 'true'
+      var list = document.querySelectorAll('.spec')
+      for (var i = 0; i < list.length; i++) list[i].open = open
+      allBtn.setAttribute('data-open', open ? 'true' : 'false')
+      allBtn.textContent = open ? 'CLOSE ALL ▴' : 'OPEN ALL ▾'
+      measure()
+      paint()
+    })
+  }
+  /* Any single row opening or closing moves everything below it, so the cached
+     offsets have to be rebuilt or the rail starts pointing at the wrong place. */
+  document.addEventListener('toggle', function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains('spec')) {
+      measure()
+      paint()
+    }
+  }, true)
+
   /* ── SOUND ──────────────────────────────────────────────────────────────────
      Muted by default and only ever started by a click. A site that makes noise
      at a stranger unasked is a site they close. */

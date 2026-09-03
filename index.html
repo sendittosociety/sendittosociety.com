@@ -326,7 +326,7 @@
 </section>
 
 <!-- ═════ 6 · SEND IT ═════ -->
-<section class="scene tall-25" data-scene data-chapter="SEND IT" data-act="I">
+<section class="scene tall-3" data-scene data-chapter="SEND IT" data-act="I">
   <div class="stage" style="background-image:url(media/drive.jpg)">
     <video class="plate" data-src="media/drive.mp4" poster="media/drive.jpg"
            playsinline muted preload="none" aria-hidden="true"></video>
@@ -371,150 +371,238 @@
   <section class="band wide" id="work" data-chapter="UNDER THE HOOD" data-act="II">
     <p class="eyebrow">// EVERY TOOL, AND WHAT IT ACTUALLY DOES</p>
     <h2 class="h2">Under the hood</h2>
-    <p class="lede dim">Twelve tools, the job each one does, and how it works
-      underneath. Real screens, not mockups — and no claim here that the app
-      doesn't already make good on.</p>
+    <p class="lede dim">Fourteen tools. What each one is, how you'd use it, and
+      how it works underneath. Open any of them — real screens, not mockups.</p>
 
-    <figure class="shot lead">
-      <img src="media/shots/toolkit.jpg" loading="lazy" width="1000"
-           alt="The SITS toolkit laid out as a node map: Academy, Transcribe, Script Lab, Hook Printer, Thumb Forge, The Archive, The Sound Booth, SEO Lab and Health">
-      <figcaption>Nine stations on one map. Learn the skill at any of them, then
-        do it for real in the tool next door.</figcaption>
-    </figure>
+    <div class="specbar">
+      <button id="allspecs" type="button" data-open="false">OPEN ALL ▾</button>
+    </div>
 
     <div class="specs">
-    <article class="spec">
-      <div class="body">
+    <details class="spec" open>
+      <summary>
         <h3>PRODUCTION PIPELINE</h3>
+        <span class="tease">Seven stages, and every video is a card moving through them.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/pipeline.jpg" loading="lazy" width="820" alt="The Production Pipeline: six videos as cards, each on a different stage of the idea-to-done track">
+        </figure>
         <dl>
           <dt>WHAT IT IS</dt><dd>A board where every video is a card, and every card moves through seven stages: <b>idea, research, scripting, record, gather, editing, done.</b></dd>
           <dt>HOW YOU’D USE IT</dt><dd>One look tells you what is written but not filmed, what is filmed but not cut, and what has been sitting in research for three weeks.</dd>
           <dt>UNDER THE HOOD</dt><dd>Rename any stage, reorder them, hide the ones your workflow does not use — except <i>idea</i> and <i>done</i>, which can never be hidden, because you always need somewhere to start and somewhere to finish. Each card carries its own notes, script, packaging and files, so a video’s whole history travels with it instead of scattering across five apps.</dd>
         </dl>
       </div>
-    </article>
-    <article class="spec">
-      <figure class="shot">
-        <img src="media/shots/archive.jpg" loading="lazy" width="820" alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
-      </figure>
-      <div class="body">
-        <h3>THE ARCHIVE</h3>
-        <dl>
-          <dt>WHAT IT IS</dt><dd>One search across a dozen public-domain libraries — Internet Archive, the Library of Congress, NASA, Wikimedia, Pexels, Pixabay.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Search a mood, download the clip, drop it in the edit. The licence is settled before you ever see the thumbnail.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Clearance is keyed on <b>membership of a cleared collection</b>, not on the file’s own rights field — that field is empty on almost everything, so trusting it would clear nothing and block everything. Every download writes a receipt naming the licence it came under, and paths are validated before anything is written to disk.</dd>
-        </dl>
-      </div>
-    </article>
-    <article class="spec">
-      <div class="body">
-        <h3>THE SOUND BOOTH</h3>
-        <dl>
-          <dt>WHAT IT IS</dt><dd>The Archive’s twin for music and sound effects. Free, and filtered by licence before you hear it.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Find a bed or a hit, download it, keep the receipt with the project.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Reaches <b>Freesound, Jamendo, ccMixter and Incompetech</b> through Openverse — no API key, direct MP3s. <b>CC BY-SA is filtered out, and that one matters:</b> cutting music to picture is legally an adaptation, so a BY-SA track would force your finished video to be BY-SA as well. NC and ND are never requested at all.</dd>
-        </dl>
-      </div>
-    </article>
-    <article class="spec">
-      <figure class="shot">
-        <img src="media/shots/outliers.jpg" loading="lazy" width="820" alt="EVOLVE outliers — competitor videos ranked by how far they beat their own channel average">
-      </figure>
-      <div class="body">
-        <h3>EVOLVE · OUTLIERS</h3>
-        <dl>
-          <dt>WHAT IT IS</dt><dd>The videos beating their <i>own</i> channel’s average, across the channels you have chosen to track.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Find the pattern that worked on a channel your size, then hit FORGE FROM THIS to start one of your own from it.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Ranked by multiple of the channel’s own baseline, not by raw views — a 51× outlier on a small channel counts the same as one on a large channel. That is deliberate: you are copying the <i>move</i>, not the subscriber count that made it land.</dd>
-        </dl>
-      </div>
-    </article>
-    <article class="spec">
-      <figure class="shot">
-        <img src="media/shots/trends.jpg" loading="lazy" width="820" alt="EVOLVE trends — which title words and formats pull views in your niche">
-      </figure>
-      <div class="body">
-        <h3>EVOLVE · TRENDS</h3>
-        <dl>
-          <dt>WHAT IT IS</dt><dd>What is actually pulling views in your niche, with the numbers attached.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Check it before you title anything.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Measured across the channels you track rather than across YouTube at large, so it is your corner of the platform and not general advice. ALL-CAPS emphasis at +499% versus typical. Question hooks at +85%. Listicles at −25%. Numbers move as the channels you watch move.</dd>
-        </dl>
-      </div>
-    </article>
-    <article class="spec">
-      <div class="body">
-        <h3>SEO LAB</h3>
-        <dl>
-          <dt>WHAT IT IS</dt><dd>Your script in, the entire upload package out — three title options, a paste-ready description, hashtags and a tag list.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Paste the script, add up to ten videos that already worked in your niche, and take the package straight to the upload page.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Those ten reference slots pull the <b>real packaging</b> off the videos you point at — their actual title, description and tag list — so what comes back is anchored to things that shipped and ranked, not to a model’s idea of what a good title sounds like.</dd>
-        </dl>
-      </div>
-    </article>
-    <article class="spec">
-      <div class="body">
+    </details>
+    <details class="spec">
+      <summary>
         <h3>SCRIPT LAB · THE VERDICT</h3>
+        <span class="tease">Your next video graded before you post it.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/scriptlab.jpg" loading="lazy" width="820" alt="Script Lab with a script pasted in and the craft cheat sheet open below it">
+        </figure>
         <dl>
-          <dt>WHAT IT IS</dt><dd>Your next video graded before you post it, on a rubric instead of a vibe.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Run it, read the top fixes, do them, post.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Five categories — <b>concept, packaging, hook, retention and pacing, satisfaction and engagement</b> — combined into a 0–100 package score and a letter grade, then multiplied by an originality factor. A compliance gate can <b>block</b> a score outright rather than quietly averaging the problem away, and every grade arrives with the reasoning and a ranked list of fixes.</dd>
+          <dt>WHAT IT IS</dt><dd>A script goes in and comes back with a grade, a full breakdown, and exactly what to change — graded as short-form or long-form, because they are not the same craft.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Paste the script, read the top fixes, do them, then post.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Five categories — <b>concept, packaging, hook, retention and pacing, satisfaction and engagement</b> — combined into a 0–100 package score and a letter grade, then multiplied by an originality factor. A compliance gate can <b>block</b> a score outright rather than quietly averaging the problem away. The craft cheat sheet is on the same page: the beats it grades against, the title patterns that convert, and the three laws — net information gain, good versus bad abandonment, and the closer as the rewatch.</dd>
         </dl>
       </div>
-    </article>
-    <article class="spec">
-      <div class="body">
+    </details>
+    <details class="spec">
+      <summary>
         <h3>HOOK PRINTER</h3>
+        <span class="tease">The first ten seconds, printed and graded F through S.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/hookprinter.jpg" loading="lazy" width="820" alt="The Hook Printer recipe picker — eight hook blueprints, each with slots to fill">
+        </figure>
         <dl>
-          <dt>WHAT IT IS</dt><dd>The first ten seconds, printed and graded F through S.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Pick a recipe, fill its slots, print, read why, print again. The tenth hook is better than the first because you were told what was wrong with the other nine.</dd>
+          <dt>WHAT IT IS</dt><dd>Eight hook recipes — The Question, Bold Claim, Visual Reveal, The Comparison, The Mystery, Stat Drop, Story Open, Pattern Break — each a blueprint with slots to fill.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Pick a recipe, fill its slots, print, read why it scored what it scored, and print again. The tenth hook is better than the first because you were told what was wrong with the other nine.</dd>
           <dt>UNDER THE HOOD</dt><dd>S needs a score of <b>92 or better</b>, and the app calls it a PLASMA-CUT MASTER PRINT when you get one. Recipes are structured slots rather than blank prompts, so a hook is composed rather than guessed at.</dd>
         </dl>
       </div>
-    </article>
-    <article class="spec">
-      <div class="body">
-        <h3>THUMB FORGE</h3>
-        <dl>
-          <dt>WHAT IT IS</dt><dd>A real layer-based thumbnail editor living next to the video it belongs to — not a template filler.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Build two, compare them side by side, ship the one that wins.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Layers with blend modes, masks and clipping, groups, adjustments, arc text, free transform with rotation and crop, brush and selection tools, snapping and rulers, projects with autosave, and an A/B compare. The rendering engine is separated from the interface and tested against reference images, which is why what you export matches what you saw.</dd>
-        </dl>
-      </div>
-    </article>
-    <article class="spec">
-      <figure class="shot">
-        <img src="media/shots/transcribe.jpg" loading="lazy" width="820" alt="TRANSCRIBE — drop a voiceover and it becomes a script, processed on your own machine">
-      </figure>
-      <div class="body">
+    </details>
+    <details class="spec">
+      <summary>
         <h3>TRANSCRIBE</h3>
+        <span class="tease">Talk it out loud; get the script back, on your own machine.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/transcribe.jpg" loading="lazy" width="820" alt="Transcribe — drop a voiceover and it becomes a script, processed on your own machine">
+        </figure>
         <dl>
-          <dt>WHAT IT IS</dt><dd>Drop a voiceover or a recording and get a script back.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Talk the video out loud, then edit the transcript into the script instead of writing from a blank page.</dd>
+          <dt>WHAT IT IS</dt><dd>Drop a voiceover or a recording and get a script back — fast, balanced or accurate, your call on the trade.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Say the video out loud, then edit the transcript into the script instead of writing from a blank page.</dd>
           <dt>UNDER THE HOOD</dt><dd>The speech model runs <b>on your PC</b> — no API key, no per-minute fee, and the audio never leaves the machine. The result is shaped into Hook / Body / CTA and can be sent straight into a new card on the pipeline.</dd>
         </dl>
       </div>
-    </article>
-    <article class="spec">
-      <div class="body">
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>THUMB FORGE</h3>
+        <span class="tease">A real layer-based thumbnail editor, not a template filler.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/thumbforge.jpg" loading="lazy" width="820" alt="Thumb Forge with a thumbnail open, the layer stack, rulers, guides and the shelf preview">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>A full thumbnail studio living next to the video it belongs to, with the layer stack, transform handles, rulers and guides you would expect from a desktop editor.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Build two versions, flip between A and B, ship the one that wins — and check it against the shelf preview, which shows it at the size it will actually be seen at.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Layers with blend modes, masks and clipping, groups, adjustments, arc text, free transform with rotation and crop, brush and selection tools, snapping, rulers, guides, a safe-area overlay, autosave and recovery. The rendering engine is separated from the interface and tested against reference images, which is why the export matches what you saw.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>SEO LAB</h3>
+        <span class="tease">Script in, the whole upload package out.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/seolab.jpg" loading="lazy" width="820" alt="SEO Lab — the script box, ten niche reference slots, and the package that comes back">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>Your script and your niche go in; three title options, a paste-ready description, hashtags and a tag list come out.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Paste the script, drop in up to ten videos that already worked in your lane, then copy the package straight into YouTube Studio.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Those ten reference slots pull the <b>real packaging</b> off the videos you point at — their actual title, description and tag list — so what comes back is anchored to things that shipped and ranked. <b>Honest packaging is enforced:</b> every title it offers has to be kept by the script. If one feels like a stretch, it is — pick another.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>THE ARCHIVE</h3>
+        <span class="tease">A dozen public-domain libraries in one search, cleared before you see it.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/archive.jpg" loading="lazy" width="820" alt="THE ARCHIVE showing public-domain clips, each badged FREE COMMERCIAL">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>One search across the Internet Archive, the Library of Congress, NASA, Wikimedia, Pexels and Pixabay.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Search a mood, download the clip, drop it in the edit. The licence was settled before you ever saw the thumbnail.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Clearance is keyed on <b>membership of a cleared collection</b>, not on the file’s own rights field — that field is empty on almost everything, so trusting it would clear nothing and block everything. Every download writes a receipt naming the licence it came under, and paths are validated before anything is written to disk.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>THE SOUND BOOTH</h3>
+        <span class="tease">Free music and SFX, filtered by licence before you hear it.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/soundbooth.jpg" loading="lazy" width="820" alt="The Sound Booth showing free music results, each badged with the licence it came under">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>The Archive’s twin for sound, with three levels of strictness: CLEARED, FREE TO USE, or EVERYTHING — and it tells you what each one lets through.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Find a bed or a hit, hear it in place, pick it, and keep the receipt with the project.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Reaches <b>Freesound, Jamendo, ccMixter and Incompetech</b> through Openverse — no API key, direct MP3s. <b>CC BY-SA is filtered out, and that one matters:</b> cutting music to picture is legally an adaptation, so a BY-SA track would force your finished video to be BY-SA as well. NC and ND are never requested at all.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>EVOLVE · OUTLIERS</h3>
+        <span class="tease">The videos beating their own channel’s average.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/outliers.jpg" loading="lazy" width="820" alt="EVOLVE outliers — competitor videos ranked by how far they beat their own channel average">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>The breakout videos across the channels you have chosen to track.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Find the move that worked on a channel your size, then hit FORGE FROM THIS to start one of your own from it.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Ranked by multiple of the channel’s own baseline, not by raw views — a 51× outlier on a small channel counts the same as one on a large channel. That is deliberate: you are copying the <i>move</i>, not the subscriber count that made it land.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>EVOLVE · TRENDS</h3>
+        <span class="tease">What is actually pulling views in your niche, with the numbers.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/trends.jpg" loading="lazy" width="820" alt="EVOLVE trends — which title words and formats pull views in your niche">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>The words and formats moving views across the channels you watch.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Check it before you title anything.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Measured across the channels you track rather than across YouTube at large, so it is your corner of the platform and not general advice. ALL-CAPS emphasis at +499% versus typical. Question hooks at +85%. Listicles at −25%. The numbers move as your lane moves.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
         <h3>THE ACADEMY</h3>
+        <span class="tease">A school where the homework is done in the real tool.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/academy.jpg" loading="lazy" width="820" alt="The Skills Academy — four tracks of lessons with Sendy teaching">
+        </figure>
         <dl>
-          <dt>WHAT IT IS</dt><dd>A school where the homework is done in the real tool, on your real channel.</dd>
-          <dt>HOW YOU’D USE IT</dt><dd>Read a short lesson, then go do the thing. The app watches for it.</dd>
-          <dt>UNDER THE HOOD</dt><dd>Four tracks of lessons, each one <b>READ → DO → QUIZ</b>. The DO step is a real action detected in the real tool — a card created, a channel tracked, a hook printed — so a lesson cannot be completed by pressing next. Twenty-one quizzes, and every wrong answer explains itself.</dd>
+          <dt>WHAT IT IS</dt><dd>Four tracks — Content Creation 101, YouTube Growth, YouTube Automation and AI for Creators — taught by Sendy, with the Codex and the Playbook behind them as the reference library.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Read a short lesson, then go and do the thing on your own channel. The app watches for it.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Twenty lessons, each one <b>READ → DO → QUIZ</b>. The DO step is a real action detected in the real tool — a card created, a channel tracked, a hook printed — so a lesson cannot be completed by pressing next. Every wrong answer explains itself, and finishing one banks Buzz.</dd>
         </dl>
       </div>
-    </article>
-    <article class="spec">
-      <div class="body">
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>HEALTH</h3>
+        <span class="tease">The other half of the job: the person doing it.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/health.jpg" loading="lazy" width="820" alt="The Health page — recurring habits, a discipline streak and a Vitality score">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>A wellness scheduler that lives in the same app as the work — recurring habits like training, meditation, reading and sleep, ticked off daily.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>Set the handful you actually intend to keep, then tick them the same way you tick a video off the pipeline.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Discipline is measured rather than felt: a streak, a <b>Vitality score</b>, milestone badges, and a wellness district that <b>grows in your city</b> as you keep it up. It also feeds a <i>capped</i> bonus to your overall standing — capped on purpose, so nobody can out-meditate the fact that they haven’t shipped a video. Global: one body across every channel.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
+        <h3>THE ARCADE</h3>
+        <span class="tease">Five games, because some days the honest move is to stop.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/arcade.jpg" loading="lazy" width="820" alt="The Arcade menu showing five playable games">
+        </figure>
+        <dl>
+          <dt>WHAT IT IS</dt><dd>SNAKE.EXE, BRICK BREAKER, SUB DEFENSE, SPACE DEFENSE and SOCIETY PINBALL, in a pixel cabinet with its own attract mode.</dd>
+          <dt>HOW YOU’D USE IT</dt><dd>On the day the script will not come, play something for ten minutes instead of staring at a blank page.</dd>
+          <dt>UNDER THE HOOD</dt><dd>Played for Buzz, the same currency everything else in the app costs. This is not a distraction bolted on: burnout is the real failure mode for someone running a channel alone, and an app with nowhere to go when you are stuck is an app you close.</dd>
+        </dl>
+      </div>
+    </details>
+    <details class="spec">
+      <summary>
         <h3>CLOSED ON SUNDAYS</h3>
+        <span class="tease">The day the shop shuts.</span>
+      </summary>
+      <div class="inner">
+        <figure class="shot">
+          <img src="media/shots/sundays.jpg" loading="lazy" width="820" alt="Closed On Sundays — the weekly check-in, with the Sunday Thought still sealed">
+        </figure>
         <dl>
-          <dt>WHAT IT IS</dt><dd>The day the shop shuts. An app that refuses to let you work is a feature, not an oversight.</dd>
+          <dt>WHAT IT IS</dt><dd>A weekly check-in for the person behind the channel. The Sunday Thought stays sealed until the shop actually closes.</dd>
           <dt>HOW YOU’D USE IT</dt><dd>On Sunday it stops asking what you are shipping and asks how you are doing.</dd>
-          <dt>UNDER THE HOOD</dt><dd>A weekly check-in for the person behind the channel: a philosophy to sit with, the north star you are actually chasing, your intentions for the week, wins and gratitude, an honest read on life balance, and a quiet place to write. Work will still be there on Monday.</dd>
+          <dt>UNDER THE HOOD</dt><dd>A message for the day, the north star you are actually chasing, this week’s intentions, wins and gratitude, an honest read on life balance, and a quiet place to write. Work will still be there on Monday.</dd>
         </dl>
       </div>
-    </article>
+    </details>
     </div>
 
     <figure class="shot lead">

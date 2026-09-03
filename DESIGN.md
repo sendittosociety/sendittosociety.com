@@ -127,10 +127,19 @@ Act I got shorter so Act II could get longer. That is the right trade: the
 trailer is what sells, the datasheet is what someone reads once they are already
 leaning in, and nobody scrolls it who has not decided to.
 
-**Open: eight of the twelve have no screenshot.** Pipeline, Sound Booth, Thumb
-Forge, SEO Lab, Script Lab, Hook Printer, Academy and Closed On Sundays ship as
-datasheet-only entries — the layout is built to take an image the moment one
-exists, and looks deliberate until then.
+**Fourteen now, and every one has a real screen.** Chris captured the eight
+missing tools on 2 Sep; Health (whose shot had been sitting unused) and The
+Arcade (recovered from git after the scene was cut) joined them.
+
+**Collapsed by default**, built on `<details>`/`<summary>` rather than a scripted
+accordion — it opens with JavaScript off, the keyboard and screen readers get
+correct behaviour for free, and the browser owns the open state. Shut, the whole
+section is fourteen readable rows; opened, each is the full sheet. The first
+ships open so the shape is obvious without a click, and one OPEN ALL button
+saves anyone fourteen clicks. Any toggle re-runs `measure()`, or the rail starts
+pointing at the wrong chapter.
+
+Open, the page is 29.7 screens. Shut, 23.3.
 
 ### THE CLIMB
 
