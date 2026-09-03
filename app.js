@@ -260,7 +260,12 @@
       var sc = scenes[i]
 
       /* Cached numbers only — no getBoundingClientRect, so no forced layout. */
-      var near = sc.top < y + vh * 1.6 && sc.top + sc.h > y - vh * 0.6
+      /* 2.6 viewports of warning, not 1.6. A plate that has not finished
+         downloading gets held on its last buffered frame by clampToBuffered,
+         which is the right failure — the page never stalls — but it reads as
+         a still image rather than a video, and the last scene is where it bit:
+         it is the biggest file and the one with the least runway. */
+      var near = sc.top < y + vh * 2.6 && sc.top + sc.h > y - vh * 0.6
       if (near) maybeLoad(sc)
 
       if (phone) {

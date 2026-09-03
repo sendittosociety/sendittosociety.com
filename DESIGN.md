@@ -167,6 +167,32 @@ The in-points for hero, empty and penthouse were never written down, so they wer
 recovered by SSIM-matching each shipped plate's first frame back against its
 source and taking the peak.
 
+**Then the 2× pixel grid, over everything.** Six of the seven plates were
+already pixelated by the app's own render pass; the shop's UI panel was the one
+that wasn't, and that was the actual inconsistency. A hard 2× grid across all
+seven settles it — the 3D scenes barely change because their pixels are already
+there, and the shop stops being the odd one out. Chris's call, made knowing it
+costs some catalogue legibility.
+
+Sharpen *before* the downsample so edges survive it; `area` going down (averages,
+no aliasing) and `neighbor` coming back up (hard block edges, which is the
+point); rgb24 through the middle because the halved height is odd on four of the
+seven plates and yuv420p will not carry an odd dimension.
+
+It pays for itself too: a hard grid has a quarter of the unique detail to
+encode, so the files come back much smaller at the same crf. That is what
+stopped the drive plate stalling — at 21 MB it was the last thing to download
+and froze on its last buffered frame, which reads as a still image rather than
+a video.
+
+**TRAP, and it cost a whole encode run.** The grid helper began
+`[ "$PIXEL" = "1" ] && return`. When the test fails, that AND-list fails, and
+under `set -e` a failing list kills the command-substitution subshell *before*
+`printf` runs — so `grid()` returned an empty string, every plate encoded with
+no grid at all, and the sizes came back byte-identical to the run before. Silent,
+and it looked exactly like the filter having no effect. An `if` block cannot fail
+that way.
+
 **THE CEILING IS NOT IN THIS REPO.** Medal is set to `"resolution":"FULL_HD"`, so
 it downscales the 2560×1392 app window to 1974×1080 before any of this runs —
 a third of the picture thrown away at capture, and the reason the site still
