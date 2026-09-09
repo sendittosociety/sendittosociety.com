@@ -30,6 +30,17 @@
     document.documentElement.classList.add('unlocked')
   }
 
+  /* THE RULE THAT HIDES THE PAGE SHIPS WITH THE CODE THAT CLEARS IT.
+     It used to sit in the shared stylesheet while only this file added the
+     class, so every page that linked the stylesheet without loading this
+     script was hidden forever -- silently. A page can no longer be hidden by
+     a gate it does not have. */
+  try {
+    var st = document.createElement('style')
+    st.textContent = 'html:not(.unlocked) body > *:not(#gate){visibility:hidden}'
+    ;(document.head || document.documentElement).appendChild(st)
+  } catch (e) { unlock(); return }
+
   async function sha256(text) {
     var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
     return Array.from(new Uint8Array(buf))

@@ -622,8 +622,6 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;
    briefly readable behind the gate. gate.js is loaded synchronously in <head>
    and adds that class — which also means a visitor with JavaScript off sees
    the noscript line and nothing else, rather than the whole site. */
-html:not(.unlocked) body > *:not(#gate){visibility:hidden}
-html.unlocked body > *{visibility:visible}
 
 #gate{position:fixed;inset:0;z-index:400;background:#020403;display:flex;
   align-items:center;justify-content:center;padding:40px 24px;
@@ -652,3 +650,9 @@ html.unlocked body > *{visibility:visible}
 }
 #gate.shake form{animation:gShake .34s ease}
 @media (prefers-reduced-motion:reduce){ #gate.shake form{animation:none} }
+
+/* The second door out of the price box: download if you are new, buy if you
+   already know. Quiet on purpose — the trial is still the front door. */
+.already{margin:18px 0 0;font-size:13.5px;color:var(--faint)}
+.already a{border-bottom:1px solid rgba(74,232,138,.35)}
+.already a:hover{border-bottom-color:var(--green)}
