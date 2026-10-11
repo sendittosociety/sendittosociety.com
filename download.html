@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Downloading — Send It To Society</title>
-<meta name="description" content="Your download is starting. Fourteen days, everything, no card.">
+<title>Downloads paused — Send It To Society</title>
+<meta name="description" content="Downloads are paused while the next build lands.">
 <meta name="theme-color" content="#060B08">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Share+Tech+Mono&display=swap">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
-<script src="gate.js"></script>
+<!-- NO GATE HERE ANY MORE. gate.js guarded this page because it handed over a
+     212 MB installer; it hands over nothing now, so a password prompt in front
+     of the words "downloads are paused" would be pure friction for the one
+     person this page still exists for — somebody returning to an old bookmark.
+
+     The class is set by hand because style.css hides <body> until <html>
+     carries .unlocked. Drop this line without restoring gate.js and the page
+     renders permanently blank. Restore `<script src="gate.js"></script>` here
+     when the download comes back. -->
+<script>document.documentElement.classList.add('unlocked')</script>
 <noscript><style>html:not(.unlocked) body > *:not(#gate){visibility:visible}</style><p style="font-family:monospace;padding:20px">This page needs JavaScript.</p></noscript>
 
 <style>
@@ -71,35 +80,17 @@
 <main class="dl">
   <svg class="mark" viewBox="-.04 -.04 5 7.05" width="46" height="64" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="2" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="3" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="0" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="4" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="0" y="2" width=".92" height=".92" rx=".1" fill="#D25C6B"/><rect x="1" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="2" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="3" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="4" y="4" width=".92" height=".92" rx=".1" fill="#A855D6"/><rect x="0" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="4" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="1" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="2" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="3" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/></svg>
 
-  <h1>Your download is starting.</h1>
-  <p class="sub">About 212&nbsp;MB. Windows, version 1.0.0-beta.2.<br>
-    Read the next bit while it lands — it saves a scare.</p>
-  <p class="again">Nothing happening? <a id="dl" href="#">Start it manually</a>.</p>
-
-  <section class="warn">
-    <h2>WINDOWS WILL WARN YOU. IT IS MEANT TO.</h2>
-    <p>When you run the installer you will see <b>“Windows protected your PC.”</b>
-      That appears on every application that hasn’t paid for a code-signing
-      certificate. It is not a virus warning — it is a
-      <b>“we don’t know who wrote this”</b> warning, and it is fair enough of
-      Windows to say so.</p>
-    <div class="steps">
-      <span>MORE INFO</span><i>→</i><span>RUN ANYWAY</span>
-    </div>
-    <p>The certificate is on the list, behind things that matter more right now.
-      I’d rather tell you this here than have you meet it cold.</p>
-  </section>
+  <h1>Downloads are paused.</h1>
+  <p class="sub">Not for long. A new build is close, and I’d rather you had
+    that one than this one.</p>
 
   <section class="next">
-    <h2>WHAT HAPPENS NEXT</h2>
-    <p><b>Fourteen days, everything.</b> Every tool, every channel, the city, the
-      games. No card, no account, nothing to sign up for. The clock starts the
-      first time you open it, not when you download it.</p>
-    <p>On day fifteen it stops and asks for a key. <b>Nothing you made is
-      deleted</b> — it all comes straight back the moment one goes in.</p>
-    <p>Something broken, or the installer won’t run? Email
-      <b>sendittosociety@gmail.com</b> — one person reads all of it, usually
-      the same day.</p>
+    <h2>IF YOU CAME HERE TO TRY IT</h2>
+    <p>Email <b>sendittosociety@gmail.com</b> and I’ll tell you the day it’s
+      back. One person reads all of it, usually the same day.</p>
+    <p><b>Already have it installed?</b> Nothing changes for you. It keeps
+      working and everything you made stays on your own disk. If your trial
+      has run out, email me and we’ll sort it.</p>
   </section>
 </main>
 
@@ -114,36 +105,16 @@
   <p>Send It To Society — made by one person, in Colorado.</p>
 </footer>
 
-<script>
-/* ── THE ONE LINE THAT CHANGES PER RELEASE ─────────────────────────────────────
-   The asset filename carries the version, so this is version-pinned on purpose:
-   a link that silently points at a release that does not exist yet is worse
-   than one that obviously needs updating. Ship a new build, change this line.
+<!-- ═══ THE AUTO-DOWNLOAD SCRIPT WAS REMOVED HERE — 11 Oct 2026 ══════════
+     This page used to start a 212 MB installer by itself, from a pinned
+     GitHub release asset, one beat after the invite gate unlocked.
 
-   It resolves to a 302 straight at GitHub's asset host with
-   content-disposition: attachment, so the file simply begins downloading and
-   the visitor never sees a GitHub page. Verified against the live release. */
-var FILE = 'https://github.com/sendittosociety/sits-releases/releases/download/v1.0.0-beta.2/SendItToSociety-Setup-1.0.0-beta.2.exe'
+     The whole block is gone rather than commented out ON PURPOSE: a
+     commented-out URL is still in the page source, and view-source is the
+     first place anyone looks when a download button stops working.
 
-document.getElementById('dl').href = FILE
-
-/* WAIT FOR THE DOOR. This page hands over a 212 MB installer, so it must not
-   fire while the invite gate is still up -- hiding the page but starting the
-   download anyway would defeat the whole point of having a gate. gate.js marks
-   <html> .unlocked; nothing here happens until it does. */
-function startDownload () { window.location.href = FILE }
-function whenUnlocked (fn) {
-  var root = document.documentElement
-  if (root.classList.contains('unlocked')) return fn()
-  var obs = new MutationObserver(function () {
-    if (root.classList.contains('unlocked')) { obs.disconnect(); fn() }
-  })
-  obs.observe(root, { attributes: true, attributeFilter: ['class'] })
-}
-/* A beat after unlocking, so the page has painted and they can see WHY their
-   browser just started downloading 212 MB. An unexplained download is a
-   deleted download. */
-whenUnlocked(function () { setTimeout(startDownload, 900) })
-</script>
+     To bring it back, restore the script from git history:
+         git show 8f7d9a1:download.html
+     and bump the version in the asset filename to whatever shipped. -->
 </body>
 </html>

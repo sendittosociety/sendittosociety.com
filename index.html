@@ -52,8 +52,11 @@
   <nav>
     <a href="#city">THE CITY</a>
     <a href="#work">UNDER THE HOOD</a>
-    <a href="#price">PRICE</a>
-    <a class="cta-sm" href="#get">GET IT</a>
+    <!-- Was: a plain PRICE link plus a GET IT button. With downloads paused,
+         GET IT promises something the page can't do, so the two merged into
+         one highlighted PRICE button rather than leaving a dead promise in
+         the masthead. -->
+    <a class="cta-sm" href="#price">PRICE</a>
   </nav>
 </header>
 
@@ -72,7 +75,9 @@
       <p class="kicker">▸ SEND IT TO SOCIETY</p>
       <h1>The game for<br>running a<br>YouTube channel.</h1>
       <p class="sub">Every tool you need, inside a city you build.<br>Replaces about <b>$52 a month</b> of subscriptions. <b>$39, once.</b></p>
-      <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
+      <!-- Said DOWNLOAD — 14 DAYS FREE until downloads were paused. It still
+           lands on #get, which now explains why. -->
+      <a class="cta" href="#get">SEE THE PRICE</a>
       <p class="fine">Windows · no card · no account</p>
     </div>
     <div class="layer" data-from="0.38" data-to="0.64">
@@ -365,7 +370,7 @@
     <svg class="mark big" viewBox="-.04 -.04 5 7.05" width="54" height="76" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="2" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="3" y="0" width=".92" height=".92" rx=".1" fill="#D9C24E"/><rect x="0" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="4" y="1" width=".92" height=".92" rx=".1" fill="#D2915C"/><rect x="0" y="2" width=".92" height=".92" rx=".1" fill="#D25C6B"/><rect x="1" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="2" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="3" y="3" width=".92" height=".92" rx=".1" fill="#D163B8"/><rect x="4" y="4" width=".92" height=".92" rx=".1" fill="#A855D6"/><rect x="0" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="4" y="5" width=".92" height=".92" rx=".1" fill="#8A84D6"/><rect x="1" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="2" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/><rect x="3" y="6" width=".92" height=".92" rx=".1" fill="#4FA9C9"/></svg>
     <p class="tc-name">SEND IT TO SOCIETY</p>
     <p class="tc-line">WINDOWS · $39 ONCE · 14 DAYS FREE</p>
-    <a class="cta" href="#get">DOWNLOAD — 14 DAYS FREE</a>
+    <a class="cta" href="#get">SEE THE PRICE</a>
     <p class="tc-fine">Public beta · no card · no account</p>
     <a class="tc-more" href="#work">▾  ACT II — UNDER THE HOOD</a>
   </div>
@@ -651,20 +656,38 @@
       <p class="eyebrow">// THE PRICE</p>
       <p class="amt">$39</p>
       <p class="once">ONE TIME · NOT A SUBSCRIPTION · YOURS FOREVER</p>
-      <!-- OUR PAGE, NOT GITHUB'S. download.html starts the file immediately from
-           GitHub's asset host, so nobody is ever dropped on a repo page full of
-           tags and "Source code (zip)" rows — and it gets to explain the
-           SmartScreen warning BEFORE Windows shows it, which is the single
-           biggest reason someone abandons an unsigned installer. -->
-      <a class="cta" id="get" href="download.html">DOWNLOAD — 14 DAYS FREE</a>
-      <p class="fine">Windows · no card · no account</p>
-      <!-- The app's trial gate opens sendittosociety.com/#get when somebody
-           clicks GET A KEY, and #get is this price box. Without this line they
-           land on a DOWNLOAD button — handed the installer they already have,
-           at the exact moment they were reaching for a card. Copies already
-           installed cannot be fixed by an app update, so the fix has to live
-           here, on the page they arrive at. -->
-      <p class="already">Already tried it? <a href="buy.html">Buy a key →</a></p>
+      <!-- ═══ DOWNLOADS PAUSED — 11 Oct 2026, Chris's call ═══════════════════
+           The site stays up in full; the installer does not go out. To turn it
+           back on, restore this one line and revert download.html:
+
+             <a class="cta" id="get" href="download.html">DOWNLOAD — 14 DAYS FREE</a>
+
+           id="get" MUST stay on whatever element sits here. FOUR things anchor
+           to #get: the nav button, the hero CTA, the end-of-Act-I card, and the
+           app's own trial gate, which opens sendittosociety.com/#get when
+           somebody clicks GET A KEY. Move the id and all four break silently.
+
+           (The original reason this pointed at our own page, not GitHub's:
+           download.html explains the SmartScreen warning BEFORE Windows shows
+           it, which is the single biggest reason someone abandons an unsigned
+           installer. That page is still there, now saying it's paused.) -->
+      <p class="cta cta-off" id="get">DOWNLOADS PAUSED</p>
+      <p class="fine">A new build is close. Email <b>sendittosociety@gmail.com</b> and I'll tell you when it's back.</p>
+      <!-- BUY A KEY REMOVED TOO — 11 Oct 2026, same call. Was:
+
+             <p class="already">Already tried it? <a href="buy.html">Buy a key →</a></p>
+
+           KNOW WHAT THIS COSTS. The app's trial gate opens
+           sendittosociety.com/#get when somebody clicks GET A KEY, and #get is
+           this price box — so an expired trial lands HERE, and this was the
+           line that sold to them. Copies already installed cannot be fixed by
+           an app update, so there is no other place to catch that person.
+
+           The email address above is now their only route. That is a
+           deliberate trade while everything is paused, not an oversight.
+           buy.html is still live and still works; it is simply unlinked, so
+           anyone already holding the URL can still pay. -->
+
       <ul class="pricefacts">
         <li><b>Fourteen days, everything.</b> Every tool, every channel, the city,
           the games. If it isn't for you, do nothing — it stops on day

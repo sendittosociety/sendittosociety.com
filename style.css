@@ -146,6 +146,14 @@ header nav a:hover{color:var(--green)}
   box-shadow:0 0 30px rgba(74,232,138,.35);transition:transform .12s,box-shadow .12s}
 .cta:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(74,232,138,.6)}
 
+/* DOWNLOADS PAUSED. Same shape and position as the live button so the price
+   box doesn't suddenly have a hole in it, but visibly inert: no fill, no glow,
+   no hover lift, no pointer. It has to read as a sign, not as a thing that
+   might work if you click it harder. Delete this rule when downloads return. */
+.cta-off{background:transparent;color:var(--faint);border:1px dashed var(--line);
+  box-shadow:none;cursor:default;margin:0 0 4px}
+.cta-off:hover{transform:none;box-shadow:none}
+
 /* Top centre, under the masthead: the first place the eye lands after the
    headline, rather than the bottom corner nobody looks at. */
 .scrollcue{position:absolute;left:50%;top:82px;transform:translateX(-50%);display:flex;
